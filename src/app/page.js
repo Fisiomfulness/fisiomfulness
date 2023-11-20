@@ -1,9 +1,12 @@
-import { Button } from '@nextui-org/react'
+import HomeImage from "@/components/HomeImage";
+import Nav from "@/components/Nav";
+
 
 export default function Home() {
   return (
     <main>
-      <Button color='success'>PRUEBA</Button>
+      <Nav/>
+      <HomeImage/>
     </main>
   )
 }
