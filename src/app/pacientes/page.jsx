@@ -10,21 +10,6 @@ import {
   TableCell,
 } from "@nextui-org/react";
 
-const animals = [
-  {
-    label: "Cat",
-    value: "cat",
-  },
-  {
-    label: "Dog",
-    value: "dog",
-  },
-  {
-    label: "Elephant",
-    value: "elephant",
-  },
-];
-
 const rows = [
   {
     key: "1",
@@ -58,19 +43,58 @@ const columns = [
   { key: "estado", label: "Estado" },
 ];
 
+function Drop({ defaultItems, placeholder }) {
+  return (
+    <Autocomplete
+      defaultItems={defaultItems}
+      labelPlacement={"outside"}
+      placeholder={placeholder}
+      className="max-w-xs"
+      variant="underlined"
+    >
+      {(item) => (
+        <AutocompleteItem key={item.value}>
+          {item.value}
+        </AutocompleteItem>
+      )}
+    </Autocomplete>
+  )
+}
+
 function TableExample() {
   return (
-    <Table aria-label="Example table with dynamic content">
+    <Table
+      removeWrapper
+      aria-label="Example table with dynamic content"
+      className="bg-blue-800 text-black"
+    >
       <TableHeader>
         {columns.map((column) => (
-          <TableColumn key={column.key}>{column.label}</TableColumn>
+          <TableColumn
+            key={column.key}
+            className="bg-transparent text-white"
+          >
+            {column.label}
+          </TableColumn>
         ))}
       </TableHeader>
       <TableBody emptyContent="No hay pacientes">
         {rows.map((row) => (
           <TableRow key={row.key}>
             <TableCell>{row.name}</TableCell>
-            <TableCell>{row.date}</TableCell>
+            <TableCell>
+              <div className="flex justify-center items-center">
+                <Drop
+                  defaultItems={[
+                    {label: "Cat", value: "10.04.2023"},
+                    {label: "Dog", value: "11.02.2021"},
+                    {label: "Elephant", value: "10.10.2020"},
+                  ]}
+                  placeholder={"Seleccione una cita"}
+                />
+                {row.date}
+              </div>
+            </TableCell>
             <TableCell>{row.status}</TableCell>
           </TableRow>
         ))}
@@ -83,19 +107,6 @@ export default function PacientesPage() {
   return (
     <div className="bg-black min-h-screen">
       <div>historia pacientes</div>
-      <Autocomplete
-        defaultItems={animals}
-        labelPlacement={"outside"}
-        placeholder="Favorite Animal"
-        className="max-w-xs"
-        variant="underlined"
-      >
-        {(item) => (
-          <AutocompleteItem key={item.value}>
-            {item.label}
-          </AutocompleteItem>
-        )}
-      </Autocomplete>
       <TableExample />
     </div>
   )
