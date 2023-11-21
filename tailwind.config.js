@@ -1,24 +1,30 @@
-const {nextui} = require("@nextui-org/react");
-
+import {nextui} from "@nextui-org/react";
 /** @type {import('tailwindcss').Config} */
-export const content = ["./index.html", "./src/**/*.{js,ts,jsx,tsx}", "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"];
-export const theme = {
-  extend: {
-    colors: {
-      primary: "#112732",
-      secondary: "#3397C6",
-      "primary-opacity": "rgb(17, 39, 50, 0.5)",
-      "light-blue": "#ACD9EC",
-      "action-green": "#36A793",
-      "action-blue": "#62CFE4",
-      "primary-hover": "rgb(17, 39, 50, 0.7)",
-      "action-hover": "rgb(54, 167, 147, 0.7)",
-      "pale-blue": "#F2F8FA",
-      "pale-blue-opacity": "rgb(242, 248, 250, 0.5)",
-      white: "#FAFAFA",
-      black: "#0D0D0D",
+const config = {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"
+  ],
+  theme: {
+    extend: {
+      colors: {
+        "primary": "rgb(var(--color-primary) / <alpha-value>)",
+        "primary-opacity": "var(--color-primary-opacity)",
+        "primary-hover": "var(--color-primary-hover)",
+        "secondary": "rgb(var(--color-secondary) / <alpha-value>)",
+        "light-blue": "rgb(var(--color-light-blue) / <alpha-value>)",
+        "action-green": "rgb(var(--color-action-green) / <alpha-value>)",
+        "action-blue": "rgb(var(--color-action-blue) / <alpha-value>)",
+        "action-hover": "var(--color-action-hover)",
+        "pale-blue": "rgb(var(--color-pale-blue) / <alpha-value>)",
+        "pale-blue-opacity": "var(--color-pale-blue-opacity)",
+        "white": "rgb(var(--color-white) / <alpha-value>)",
+        "black": "rgb(var(--color-black) / <alpha-value>)",
+      },
     },
   },
-};
-export const darkMode = "class";
-export const plugins = [nextui()];
+  darkMode: "class",
+  plugins: [nextui()]
+}
+export default config;
