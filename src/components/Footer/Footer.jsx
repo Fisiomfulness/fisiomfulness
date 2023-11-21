@@ -15,16 +15,16 @@ function Footer() {
       <div >
         <div className="w-full flex justify-evenly ">
           <div>
-            <Image width={120} src={FisiumLogo} alt="Logo Fisiom fulness" />
-            <div className="flex w-50 items-center justify-evenly  lg:px-8 text-white">
+            <Image width={200} src={FisiumLogo} alt="Logo Fisiom fulness" className="pt-5 lg:w-15" />
+            <div className="flex w-50 items-center justify-evenly px-12  lg:px-8 text-white pt-1">
               <Link href="/" target="_blank">
-                <AiOutlineFacebook className="text-xl hover:scale-110" />
+                <AiOutlineFacebook className="text-xl lg:text-2xl hover:scale-110" />
               </Link>
               <Link href="/" target="_blank">
-                <AiOutlineInstagram className="text-xl hover:scale-110" />
+                <AiOutlineInstagram className="text-xl lg:text-2xl hover:scale-110" />
               </Link>
               <Link href="/" target="_blank">
-                <AiOutlineLinkedin className="text-xl hover:scale-110" />
+                <AiOutlineLinkedin className="text-xl lg:text-2xl hover:scale-110" />
               </Link>
             </div>
           </div>
