@@ -1,5 +1,6 @@
 "use client"
 
+import { cn } from "@/features/ui";
 import {Autocomplete, AutocompleteItem} from "@nextui-org/react";
 import {
   Table,
@@ -44,13 +45,22 @@ const columns = [
 ];
 
 function Drop({ defaultItems, placeholder }) {
+
   return (
     <Autocomplete
       defaultItems={defaultItems}
       labelPlacement={"outside"}
       placeholder={placeholder}
-      className="max-w-xs"
       variant="underlined"
+      aria-label={placeholder}
+      inputProps={{
+        classNames: {
+          inputWrapper: "border-none",
+          input: cn(
+            "placeholder:!not-italic placeholder:text-inherit"
+          ),
+        }
+      }}
     >
       {(item) => (
         <AutocompleteItem key={item.value}>
@@ -66,13 +76,16 @@ function TableExample() {
     <Table
       removeWrapper
       aria-label="Example table with dynamic content"
-      className="bg-blue-800 text-black"
+      className="text-black max-w-fit"
+      shadow="none"
+      radius="none"
+      isCompact
     >
       <TableHeader>
         {columns.map((column) => (
           <TableColumn
             key={column.key}
-            className="bg-transparent text-white"
+            className="border-white text-white border-3 bg-secondary"
           >
             {column.label}
           </TableColumn>
@@ -80,10 +93,10 @@ function TableExample() {
       </TableHeader>
       <TableBody emptyContent="No hay pacientes">
         {rows.map((row) => (
-          <TableRow key={row.key}>
+          <TableRow className="border-white border-3 bg-light-blue" key={row.key}>
             <TableCell>{row.name}</TableCell>
-            <TableCell>
-              <div className="flex justify-center items-center">
+            <TableCell className="border-white border-3">
+              <div className="max-w-[240px]">
                 <Drop
                   defaultItems={[
                     {label: "Cat", value: "10.04.2023"},
@@ -92,7 +105,6 @@ function TableExample() {
                   ]}
                   placeholder={"Seleccione una cita"}
                 />
-                {row.date}
               </div>
             </TableCell>
             <TableCell>{row.status}</TableCell>
@@ -105,7 +117,7 @@ function TableExample() {
 
 export default function PacientesPage() {
   return (
-    <div className="bg-black min-h-screen">
+    <div>
       <div>historia pacientes</div>
       <TableExample />
     </div>
