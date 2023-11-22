@@ -36,18 +36,18 @@ const rows = [
 ];
 
 const row__item_class = cn(
-  "px-4 text-black",
+  "px-4 py-1 text-black",
   "whitespace-nowrap border-1 border-white"
 )
 
 const header__item_class = cn(
-  "border-1 border-white text-center",
+  "py-2 border-1 border-white text-center",
 )
 
 export default function Tabla() {
   return (
-    <div>
-      <table className="w-full text-sm">
+    <div className="px-4 overflow-x-auto w-full">
+      <table className="text-sm m-auto">
         <thead className="text-white bg-secondary">
           <tr>
             {columns.map((item) => (
@@ -102,14 +102,14 @@ function Drop({ defaultItems, placeholder }) {
       size="sm"
       inputProps={{
         classNames: {
-          base: cn("px-2 bg-white"), // <<<<
+          base: cn("px-2 py-1 bg-white"),
           innerWrapper: cn("!border-none !shadow-none px-2"),
           inputWrapper: cn(
             "!border-none !shadow-none after:!hidden"
           ),
           input: cn(
             "placeholder:!not-italic placeholder:text-inherit",
-            "!border-none max-w-[125px] !p-0"
+            "!border-none max-w-[130px] !p-0"
           ),
         }
       }}
@@ -149,11 +149,14 @@ function DropStatus({ defaultItems, placeholder }) {
       variant="underlined"
       aria-label={placeholder}
       size="sm"
+      classNames={{
+        clearButton: "!text-inherit"
+      }}
       inputProps={{
         classNames: {
           base: cn(
-            "px-2",
-            status === "En Proceso" && "bg-cyan-500",
+            "px-2 py-1",
+            status === "En Proceso" && "bg-cyan-600",
             status === "Finalizada" && "bg-sky-800",
             status === "Reprogramada" && "bg-lime-500",
           ),
@@ -163,8 +166,8 @@ function DropStatus({ defaultItems, placeholder }) {
           ),
           input: cn(
             "placeholder:!not-italic placeholder:text-inherit placeholder:font-bold",
-            "!border-none max-w-[100px] !p-0 !font-bold",
-            "!text-white",
+            "!border-none max-w-[120px] !p-0 !font-bold",
+            "uppercase !text-white",
             status === "Reprogramada" && "!text-black",
           ),
         }
@@ -175,7 +178,7 @@ function DropStatus({ defaultItems, placeholder }) {
         size: "sm",
         offset: 2,
         classNames: {
-          content: cn("p-0"),
+          content: cn("p-0 uppercase"),
         }
       }}
       listboxProps={{
@@ -184,7 +187,7 @@ function DropStatus({ defaultItems, placeholder }) {
         },
         color: "secondary"
       }}
-      onInputChange={(value) => setStatus(value)}
+      onInputChange={(value) => setStatus(value || placeholder)}
     >
       {(item) => (
         <AutocompleteItem key={item.value}>
