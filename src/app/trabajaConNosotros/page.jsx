@@ -9,7 +9,7 @@ const TrabajaConNosotros = () => {
 
     return (
         <div className='p-14 justify-center w-full'>
-            <form onSubmit={handleSubmit}>
+            <form>
                 <div className='flex items-center gap-10'>
                     <Image src={fisiumLogo} alt='logo' />
                     <p>Trabajá con <span className="text-[#06B0FF] underline">nosotros</span></p>
