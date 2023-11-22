@@ -44,7 +44,7 @@ export default function PacientesPage() {
       )}
     >
       <p className="pb-6 text-xl font-semibold">
-        Historia Clinica Pacientes
+        Historia Clinica - Pacientes
       </p>
       <Tabla />
     </div>
