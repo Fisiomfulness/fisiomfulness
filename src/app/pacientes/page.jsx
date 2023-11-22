@@ -117,7 +117,7 @@ function TableExample() {
 
 export default function PacientesPage() {
   return (
-    <div>
+    <div className="flex justify-center flex-col items-center">
       <div>historia pacientes</div>
       <TableExample />
     </div>
