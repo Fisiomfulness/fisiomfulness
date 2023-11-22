@@ -1,5 +1,6 @@
 import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
 import { cn } from "../utils"
+import { useState } from "react";
 
 const columns = [
   { key: "paciente", label: "Paciente" },
@@ -35,7 +36,7 @@ const rows = [
 ];
 
 const row__item_class = cn(
-  "px-6 text-black",
+  "px-4 text-black",
   "whitespace-nowrap border-1 border-white"
 )
 
@@ -63,27 +64,24 @@ export default function Tabla() {
                 {item.name}
               </td>
               <td className={cn(row__item_class, "p-0")}>
-                <div className="max-w-[240px] bg-white">
-                  <Drop
-                    defaultItems={[
-                      {label: "date1", value: "10.04.2023"},
-                      {label: "date2", value: "11.02.2021"},
-                      {label: "date3", value: "10.10.2020"},
-                    ]}
-                    placeholder={"Seleccione una cita"}
-                  />
-                </div>
+                <Drop
+                  defaultItems={[
+                    {label: "date1", value: "10.04.2023"},
+                    {label: "date2", value: "11.02.2021"},
+                    {label: "date3", value: "10.10.2020"},
+                  ]}
+                  placeholder={"Seleccione una cita"}
+                />
               </td>
-              <td
-                className={cn(
-                  row__item_class,
-                  "font-bold text-white",
-                  item.status === "En Proceso" && "bg-cyan-500",
-                  item.status === "Finalizada" && "bg-sky-800",
-                  item.status === "Reprogramada" && "bg-lime-500 text-black",
-                )}
-              >
-                {item.status}
+              <td className={cn(row__item_class, "p-0")}>
+                <DropStatus
+                  defaultItems={[
+                    {value: "En Proceso"},
+                    {value: "Finalizada"},
+                    {value: "Reprogramada"},
+                  ]}
+                  placeholder={item.status}
+                />
               </td>
             </tr>
           ))}
@@ -104,17 +102,19 @@ function Drop({ defaultItems, placeholder }) {
       size="sm"
       inputProps={{
         classNames: {
-          innerWrapper: cn("!border-none !shadow-none"),
+          base: cn("px-2 bg-white"), // <<<<
+          innerWrapper: cn("!border-none !shadow-none px-2"),
           inputWrapper: cn(
             "!border-none !shadow-none after:!hidden"
           ),
           input: cn(
-            "placeholder:!not-italic placeholder:text-inherit !border-none"
+            "placeholder:!not-italic placeholder:text-inherit",
+            "!border-none max-w-[125px] !p-0"
           ),
         }
       }}
       popoverProps={{
-        radius: "none",
+        radius: "sm",
         shadow: "sm",
         size: "sm",
         offset: 2,
@@ -122,6 +122,69 @@ function Drop({ defaultItems, placeholder }) {
           content: cn("p-0"),
         }
       }}
+      listboxProps={{
+        classNames:{
+          list: cn("[&_li]:!rounded-md"),
+        },
+        color: "secondary"
+      }}
+    >
+      {(item) => (
+        <AutocompleteItem key={item.value}>
+          {item.value}
+        </AutocompleteItem>
+      )}
+    </Autocomplete>
+  )
+}
+
+function DropStatus({ defaultItems, placeholder }) {
+  const [status, setStatus] = useState(placeholder)
+
+  return (
+    <Autocomplete
+      defaultItems={defaultItems}
+      placeholder={placeholder}
+      labelPlacement={"outside"}
+      variant="underlined"
+      aria-label={placeholder}
+      size="sm"
+      inputProps={{
+        classNames: {
+          base: cn(
+            "px-2",
+            status === "En Proceso" && "bg-cyan-500",
+            status === "Finalizada" && "bg-sky-800",
+            status === "Reprogramada" && "bg-lime-500",
+          ),
+          innerWrapper: cn("!border-none !shadow-none px-2"),
+          inputWrapper: cn(
+            "!border-none !shadow-none after:!hidden"
+          ),
+          input: cn(
+            "placeholder:!not-italic placeholder:text-inherit placeholder:font-bold",
+            "!border-none max-w-[100px] !p-0 !font-bold",
+            "!text-white",
+            status === "Reprogramada" && "!text-black",
+          ),
+        }
+      }}
+      popoverProps={{
+        radius: "sm",
+        shadow: "sm",
+        size: "sm",
+        offset: 2,
+        classNames: {
+          content: cn("p-0"),
+        }
+      }}
+      listboxProps={{
+        classNames:{
+          list: cn("[&_li]:!rounded-md"),
+        },
+        color: "secondary"
+      }}
+      onInputChange={(value) => setStatus(value)}
     >
       {(item) => (
         <AutocompleteItem key={item.value}>
