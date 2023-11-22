@@ -68,10 +68,12 @@ const RegistroProfesionales = () => {
             </div>
           </div>
         </div>
-        <div className="w-1/2 lg:w-1/2 h-full flex items-center justify-center">
-          <div className="bg-gray-500 w-full h-full">
+        <div className="w-1/2 lg:w-1/2 h-full">
+          <div className="bg-pale-blue w-full h-full grid grid-cols-2 pt-6 ps-8">
             <FormRegistroProfesionales />
-            <button className="btn btn-primary">CREAR PERFIL</button>
+            {/* <div className="flex items-center justify-center">
+              <button className="btn btn-primary ">CREAR PERFIL</button>
+            </div> */}
           </div>
         </div>
       </div>

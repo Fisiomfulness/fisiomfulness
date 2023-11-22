@@ -186,10 +186,10 @@ const FormRegistroProfesionales = () => {
           {formik.errors.numeroColegiado}
         </div>
       ) : null}
-      <div className="flex items-center justify-between">
+      {/* <div className="grid grid-cols-2 justify-items-end">
         <label htmlFor="DiplomaCV">Agregue su Diploma o CV</label>
         <button className="btn btn-primary">AGREGAR</button>
-      </div>
+      </div> */}
     </form>
   );
 };
