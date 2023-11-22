@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useState } from "react";
 
-const FormRegistroProfesionales = () => {
+const FormRegistroUsuarios = () => {
   const formik = useFormik({
     initialValues: {
       nombreApellido: "",
@@ -194,4 +194,4 @@ const FormRegistroProfesionales = () => {
   );
 };
 
-export default FormRegistroProfesionales;
+export default FormRegistroUsuarios;

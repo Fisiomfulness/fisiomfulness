@@ -1,4 +1,5 @@
 import FormRegistroProfesionales from "@/components/FormRegistroProfesionales/FormRegistroProfesionales";
+// import FormRegistroUsuarios from "@/components/FormRegistroUsuarios/FormRegistroUsuarios";
 
 // import FisiumLogo from "../FisiumLogo/FisiumLogo";
 
@@ -71,6 +72,7 @@ const RegistroProfesionales = () => {
         <div className="w-1/2 lg:w-1/2 h-full">
           <div className="bg-pale-blue w-full h-full grid grid-cols-2 pt-6 ps-8">
             <FormRegistroProfesionales />
+            {/* <FormRegistroUsuarios /> */}
             {/* <div className="flex items-center justify-center">
               <button className="btn btn-primary ">CREAR PERFIL</button>
             </div> */}
