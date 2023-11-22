@@ -1,14 +1,12 @@
-import FisiumLogo from "../FisiumLogo/FisiumLogo";
-
+// import FisiumLogo from "../FisiumLogo/FisiumLogo";
 
 const RegistroProfesionales = () => {
-
   return (
     <div className="w-full h-screen flex items-center justify-center bg-action-blue">
       <div className="bg-white w-3/4 h-3/4 lg:w-4/6 lg:h-4/6 flex items-center justify-center">
         <div className="w-1/2 lg:w-1/2 h-full items-center justify-center">
           <div className="bg-pale-blue w-1/2 lg:w-full h-1/3 flex items-center justify-center">
-            <FisiumLogo />
+            {/* <FisiumLogo /> */}
           </div>
           <div className="bg-pale-blue w-1/2 lg:w-full h-1/2 items-center justify-center text-center">
             <div className="bg-pale-blue w-1/4 lg:w-full h-1/2 py-6 items-center text-center">
@@ -70,7 +68,6 @@ const RegistroProfesionales = () => {
         </div>
         <div className="w-1/2 lg:w-1/2 h-full flex items-center justify-center">
           <div className="bg-gray-500 w-full h-full">
-           
             <button className="btn btn-primary">CREAR PERFIL</button>
           </div>
         </div>
