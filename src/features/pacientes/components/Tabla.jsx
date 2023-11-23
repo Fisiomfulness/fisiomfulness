@@ -14,8 +14,8 @@ const header__item_class = cn(
 
 export default function Tabla() {
   return (
-    <div className="px-4 overflow-x-auto w-full">
-      <table className="text-sm m-auto">
+    <div className="overflow-x-auto w-full">
+      <table className="text-sm m-auto rounded-xl overflow-hidden">
         <thead className="text-white bg-secondary">
           <tr>
             {columns.map((item) => (

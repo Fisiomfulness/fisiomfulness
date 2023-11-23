@@ -5,7 +5,8 @@ export default function PacientesPage() {
   return (
     <div
       className={cn(
-        "flex justify-center flex-col items-center min-h-screen overflow-hidden"
+        "flex justify-center flex-col items-center",
+        "px-4  min-h-screen overflow-hidden"
       )}
     >
       <p className="pb-6 text-xl font-semibold">
