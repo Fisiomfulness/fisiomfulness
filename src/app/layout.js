@@ -1,5 +1,6 @@
 import { Raleway } from "next/font/google";
 import { Providers } from "./providers";
+import Nav from "@/components/Nav";
 import "./globals.css";
 
 const raleway = Raleway({
@@ -17,7 +18,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <body className={raleway.className}>
-        <Providers>{children}</Providers>
+
+        <Providers>
+        <Nav />
+        <main className="max-w-10xl mx-auto">{children}</main>
+          </Providers>
       </body>
     </html>
   );

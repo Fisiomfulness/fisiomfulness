@@ -5,8 +5,8 @@ export const content = ["./index.html", "./src/**/*.{js,ts,jsx,tsx}", "./node_mo
 export const theme = {
   extend: {
     colors: {
-      primary: "#112732",
-      secondary: "#3397C6",
+      primary: "#3397C6",
+      secondary: "#112732",
       "primary-opacity": "rgb(17, 39, 50, 0.5)",
       "light-blue": "#ACD9EC",
       "action-green": "#36A793",
