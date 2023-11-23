@@ -1,0 +1,49 @@
+{
+  "productos": [
+    {
+      "id": "1",
+      "nombre": "Guantes",
+      "price": "300",
+      "categoria": "Categoria 1",
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem, suscipit? Hic consequuntur molestias doloribus vero quos!"
+    },
+    {
+      "id": "2",
+      "nombre": "Barbijo",
+      "price": "200",
+      "categoria": "Categoria 2",
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem, suscipit? Hic consequuntur molestias doloribus vero quos!"
+    },
+    {
+      "id": "3",
+      "nombre": "Jeringa",
+      "price": "250",
+      "categoria": "Categoria 3",
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem, suscipit? Hic consequuntur molestias doloribus vero quos!"
+    },
+    {
+      "id": "4",
+      "nombre": "Guantes",
+      "price": "1200",
+      "categoria": "Categoria 1",
+
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem, suscipit? Hic consequuntur molestias doloribus vero quos!"
+    },
+    {
+      "id": "5",
+      "nombre": "Guantes",
+      "price": "1200",
+      "categoria": "Categoria 2",
+
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem, suscipit? Hic consequuntur molestias doloribus vero quos!"
+    },
+    {
+      "id": "6",
+      "nombre": "Guantes",
+      "price": "1200",
+      "categoria": "Categoria 3",
+
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem, suscipit? Hic consequuntur molestias doloribus vero quos!"
+    }
+  ]
+}
