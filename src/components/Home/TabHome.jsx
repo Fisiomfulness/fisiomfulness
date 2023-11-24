@@ -45,7 +45,7 @@ export default function TabHome() {
                 <div className="flex lg:flex-row flex-col flex-1">
                   <Autocomplete
                     startsWidth={<AiFillHome />}
-                    label="Seleccione:"lg
+                    label="Seleccione:"
                     placeholder="Especialidad"
                     className="max-w-xs md:mr-2 mr-0"
                     defaultItems={especialidadesMedicas}
