@@ -5,7 +5,7 @@
 @layer base {
   html {
     @apply bg-pale-blue;
-    @apply text-primary;
+    @apply text-secondary;
   }
 
   h1 {
@@ -17,7 +17,7 @@
   }
 
   a {
-    @apply hover:text-action-green transition  underline-offset-2 cursor-pointer;
+    @apply  hover:text-action-green transition cursor-pointer;
   }
 
   input[type="text"] {
@@ -32,28 +32,14 @@
     @apply text-sm mt-2 font-semibold
   }
 
-  .input-search {
-    @apply w-80 text-primary text-sm outline-none border border-primary/30 rounded-md p-2 mb-1;
+  .background-image {
+    background-image: url("/Home.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+    height: 100vh;
   }
 
-  .input-form {
-    @apply w-80 flex flex-row justify-evenly bg-transparent outline-none border-b border-primary-opacity text-primary text-sm p-1 mb-1; 
-  }
-
-  .input-form-error {
-    @apply w-80 flex justify-evenly flex-row bg-transparent outline-none border-b border-red-600 text-primary text-sm p-1 mb-1; 
-  }
-
-  .btn {
-    @apply uppercase text-white w-80 h-12 text-sm font-bold rounded-md my-2 transition hover:translate-y-0.5 hover:ease-in-out disabled:bg-primary-opacity hover:disabled:translate-y-0 hover:disabled:scale-100 hover:disabled:bg-primary-opacity ;
-  }
-
-  .btn-primary {
-    @apply bg-action-green hover:bg-action-hover;
-  }
-
-  .btn-secondary {
-    @apply bg-primary my-2 hover:bg-primary-hover;
-  }
+  
 
 }
