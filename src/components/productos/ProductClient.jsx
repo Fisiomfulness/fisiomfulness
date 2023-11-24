@@ -16,5 +16,3 @@ const ProductClient = ({ data }) => {
 };
 
 export default ProductClient;
-
-// /

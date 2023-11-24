@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { Card, CardHeader, CardFooter, Image, Button } from "@nextui-org/react";
+import img from "../../../public/prodPrueba4.png";
 
 export const ProductCard = ({ prod }) => {
   const router = useRouter();
@@ -19,7 +20,7 @@ export const ProductCard = ({ prod }) => {
         removeWrapper
         alt="Card example background"
         className="z-0 w-full h-full scale-105 -translate-y-6 "
-        src={prod.imagen}
+        src={img.src}
       />
       <CardFooter className="absolute bg-black/30 -bottom-2 border-t-1 border-zinc-100/50 z-10 justify-between">
         <div>
