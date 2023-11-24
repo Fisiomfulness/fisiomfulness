@@ -4,8 +4,12 @@ import { CiMail } from "react-icons/ci";
 import { IoIosCall } from "react-icons/io";
 import { Card, CardBody, Image, Chip, CardFooter } from "@nextui-org/react";
 import { Divider } from "@nextui-org/react";
-import StarRatings from "react-star-ratings";
 import { Snippet } from "@nextui-org/react";
+// Fix de StarRatings
+import dynamic from "next/dynamic";
+const StarRatings = dynamic(() => import("react-star-ratings"), {
+  ssr: false,
+});
 
 const profesional = {
   name: "Dr. Lorem Ipsum",
@@ -57,7 +61,7 @@ const profesional = {
 
 const ServicioProfesionalCard = () => {
   return (
-    <div className="flex flex-col md:flex-row ">
+    <div className="flex flex-col md:flex-row items-center">
 
     <Card
       isBlurred

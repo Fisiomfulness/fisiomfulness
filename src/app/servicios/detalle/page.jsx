@@ -1,11 +1,23 @@
+import ServicioAsideBar from "@/components/Servicios/ServicioAsideBar"
+import ServicioDetallesCommentBox from "@/components/Servicios/ServicioDetallesCommentBox"
 import ServicioProfesionalCard from "@/components/Servicios/ServicioProfesionalCard"
-import ServicioProfesionalTabla from "@/components/Servicios/ServicioProfesionalTabla"
+import ServicioProfesionalComentarios from "@/components/Servicios/ServicioProfesionalComentarios"
+import data from "@/components/Servicios/data/comentarios.json"
+
 
 const ServicioDetalles = () => {
+  
   return (
-    <div>
+    <div className="flex flex-col md:flex-row justify-around">
+      <div>
+        <ServicioAsideBar/>
+      </div>
+      <div>
+
         <ServicioProfesionalCard/>
-        <ServicioProfesionalTabla/>
+        <ServicioDetallesCommentBox/>
+        <ServicioProfesionalComentarios comentarios={data.comentarios}/>
+      </div>
     </div>
   )
 }
