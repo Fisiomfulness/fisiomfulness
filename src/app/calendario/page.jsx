@@ -23,23 +23,60 @@ function createQuoteDay(day) {
 
 const citaciones = [
   {
-    key: "1",
-    hour: createQuoteTime(7, 30),
+    id: "1",
+    hour: createQuoteTime(7, 0),
     date: createQuoteDay(21),
     name: "Maria Gimenez",
   },
   {
-    key: "2",
+    id: "2",
+    hour: createQuoteTime(7, 30),
+    date: createQuoteDay(21),
+    name: "Carlos Albomoz",
+  },
+  {
+    id: "3",
+    hour: createQuoteTime(8, 0),
+    date: createQuoteDay(21),
+    name: "Juan Perez",
+  },
+  {
+    id: "4",
+    hour: createQuoteTime(8, 0),
+    date: createQuoteDay(23),
+    name: "Mariano Rivas",
+  },
+  {
+    id: "5",
     hour: createQuoteTime(7, 0),
-    date: createQuoteDay(22),
-    name: "Juan Carlos Osorio",
+    date: createQuoteDay(24),
+    name: "Gomez Maria",
+  },
+  {
+    id: "6",
+    hour: createQuoteTime(7, 30),
+    date: createQuoteDay(25),
+    name: "John Carpel",
+  },
+  {
+    id: "7",
+    hour: createQuoteTime(8, 0),
+    date: createQuoteDay(25),
+    name: "Carl Marcus",
+  },
+  {
+    id: "8",
+    hour: createQuoteTime(8, 30),
+    date: createQuoteDay(25),
+    name: "Marian Marcus",
   },
 ];
 
 const calendario__box_class = cn(
-  "w-16 h-16",
+  "w-24 h-24 p-4 text-center",
   "border-black border-1",
   "bg-red-500",
+  "flex justify-center items-center flex-col",
 );
 
 let count = 30 * 7 * 2; // inicia desde las 7
@@ -50,13 +87,13 @@ function Cita({ index }) {
 
   if (index < 8) {
     return (
-      <div>
-        <p className="bg-blue-600">
+      <div className="bg-primary">
+        <p>
           {new Intl.DateTimeFormat("es-ES", { weekday: "short" }).format(
             new Date().setDate(index - 2),
           )}
         </p>
-        <p className="bg-blue-600">
+        <p>
           {new Intl.DateTimeFormat("es-ES", { month: "short" }).format(
             new Date(),
           )}
@@ -88,26 +125,28 @@ function Cita({ index }) {
     Math.floor((count - 30) / 60) > 24 ? 0 : Math.floor((count - 30) / 60);
 
   const horario = createQuoteTime(minutes, seconds);
-  const horaCitada = citaciones[0].hour;
-  const diaCitada = citaciones[0].date;
 
-  console.log(horario.getMinutes());
+  const cita = citaciones.find((element) => {
+    const horaCitada = element.hour;
+    const diaCitada = element.date;
+    return diaCitada.getDate() === getMonday(new Date()).getDate() + dayCount &&
+      horario.getHours() === horaCitada.getHours() &&
+      horario.getMinutes() === horaCitada.getMinutes()
+      ? true
+      : false;
+  });
 
-  const citacion =
-    diaCitada.getDate() === getMonday(new Date()).getDate() + dayCount &&
-    horario.getHours() === horaCitada.getHours() &&
-    horario.getMinutes() === horaCitada.getMinutes()
-      ? "true"
-      : "-";
   dayCount < 6 ? dayCount++ : (dayCount = 0);
 
   return (
     <div className={calendario__box_class}>
-      <p>{citacion}</p>
-      <p>
-        {count} {dayCount - 1}
-      </p>
-      {/* <p>{citaciones.date.getHours() + ":" + citaciones.date.getMinutes()}</p>*/}
+      <p>{cita?.name ?? ""}</p>
+      {/* Debug
+        <p>
+          {count} {dayCount - 1}
+        </p>
+      */}
+      {cita && <p>{cita.date.getHours() + ":" + cita.date.getMinutes()}</p>}
     </div>
   );
 }
@@ -117,7 +156,7 @@ function Calendario() {
     <div className="bg-green-600 p-8 w-full">
       <div
         className={cn(
-          "grid grid-cols-[repeat(8,64px)] grid-rows-[repeat(5,64px)]",
+          "grid grid-cols-[repeat(8,96px)] grid-rows-[repeat(5,96px)]",
           "overflow-x-auto w-full",
         )}
       >
