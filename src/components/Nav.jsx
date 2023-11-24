@@ -35,14 +35,14 @@ export default function Nav() {
       <NavbarContent justify="start">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden"
+          className="lg:hidden"
         />
         <NavbarBrand>
           <Image width={120} src={FisiumLogo} alt="Logo Fisiom fulness" />
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-5" justify="center">
+      <NavbarContent className="hidden lg:flex gap-5" justify="center">
         {menuItems.map((item, index) => (
           <NavbarItem key={`${item}-${index}`} isActive={index === 1}>
             <Link as={NextLink} color="secondary" href="#" aria-current={index === 1 ? "page" : undefined}>
