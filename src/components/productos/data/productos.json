@@ -3,28 +3,35 @@
     {
       "id": "1",
       "nombre": "Guantes",
-      "price": "300",
+      "precio": "300",
+      "imagen": "/_next/static/media/prod2Prueba.be129e28.png",
       "categoria": "Categoria 1",
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem, suscipit? Hic consequuntur molestias doloribus vero quos!"
     },
     {
       "id": "2",
       "nombre": "Barbijo",
-      "price": "200",
+      "precio": "200",
+      "imagen": "/_next/static/media/prod1Prueba.6f5887f5.png",
+
       "categoria": "Categoria 2",
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem, suscipit? Hic consequuntur molestias doloribus vero quos!"
     },
     {
       "id": "3",
       "nombre": "Jeringa",
-      "price": "250",
+      "precio": "250",
+      "imagen": "/_next/static/media/prod2Prueba.be129e28.png",
+
       "categoria": "Categoria 3",
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem, suscipit? Hic consequuntur molestias doloribus vero quos!"
     },
     {
       "id": "4",
       "nombre": "Guantes",
-      "price": "1200",
+      "precio": "1200",
+      "imagen": "/_next/static/media/prodPrueba4.0b976f9d.png",
+
       "categoria": "Categoria 1",
 
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem, suscipit? Hic consequuntur molestias doloribus vero quos!"
@@ -32,16 +39,10 @@
     {
       "id": "5",
       "nombre": "Guantes",
-      "price": "1200",
-      "categoria": "Categoria 2",
+      "precio": "1200",
+      "imagen": "/_next/static/media/prod2Prueba.be129e28.png",
 
-      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem, suscipit? Hic consequuntur molestias doloribus vero quos!"
-    },
-    {
-      "id": "6",
-      "nombre": "Guantes",
-      "price": "1200",
-      "categoria": "Categoria 3",
+      "categoria": "Categoria 2",
 
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem, suscipit? Hic consequuntur molestias doloribus vero quos!"
     }
