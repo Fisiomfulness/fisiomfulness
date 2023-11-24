@@ -7,7 +7,7 @@ import ProductClient from "@/components/productos/ProductClient";
 const ProductosPage = () => {
   return (
     <>
-      <Nav />
+      
       <ProductClient data={data.productos} />
     </>
   );
