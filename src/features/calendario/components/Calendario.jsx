@@ -1,6 +1,7 @@
 import { cn } from "@/features/ui";
 import { createQuoteTime, getMonday } from "../utils";
 import { citaciones } from "../data";
+import Selector from "./Selector";
 
 let count = 30 * 7 * 2; // inicia desde las 7
 let dayCount = 0;
@@ -115,6 +116,7 @@ export default function Calendario() {
             <Cita key={index} index={index} />
           ))}
       </div>
+      <Selector />
     </div>
   );
 }
