@@ -53,8 +53,8 @@ const citaciones = [
 ];
 
 const calendario__box_class = cn(
-  "w-24 h-24 p-4 text-center",
-  "border-black border-1",
+  "w-24 h-24 text-center",
+  "border-gray-300 border-1 box-content",
   "bg-red-500",
   "flex justify-center items-center flex-col",
 );
@@ -63,11 +63,11 @@ let count = 30 * 7 * 2; // inicia desde las 7
 let dayCount = 0;
 
 function Cita({ index }) {
-  if (index === 0) return <div></div>;
+  if (index === 0) return <div className="bg-transparent"></div>;
 
   if (index < 8) {
     return (
-      <div className="bg-primary flex flex-col justify-center items-center">
+      <div className="bg-transparent flex flex-col justify-center items-center">
         <p>
           {new Intl.DateTimeFormat("es-ES", { weekday: "short" }).format(
             new Date().setDate(index - 2),
@@ -94,9 +94,9 @@ function Cita({ index }) {
     count += 30;
 
     return (
-      <div className="bg-orange-600 flex flex-col justify-center items-center">
+      <div className="bg-transparent flex flex-col justify-center items-center">
         <p className="text-center">
-          Horario {minutes}:{seconds}
+          {minutes}:{seconds}
         </p>
       </div>
     );
@@ -121,12 +121,18 @@ function Cita({ index }) {
   dayCount < 6 ? dayCount++ : (dayCount = 0);
 
   return (
-    <div className={calendario__box_class}>
-      <p>{cita?.name ?? ""}</p>
+    <div
+      className={cn(
+        calendario__box_class,
+        (index % 8) - 7 === 0 && "bg-zinc-500",
+        cita?.name ? "bg-primary" : "bg-slate-50",
+      )}
+    >
+      <p className="px-2">{cita?.name ?? "_"}</p>
       {/* Debug
-        <p>
-          {count} {dayCount - 1}
-        </p>
+      <p>
+        {count} {dayCount - 1} {index}
+      </p>
       */}
       {cita && <p>{cita.date.getHours() + ":" + cita.date.getMinutes()}</p>}
     </div>
@@ -135,11 +141,11 @@ function Cita({ index }) {
 
 export default function Calendario() {
   return (
-    <div className="bg-green-600 p-8 w-full">
+    <div className="w-full max-w-fit">
       <div
         className={cn(
           "grid grid-cols-[repeat(8,96px)] grid-rows-[auto_repeat(4,96px)]",
-          "overflow-x-auto w-full",
+          "overflow-x-auto w-full p-1",
         )}
       >
         {Array(8 * 5)
