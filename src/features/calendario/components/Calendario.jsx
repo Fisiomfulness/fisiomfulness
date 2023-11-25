@@ -61,6 +61,7 @@ const calendario__box_class = cn(
 
 let count = 30 * 7 * 2; // inicia desde las 7
 let dayCount = 0;
+// console.log("counts", count, dayCount);
 
 function Cita({ index }) {
   if (index === 0) return <div className="bg-transparent"></div>;
@@ -128,18 +129,29 @@ function Cita({ index }) {
         cita?.name ? "bg-primary" : "bg-slate-50",
       )}
     >
-      <p className="px-2">{cita?.name ?? "_"}</p>
+      <p className="px-2">{cita?.name ?? ""}</p>
       {/* Debug
       <p>
         {count} {dayCount - 1} {index}
       </p>
       */}
-      {cita && <p>{cita.date.getHours() + ":" + cita.date.getMinutes()}</p>}
+      {cita && (
+        <p>
+          {cita.hour.getHours() +
+            ":" +
+            cita.hour.getMinutes().toString().padStart(2, "0")}
+        </p>
+      )}
     </div>
   );
 }
 
 export default function Calendario() {
+  // TODO: Refactorizar contadores
+  // Reinicia contadores al refrescar la pagina
+  count = 30 * 7 * 2; // inicia desde las 7
+  dayCount = 0;
+
   return (
     <div className="w-full max-w-fit">
       <div
