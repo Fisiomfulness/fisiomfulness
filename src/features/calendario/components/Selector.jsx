@@ -15,19 +15,41 @@ import { useState } from "react";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { MdOutlineCheckCircle } from "react-icons/md";
 
-function Aviso({ isOpen, onOpenChange }) {
+function Aviso({ isOpen, onOpenChange, actionText, level = 0 }) {
+  // TODO: Evaluar independizar cada Aviso
+  /*
+   * QUESTION - 0
+   * ERROR - 1
+   * WARNING - 2
+   * INFO - 3
+   * OK - 4
+   */
+  const [message, setMessage] = useState(`Desea ${actionText} esta cita?`);
   return (
     <Modal size="xs" radius="sm" isOpen={isOpen} onOpenChange={onOpenChange}>
       <ModalContent className="h-80">
         {(onClose) => (
           <>
             <ModalBody className="flex justify-center items-center px-4 py-0 pt-4">
-              <AiOutlineQuestionCircle className="w-10 h-10 text-secondary" />
-              <MdOutlineCheckCircle className="w-10 h-10 text-secondary" />
-              <p>Desea Reprogramar esta cita?</p>
+              {level === 0 && (
+                <AiOutlineQuestionCircle className="w-10 h-10 text-secondary" />
+              )}
+              {level === 4 && (
+                <MdOutlineCheckCircle className="w-10 h-10 text-secondary" />
+              )}
+              <p>{message}</p>
             </ModalBody>
             <ModalFooter className="flex flex-col p-4">
-              <Button color="primary" onPress={() => console.log("Aceptar")}>
+              <Button
+                color="primary"
+                onPress={() => {
+                  if (actionText === "Cancelar") {
+                    setMessage("Cita cancelada");
+                  } else {
+                    console.log("Aceptar");
+                  }
+                }}
+              >
                 Acceptar
               </Button>
               <Button color="secondary" onPress={onClose}>
@@ -103,7 +125,11 @@ export default function Selector() {
           >
             Cancelar
           </Button>
-          <Aviso isOpen={isOpen} onOpenChange={onOpenChange} />
+          <Aviso
+            isOpen={isOpen}
+            onOpenChange={onOpenChange}
+            actionText={state}
+          />
         </div>
       )}
     </div>
