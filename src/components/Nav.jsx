@@ -13,7 +13,7 @@ import {
 } from "@nextui-org/react";
 import LoginDropDown from "./LoginDropDown";
 import Image from 'next/image';
-
+import NextLink from "next/link"
 import { useState } from "react";
 import FisiumLogo from "../assets/Logo.svg";
 
@@ -27,8 +27,6 @@ export default function Nav() {
     "Profesionales",
     "Pregunta a un especialista",
     "Comunidad",
-    "Trabaja con nosotros",
-    "Blog",
     "Productos",
   ];
 
@@ -37,17 +35,17 @@ export default function Nav() {
       <NavbarContent justify="start">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden"
+          className="lg:hidden"
         />
         <NavbarBrand>
           <Image width={120} src={FisiumLogo} alt="Logo Fisiom fulness" />
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-5 " justify="center">
+      <NavbarContent className="hidden lg:flex gap-5" justify="center">
         {menuItems.map((item, index) => (
           <NavbarItem key={`${item}-${index}`} isActive={index === 1}>
-            <Link href="#" aria-current={index === 1 ? "page" : undefined}>
+            <Link as={NextLink} color="secondary" href="#" aria-current={index === 1 ? "page" : undefined}>
               {item}
             </Link>
           </NavbarItem>
@@ -62,7 +60,7 @@ export default function Nav() {
               as={Link}
               color="secondary"
               href="#"
-              variant="flat"
+              
             >
               Sign Up
             </Button>
@@ -76,9 +74,10 @@ export default function Nav() {
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
+              as={NextLink}
               color={
                 index === 2
-                  ? "primary"
+                  ? "secondary"
                   : index === menuItems.length - 1
                   ? "danger"
                   : "foreground"
