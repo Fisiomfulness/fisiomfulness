@@ -1,67 +1,16 @@
 import { cn } from "@/features/ui";
-import { createQuoteDay, createQuoteTime, getMonday } from "../utils";
-
-const citaciones = [
-  {
-    id: "1",
-    hour: createQuoteTime(7, 0),
-    date: createQuoteDay(21),
-    name: "Maria Gimenez",
-  },
-  {
-    id: "2",
-    hour: createQuoteTime(7, 30),
-    date: createQuoteDay(21),
-    name: "Carlos Albomoz",
-  },
-  {
-    id: "3",
-    hour: createQuoteTime(8, 0),
-    date: createQuoteDay(21),
-    name: "Juan Perez",
-  },
-  {
-    id: "4",
-    hour: createQuoteTime(8, 0),
-    date: createQuoteDay(23),
-    name: "Mariano Rivas",
-  },
-  {
-    id: "5",
-    hour: createQuoteTime(7, 0),
-    date: createQuoteDay(24),
-    name: "Gomez Maria",
-  },
-  {
-    id: "6",
-    hour: createQuoteTime(7, 30),
-    date: createQuoteDay(25),
-    name: "John Carpel",
-  },
-  {
-    id: "7",
-    hour: createQuoteTime(8, 0),
-    date: createQuoteDay(25),
-    name: "Carl Marcus",
-  },
-  {
-    id: "8",
-    hour: createQuoteTime(8, 30),
-    date: createQuoteDay(25),
-    name: "Marian Marcus",
-  },
-];
-
-const calendario__box_class = cn(
-  "w-24 h-24 text-center",
-  "border-gray-300 border-1 box-content",
-  "bg-red-500",
-  "flex justify-center items-center flex-col",
-);
+import { createQuoteTime, getMonday } from "../utils";
+import { citaciones } from "../data";
 
 let count = 30 * 7 * 2; // inicia desde las 7
 let dayCount = 0;
 // console.log("counts", count, dayCount);
+
+const calendario__box_class = cn(
+  "w-24 h-24 text-center bg-red-500",
+  "border-gray-300 border-1 box-content",
+  "flex justify-center items-center flex-col",
+);
 
 function Cita({ index }) {
   if (index === 0) return <div className="bg-transparent"></div>;
@@ -85,10 +34,10 @@ function Cita({ index }) {
   }
 
   if (index % 8 === 0) {
-    const seconds = Math.floor(count % 60)
+    const minutes = Math.floor(count % 60)
       .toString()
       .padStart(2, "0");
-    const minutes = (Math.floor(count / 60) > 24 ? 0 : Math.floor(count / 60))
+    const hours = (Math.floor(count / 60) > 24 ? 0 : Math.floor(count / 60))
       .toString()
       .padStart(2, "0");
 
@@ -97,17 +46,17 @@ function Cita({ index }) {
     return (
       <div className="bg-transparent flex flex-col justify-center items-center">
         <p className="text-center">
-          {minutes}:{seconds}
+          {hours}:{minutes}
         </p>
       </div>
     );
   }
 
-  const seconds = Math.floor((count - 30) % 60);
-  const minutes =
+  const minutes = Math.floor((count - 30) % 60);
+  const hours =
     Math.floor((count - 30) / 60) > 24 ? 0 : Math.floor((count - 30) / 60);
 
-  const horario = createQuoteTime(minutes, seconds);
+  const horario = createQuoteTime(hours, minutes);
 
   const cita = citaciones.find((element) => {
     const horaCitada = element.hour;
