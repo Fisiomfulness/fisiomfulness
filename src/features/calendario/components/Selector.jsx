@@ -6,10 +6,13 @@ import {
   Select,
   SelectItem,
   Modal,
+  ModalHeader,
   ModalContent,
   ModalBody,
   ModalFooter,
   useDisclosure,
+  Input,
+  Link,
 } from "@nextui-org/react";
 import { useState } from "react";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
@@ -20,44 +23,89 @@ const defaultIconMapping = {
   question: <AiOutlineQuestionCircle className="w-10 h-10 text-secondary" />,
 };
 
-function Aviso({ isOpen, onOpenChange, severity = "success", children }) {
+function Aviso({ isOpen: opened, setIsOpen, severity = "success", message }) {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
   return (
-    <Modal size="xs" radius="sm" isOpen={isOpen} onOpenChange={onOpenChange}>
-      <ModalContent className="h-80">
-        {(onClose) => (
-          <>
-            <ModalBody className="flex justify-center items-center px-4 py-0 pt-4">
-              {defaultIconMapping[severity]}
-              <p>Desea {children} esta cita?</p>
-            </ModalBody>
-            <ModalFooter className="flex flex-col p-4">
-              <Button
-                color="primary"
-                onPress={() => {
-                  onClose();
-                  console.log("Aceptar");
-                }}
-              >
-                Acceptar
-              </Button>
-              <Button color="secondary" onPress={onClose}>
+    <>
+      <Modal
+        size="xs"
+        radius="sm"
+        isOpen={opened}
+        placement="center"
+        onOpenChange={closeModal}
+      >
+        <ModalContent className="h-80">
+          <ModalBody className="flex justify-center items-center px-4 py-0 pt-4">
+            {defaultIconMapping[severity]}
+            <p>{message}</p>
+          </ModalBody>
+          <ModalFooter className="flex flex-col p-4">
+            <Button
+              color="primary"
+              onPress={() => {
+                closeModal();
+                onOpen();
+              }}
+            >
+              Acceptar
+            </Button>
+            {severity === "question" && (
+              <Button color="secondary" onPress={closeModal}>
                 Cancelar
               </Button>
-            </ModalFooter>
-          </>
-        )}
-      </ModalContent>
-    </Modal>
+            )}
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                Iniciar sesión
+              </ModalHeader>
+              <ModalBody>
+                <Input
+                  autoFocus
+                  label="Correo electrónico"
+                  variant="bordered"
+                />
+                <Input label="Contraseña" type="password" variant="bordered" />
+                <div className="flex py-2 px-1 justify-between">
+                  <Link color="primary" href="#" size="sm">
+                    ¿Has olvidado la contraseña?
+                  </Link>
+                </div>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="secondary" onPress={onClose}>
+                  Cerrar
+                </Button>
+                <Button color="primary" onPress={onClose}>
+                  Ingresar
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+    </>
   );
 }
 
 export default function Selector() {
   const defaultValue = "Seleccione una opcion";
   const [state, setState] = useState(defaultValue);
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [message, setMessage] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="w-full flex flex-row justify-between flex-wrap gap-4">
+    <div className="w-full flex flex-row justify-between flex-wrap gap-4 pt-4">
       <Select
         variant="flat"
         radius="sm"
@@ -68,7 +116,10 @@ export default function Selector() {
         aria-label={defaultValue}
         selectedKeys={[state]}
         disabledKeys={[defaultValue]}
-        onChange={(e) => setState(e.target.value)}
+        onChange={(e) => {
+          setMessage(`Desea ${e.target.value} esta cita?`);
+          setState(e.target.value);
+        }}
         classNames={{
           trigger: cn("bg-[#D8EEF8]"),
           value: cn("text-black"),
@@ -101,7 +152,7 @@ export default function Selector() {
             radius="sm"
             color="secondary"
             className="w-28"
-            onPress={onOpen}
+            onPress={() => setIsOpen(true)}
           >
             Aceptar
           </Button>
@@ -115,11 +166,10 @@ export default function Selector() {
           </Button>
           <Aviso
             isOpen={isOpen}
-            onOpenChange={onOpenChange}
+            setIsOpen={setIsOpen}
             severity="question"
-          >
-            {state}
-          </Aviso>
+            message={message}
+          />
         </div>
       )}
     </div>

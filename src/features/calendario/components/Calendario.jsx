@@ -75,8 +75,8 @@ function Cita({ index }) {
     <div
       className={cn(
         calendario__box_class,
-        (index % 8) - 7 === 0 && "bg-zinc-500",
         cita?.name ? "bg-primary" : "bg-slate-50",
+        (index % 8) - 7 === 0 && "bg-slate-200",
       )}
     >
       <p className="px-2">{cita?.name ?? ""}</p>
