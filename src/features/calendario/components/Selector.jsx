@@ -15,39 +15,27 @@ import { useState } from "react";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { MdOutlineCheckCircle } from "react-icons/md";
 
-function Aviso({ isOpen, onOpenChange, actionText, level = 0 }) {
-  // TODO: Evaluar independizar cada Aviso
-  /*
-   * QUESTION - 0
-   * ERROR - 1
-   * WARNING - 2
-   * INFO - 3
-   * OK - 4
-   */
-  const [message, setMessage] = useState(`Desea ${actionText} esta cita?`);
+const defaultIconMapping = {
+  success: <MdOutlineCheckCircle className="w-10 h-10 text-secondary" />,
+  question: <AiOutlineQuestionCircle className="w-10 h-10 text-secondary" />,
+};
+
+function Aviso({ isOpen, onOpenChange, severity = "success", children }) {
   return (
     <Modal size="xs" radius="sm" isOpen={isOpen} onOpenChange={onOpenChange}>
       <ModalContent className="h-80">
         {(onClose) => (
           <>
             <ModalBody className="flex justify-center items-center px-4 py-0 pt-4">
-              {level === 0 && (
-                <AiOutlineQuestionCircle className="w-10 h-10 text-secondary" />
-              )}
-              {level === 4 && (
-                <MdOutlineCheckCircle className="w-10 h-10 text-secondary" />
-              )}
-              <p>{message}</p>
+              {defaultIconMapping[severity]}
+              <p>Desea {children} esta cita?</p>
             </ModalBody>
             <ModalFooter className="flex flex-col p-4">
               <Button
                 color="primary"
                 onPress={() => {
-                  if (actionText === "Cancelar") {
-                    setMessage("Cita cancelada");
-                  } else {
-                    console.log("Aceptar");
-                  }
+                  onClose();
+                  console.log("Aceptar");
                 }}
               >
                 Acceptar
@@ -128,8 +116,10 @@ export default function Selector() {
           <Aviso
             isOpen={isOpen}
             onOpenChange={onOpenChange}
-            actionText={state}
-          />
+            severity="question"
+          >
+            {state}
+          </Aviso>
         </div>
       )}
     </div>
