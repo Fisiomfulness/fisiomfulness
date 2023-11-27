@@ -3,7 +3,7 @@ import { createQuoteTime, getMonday } from "../utils";
 import { citaciones } from "../data";
 import Selector from "./Selector";
 
-let count = 30 * 7 * 2; // inicia desde las 7
+let count = 30 * 7 * 2; // iniciar desde las 7
 let dayCount = 0;
 // console.log("counts", count, dayCount);
 let actualDay = 21;
@@ -99,9 +99,10 @@ function Cita({ index }) {
 }
 
 export default function Calendario() {
-  // TODO: Refactorizar contadores
-  // Reinicia contadores al refrescar la pagina
-  count = 30 * 7 * 2; // inicia desde las 7
+  // TODO: Refactor contadores
+
+  // Reiniciar contadores al refrescar la pagina
+  count = 30 * 7 * 2; // iniciar desde las 7
   dayCount = 0;
 
   return (
