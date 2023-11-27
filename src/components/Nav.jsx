@@ -38,7 +38,7 @@ export default function Nav() {
           className="lg:hidden"
         />
         <NavbarBrand>
-          <Image width={120} src={FisiumLogo} alt="Logo Fisiom fulness" />
+          <Image width={120} src={FisiumLogo} alt="Logo Fisiom fulness" priority />
         </NavbarBrand>
       </NavbarContent>
 
