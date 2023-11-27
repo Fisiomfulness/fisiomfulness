@@ -7,16 +7,14 @@ import { FaUserDoctor } from "react-icons/fa6";
 import {
   Tabs,
   Tab,
-  SelectItem,
   Button,
   Autocomplete,
   AutocompleteItem,
   Card,
   CardBody,
 } from "@nextui-org/react";
-import { especialidadesMedicas, ciudadesPeru } from "./utils";
 
-export default function TabHome() {
+export default function TabHome({ especialidadesMedicas, ciudadesPeru }) {
   const [selected, setSelected] = useState("domiciliaria");
 
   return (
@@ -54,9 +52,12 @@ export default function TabHome() {
                     }}
                   >
                     {(item) => (
-                      <AutocompleteItem key={item.value}>
+                      <AutocompleteItem key={item.value} textValue={item.value}>
                         <div className="flex items-center gap-2">
-                          <FaUserDoctor alt={item.label} className="text-action-blue"/>
+                          <FaUserDoctor
+                            alt={item.label}
+                            className="text-action-blue"
+                          />
                           <span>{item.label}</span>
                         </div>
                       </AutocompleteItem>
@@ -72,9 +73,12 @@ export default function TabHome() {
                     }}
                   >
                     {(item) => (
-                      <AutocompleteItem key={item.value}>
+                      <AutocompleteItem key={item.value} textValue={item.value}>
                         <div className="flex items-center gap-2">
-                          <CiLocationOn alt={item.label} className="text-action-blue"  />
+                          <CiLocationOn
+                            alt={item.label}
+                            className="text-action-blue"
+                          />
                           <span>{item.label}</span>
                         </div>
                       </AutocompleteItem>
@@ -106,10 +110,16 @@ export default function TabHome() {
                     label="Seleccione:"
                     placeholder="Especialidad"
                   >
-                    {(especialidadesMedicas) => (
-                      <SelectItem key={especialidadesMedicas.value}>
-                        {especialidadesMedicas.label}
-                      </SelectItem>
+                    {(item) => (
+                      <AutocompleteItem key={item.value} textValue={item.value}>
+                        <div className="flex items-center gap-2">
+                          <FaUserDoctor
+                            alt={item.label}
+                            className="text-action-blue"
+                          />
+                          <span>{item.label}</span>
+                        </div>
+                      </AutocompleteItem>
                     )}
                   </Autocomplete>
                 </div>
