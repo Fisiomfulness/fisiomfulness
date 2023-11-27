@@ -1,54 +1,164 @@
 "use client"
+
+import {Modal, ModalBody, ModalContent, useDisclosure} from "@nextui-org/react";
+
 import {Button} from "@nextui-org/react";
-import Image from 'next/image'
 import { CgAttachment } from "react-icons/cg";
-import fisiumLogo from '@/assets/LogoSimple.svg'
+import Image from 'next/image';
+import { IoAlertCircleOutline } from "react-icons/io5";
+import { MdCheckCircleOutline } from "react-icons/md";
+import fisiumLogo from '@/assets/LogoSimple.svg';
+import {useState} from 'react'
+import validation from './validation'
 
 const TrabajaConNosotros = () => {
+
+    const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const [form,setForm] = useState({
+        dni:'',
+        nroDni:'',
+        phone:'',
+        email:'',
+        cv:'',
+        message:''
+    })
+    const[errors,setErrors] = useState({})
+
+    const handleChange = (event) => {
+        const property = event.target.name
+        const value = event.target.value
+
+        setForm({...form,[property]:value})
+        
+    }
+
+    
+    
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        const validateError = validation(form)
+        console.log('validate',validateError)
+        setErrors(validateError)
+
+        if(Object.keys(validateError).length === 0){
+            setForm({
+                dni:'',
+                nroDni:'',
+                phone:'',
+                email:'',
+                cv:'',
+                message:''
+            })
+        }
+
+    }
 
 
     return (
         <div className='p-14 justify-center w-full'>
-            <form>
-                <div className='flex items-center gap-10'>
-                    <Image src={fisiumLogo} alt='logo' />
-                    <p>Trabajá con <span className="text-[#06B0FF] underline">nosotros</span></p>
-                </div>
+            
+            <div className='flex items-center gap-10'>
+                <Image src={fisiumLogo} alt='logo' />
+                <p>Trabajá con <span className="text-[#06B0FF] underline">nosotros</span></p>
+            </div>
+            
+            <form onSubmit={handleSubmit} className=' justify-center w-full'>
+                
                 <div className='px-60 py-20 flex gap-10 items-start justify-start'>
                     <div className="flex flex-col gap-10 itemes-center w-full">
                         <div className='flex flex-col gap-2'>
-                            <label>Tipo de documento</label>
-                            <input  readOnly  placeholder='DNI' className='border-2 border-slate-200 rounded-sm px-2 bg-slate-200 h-8 ' />
+                            <div className='flex  w-full justify-between '>
+                                <label>Tipo de documento</label>
+                                <label className='text-[#FF0000]'>{errors && errors.dni}</label>
+                            </div>
+                            
+                            <input   name='dni' value={form.dni} onChange={handleChange}  placeholder='DNI' className={errors.dni ? 'border border-slate-200 rounded-sm px-2 bg-slate-200 h-8 border-[#FF0000]': 'border border-slate-200 rounded-sm px-2 bg-slate-200 h-8'} />
                         </div>
 
                         <div className='flex flex-col gap-2'>
-                            <label>Número de documento</label>
-                            <input type='number'   placeholder='12.345.678' className='border border-slate-200 rounded-sm px-2 bg-slate-200 h-8 ' />
+                            <div className='flex  w-full justify-between '>
+                                <label>Número de documento</label>
+                                <label className='text-[#FF0000]'>{errors && errors.nroDni}</label>
+                            </div>
+                            <input type='number' name='nroDni' value={form.nroDni} onChange={handleChange}   placeholder='12.345.678' className={errors.nroDni ? 'border border-slate-200 rounded-sm px-2 bg-slate-200 h-8 border-[#FF0000]': 'border border-slate-200 rounded-sm px-2 bg-slate-200 h-8'} />
                         </div>
 
                         <div className='flex flex-col gap-2'>
-                            <label>Número de télefono</label>
-                            <input type='number'   placeholder='+09 9 999 999 999' className='border border-slate-200 rounded-sm px-2 bg-slate-200 h-8 ' />
+                            <div className='flex  w-full justify-between '>
+                                <label>Número de télefono</label>
+                                <label className='text-[#FF0000]'>{errors && errors.phone}</label>
+                            </div>
+                            <input type='number' name='phone' value={form.phone} onChange={handleChange}    placeholder='+09 9 999 999 999' className={errors.phone ? 'border border-slate-200 rounded-sm px-2 bg-slate-200 h-8 border-[#FF0000]': 'border border-slate-200 rounded-sm px-2 bg-slate-200 h-8'} />
                         </div>
 
                         
-                        <Button type='submit' className='w-full text-white bg-sky-500/100' color="primary">
+                        <Button type='submit' onPress={onOpen}  className='w-full text-white bg-[#06B0FF] rounded' color="primary">
                             ENVIAR
                         </Button>
+                        {
+                            errors && Object.keys(errors).length > 0 ? ( 
+                            <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+                                <ModalContent className='flex items-center justify-center h-96 w-72'>
+                                    {(onClose) => (
+                                    <>
+                                        <ModalBody>
+                                        <div className='flex flex-col items-center justify-center my-28'>
+                                            <IoAlertCircleOutline className='text-5xl text-[#FF0000]' />
+                                            <p className='font-semibold'>Campos Incompletos</p>
+                                        </div>
+                                        <Button  onPress={onClose} className='w-60 font-medium text-black bg-[#9CD4EE]' color="primary">
+                                            VOLVER
+                                        </Button>
+                                        </ModalBody>
+                                    </>
+                                    )}
+                                </ModalContent>
+                            </Modal>) : (
+                            <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+                                <ModalContent className='flex items-center justify-center h-96 w-72'>
+                                    {(onClose) => (
+                                    <>
+                                        <ModalBody>
+                                        <div className='flex flex-col items-center justify-center my-28'>
+                                            <MdCheckCircleOutline className='text-5xl text-[#175C7C]' />
+                                            <p className='font-semibold'>Mensaje enviado</p>
+                                        </div>
+                                        <Button  onPress={onClose} className='w-60 font-medium text-black bg-[#9CD4EE]' color="primary">
+                                            VOLVER
+                                        </Button>
+                                        </ModalBody>
+                                    </>
+                                    )}
+                                </ModalContent>
+                            </Modal> 
+                            )
+                        }
+
                     </div>
                     <div className="flex flex-col gap-10 itemes-center w-full">
                         <div className='flex flex-col gap-2'>
-                            <label>Email</label>
-                            <input type='email'   placeholder='mail@mail.com' className='border border-slate-200 rounded-sm px-2 bg-slate-200 h-8 ' />
+                            <div className='flex  w-full justify-between '>
+                                <label>Email</label>
+                                <label className='text-[#FF0000]'>{errors && errors.email}</label>
+                            </div>
+                            <input type='email' name='email' value={form.email} onChange={handleChange}    placeholder='mail@mail.com' className={errors.email ? 'border border-slate-200 rounded-sm px-2 bg-slate-200 h-8 border-[#FF0000]': 'border border-slate-200 rounded-sm px-2 bg-slate-200 h-8'} />
                         </div>
 
                         <div className="flex flex-col gap-2">
-                            <label>Agrega tu CV</label>
-                            <div className="relative border border-slate-200 bg-slate-200 rounded-sm px-2 py-1 h-8">
+                            
+                            <div className='flex  w-full justify-between '>
+                                <label>Agrega tu CV</label>
+                                <label className='text-[#FF0000]'>{errors && errors.cv}</label>
+                            </div>
+                            
+                            <div className={errors.cv ? "relative border border-slate-200 bg-slate-200 rounded-sm px-2 py-1 h-8 border-[#FF0000]" :"relative border border-slate-200 bg-slate-200 rounded-sm px-2 py-1 h-8"}>
                                 <input
-                                type="text"
-                                className="w-full bg-transparent"
-                                placeholder="file.pdf"
+                                    type="text"
+                                    className="w-full bg-transparent"
+                                    placeholder="file.pdf"
+                                    name='cv'
+                                    value={form.cv} 
+                                    onChange={handleChange} 
                                 />
                                 <Button
                                 isIconOnly
@@ -61,11 +171,13 @@ const TrabajaConNosotros = () => {
 
 
                         <div className='flex flex-col gap-2'>
-                            <label>Mensaje</label>
-                            <textarea placeholder='Mensaje...' className='border border-slate-200 rounded-sm px-2 bg-slate-200 ' />
-
-                            
+                            <div className='flex  w-full justify-between '>
+                                <label>Mensaje</label>
+                                <label className='text-[#FF0000]'>{errors && errors.message}</label>
+                            </div>
+                            <textarea value={form.message} onChange={handleChange} name='message'  placeholder='Mensaje...' className={errors.cv ? 'border border-slate-200 rounded-sm px-2 bg-slate-200 h-8 border-[#FF0000]': 'border border-slate-200 rounded-sm px-2 bg-slate-200 h-8'} />
                         </div>
+
                     </div>
                 </div>
             </form>
