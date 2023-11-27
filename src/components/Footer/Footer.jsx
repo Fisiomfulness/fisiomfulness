@@ -7,7 +7,6 @@ import { AiOutlineFacebook } from "react-icons/ai";
 import Image from 'next/image';
 import FisiumLogo from '../../assets/Logo.svg'
 
-// className="max-w-5xl"
 
 function Footer() {
   return (
