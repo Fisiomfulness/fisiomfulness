@@ -1,6 +1,5 @@
 "use client";
 import { MdOutlineSearch } from "react-icons/md";
-import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 
 export const SearchProd = ({ prods, setProdFiltrados }) => {
@@ -38,16 +37,6 @@ export const SearchProd = ({ prods, setProdFiltrados }) => {
         </button>
       </div>
       <div className="flex text-sm">
-        {/* <Autocomplete
-          size="sm"
-          defaultItems={prods}
-          placeholder="Filtra por categoría"
-          className="w-[200px] h-[50px]"
-        >
-          {(prod) => (
-            <AutocompleteItem key={prod.id}>{prod.nombre}</AutocompleteItem>
-          )}
-        </Autocomplete> */}
         <select
           value={filter.categoria}
           id="categoria"
