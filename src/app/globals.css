@@ -17,7 +17,7 @@
   }
 
   a {
-    @apply  hover:text-action-green transition cursor-pointer;
+    @apply hover:text-action-green transition cursor-pointer;
   }
 
   input[type="text"] {
@@ -29,17 +29,36 @@
   }
 
   label {
-    @apply text-sm mt-2 font-semibold
+    @apply text-sm mt-2 font-semibold;
   }
 
   .background-image {
     background-image: url("/Home.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    
+
     height: 100vh;
   }
 
-  
+  ::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
 
+  ::-webkit-scrollbar-thumb {
+    /* background-color: rgba(217,217,227,.8); */
+    background-color: rgba(167, 167, 177, 0.8);
+    border-color: rgba(255, 255, 255, 1);
+    border-radius: 9999px;
+    border-width: 1px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(167, 167, 177, 1);
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 9999px;
+  }
 }
