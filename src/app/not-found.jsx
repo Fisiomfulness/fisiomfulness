@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Error404 from "../assets/Error404.png";
+import Link from "next/link";
 
 export default function NotFound() {
   return (
@@ -21,9 +22,11 @@ export default function NotFound() {
         </p>
         <p className="m-1">
           Haz{" "}
-          <span className="text-primary cursor-pointer underline">
-            click aqui
-          </span>{" "}
+          <Link href="/">
+            <span className="text-primary cursor-pointer underline">
+              click aqui
+            </span>
+          </Link>{" "}
           para volver al home.
         </p>
       </div>
