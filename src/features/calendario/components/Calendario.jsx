@@ -6,6 +6,7 @@ import Selector from "./Selector";
 let count = 30 * 7 * 2; // inicia desde las 7
 let dayCount = 0;
 // console.log("counts", count, dayCount);
+let actualDay = 21;
 
 const calendario__box_class = cn(
   "w-24 h-24 text-center bg-red-500",
@@ -26,9 +27,9 @@ function Cita({ index }) {
         </p>
         <p>
           {new Intl.DateTimeFormat("es-ES", { month: "short" }).format(
-            new Date(),
+            new Date().setDate(21),
           )}
-          {getMonday(new Date()).getDate() + index - 1}
+          {getMonday(new Date().setDate(actualDay)).getDate() + index - 1}
         </p>
       </div>
     );
@@ -62,7 +63,8 @@ function Cita({ index }) {
   const cita = citaciones.find((element) => {
     const horaCitada = element.hour;
     const diaCitada = element.date;
-    return diaCitada.getDate() === getMonday(new Date()).getDate() + dayCount &&
+    return diaCitada.getDate() ===
+      getMonday(new Date().setDate(actualDay)).getDate() + dayCount &&
       horario.getHours() === horaCitada.getHours() &&
       horario.getMinutes() === horaCitada.getMinutes()
       ? true

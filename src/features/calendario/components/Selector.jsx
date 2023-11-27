@@ -23,80 +23,56 @@ const defaultIconMapping = {
   question: <AiOutlineQuestionCircle className="w-10 h-10 text-secondary" />,
 };
 
-export function Aviso({
-  isOpen: opened,
-  setIsOpen,
-  severity = "success",
-  message,
-}) {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+function ModalForm({ onClose }) {
+  return (
+    <>
+      <ModalHeader className="flex flex-col gap-1">Iniciar sesión</ModalHeader>
+      <ModalBody>
+        <Input autoFocus label="Correo electrónico" variant="bordered" />
+        <Input label="Contraseña" type="password" variant="bordered" />
+        <div className="flex py-2 px-1 justify-between">
+          <Link color="primary" href="#" size="sm">
+            ¿Has olvidado la contraseña?
+          </Link>
+        </div>
+      </ModalBody>
+      <ModalFooter>
+        <Button color="secondary" onPress={onClose}>
+          Cerrar
+        </Button>
+        <Button color="primary" onPress={onClose}>
+          Ingresar
+        </Button>
+      </ModalFooter>
+    </>
+  );
+}
 
-  const closeModal = () => {
-    setIsOpen(false);
-  };
+export function ModalBase({ isOpen, onOpenChange, children }) {
+  const { isOpen: opened, onOpen, onOpenChange: closeModal } = useDisclosure();
+  const content =
+    typeof children === "function"
+      ? (onClose) =>
+          children(onClose, () => {
+            onClose();
+            onOpen();
+          })
+      : children;
 
   return (
     <>
       <Modal
         size="xs"
         radius="sm"
-        isOpen={opened}
+        isOpen={isOpen}
         placement="center"
-        onOpenChange={closeModal}
+        onOpenChange={onOpenChange}
       >
-        <ModalContent className="h-80">
-          <ModalBody className="flex justify-center items-center px-4 py-0 pt-4">
-            {defaultIconMapping[severity]}
-            <p>{message}</p>
-          </ModalBody>
-          <ModalFooter className="flex flex-col p-4">
-            <Button
-              color="primary"
-              onPress={() => {
-                closeModal();
-                onOpen();
-              }}
-            >
-              Acceptar
-            </Button>
-            {severity === "question" && (
-              <Button color="secondary" onPress={closeModal}>
-                Cancelar
-              </Button>
-            )}
-          </ModalFooter>
-        </ModalContent>
+        <ModalContent className="h-80">{content}</ModalContent>
       </Modal>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
+      <Modal isOpen={opened} onOpenChange={closeModal} placement="center">
         <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">
-                Iniciar sesión
-              </ModalHeader>
-              <ModalBody>
-                <Input
-                  autoFocus
-                  label="Correo electrónico"
-                  variant="bordered"
-                />
-                <Input label="Contraseña" type="password" variant="bordered" />
-                <div className="flex py-2 px-1 justify-between">
-                  <Link color="primary" href="#" size="sm">
-                    ¿Has olvidado la contraseña?
-                  </Link>
-                </div>
-              </ModalBody>
-              <ModalFooter>
-                <Button color="secondary" onPress={onClose}>
-                  Cerrar
-                </Button>
-                <Button color="primary" onPress={onClose}>
-                  Ingresar
-                </Button>
-              </ModalFooter>
-            </>
-          )}
+          {(onClose) => <ModalForm onClose={onClose} />}
         </ModalContent>
       </Modal>
     </>
@@ -107,7 +83,7 @@ export default function Selector() {
   const defaultValue = "Seleccione una opcion";
   const [state, setState] = useState(defaultValue);
   const [message, setMessage] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
     <div className="w-full flex flex-row justify-between flex-wrap gap-4 pt-4">
@@ -157,7 +133,7 @@ export default function Selector() {
             radius="sm"
             color="secondary"
             className="w-28"
-            onPress={() => setIsOpen(true)}
+            onPress={onOpen}
           >
             Aceptar
           </Button>
@@ -169,14 +145,26 @@ export default function Selector() {
           >
             Cancelar
           </Button>
-          <Aviso
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-            severity="question"
-            message={message}
-          />
         </div>
       )}
+      <ModalBase isOpen={isOpen} onOpenChange={onOpenChange}>
+        {(onClose, openForm) => (
+          <>
+            <ModalBody className="flex justify-center items-center px-4 py-0 pt-4">
+              {defaultIconMapping["question"]}
+              <p>{message}</p>
+            </ModalBody>
+            <ModalFooter className="flex flex-col p-4">
+              <Button radius="sm" color="primary" onPress={openForm}>
+                Acceptar
+              </Button>
+              <Button radius="sm" color="secondary" onPress={onClose}>
+                Cancelar
+              </Button>
+            </ModalFooter>
+          </>
+        )}
+      </ModalBase>
     </div>
   );
 }
