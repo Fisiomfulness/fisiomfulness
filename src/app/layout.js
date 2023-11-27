@@ -2,6 +2,7 @@ import { Raleway } from "next/font/google";
 import { Providers } from "./providers";
 import Nav from "@/components/Nav";
 import "./globals.css";
+import Footer from "../components/Footer/Footer";
 
 const raleway = Raleway({
   weight: ["200", "300", "400", "700"],
@@ -18,11 +19,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <body className={raleway.className}>
-
         <Providers>
-        <Nav />
-        <main className="max-w-10xl mx-auto">{children}</main>
-          </Providers>
+          <Nav />
+          <main className="max-w-10xl mx-auto">{children}</main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
