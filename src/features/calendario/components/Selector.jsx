@@ -23,7 +23,12 @@ const defaultIconMapping = {
   question: <AiOutlineQuestionCircle className="w-10 h-10 text-secondary" />,
 };
 
-function Aviso({ isOpen: opened, setIsOpen, severity = "success", message }) {
+export function Aviso({
+  isOpen: opened,
+  setIsOpen,
+  severity = "success",
+  message,
+}) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const closeModal = () => {
