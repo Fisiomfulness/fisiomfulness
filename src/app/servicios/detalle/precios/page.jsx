@@ -1,14 +1,16 @@
 import ServicioAsideBar from "@/components/Servicios/ServicioAsideBar"
+import ServicioPrecioCard from "@/components/Servicios/ServicioPrecioCard"
+import data from "@/components/Servicios/data/servicios.json"
 
 const ServicioPrecios = () => {
   return (
-    <div className="flex flex-col md:flex-row justify-around">
+    <div className="flex flex-col lg:flex-row justify-around">
       <div>
         <ServicioAsideBar/>
       </div>
       <div>
 
-        <h1>Precios</h1>
+        <ServicioPrecioCard servicios={data.servicios}/>
       </div>
     </div>
   )

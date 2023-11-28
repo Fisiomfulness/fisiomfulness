@@ -5,18 +5,18 @@ import NextLink from "next/link";
 
 const ServicioAsideBar = () => {
   const path = usePathname();
-  console.log(path);
+ 
 
   const buttons = [
-    { name: "Perfil profesional", href: "/servicios/detalle/perfil",color:"secondary" ,className: "text-white rounded-l-md md:rounded-t-md md:rounded-l-none hover:text-white" },
+    { name: "Perfil profesional", href: "/servicios/detalle/perfil",color:"secondary" ,className: "text-white rounded-l-lg lg:rounded-t-lg lg:rounded-l-none hover:text-white" },
     { name: "precios", href: "/servicios/detalle/precios", color: "secondary", className:"hover:text-white" },
     { name: "experiencia", href: "/servicios/detalle/experiencia", color: "secondary",  className:"hover:text-white"},
-    { name: "turno", href: "/servicios/detalle/turno", className: "rounded-r-md   md:rounded-r-none md:rounded-b-md hover:text-white", color: "secondary" },
+    { name: "turno", href: "/servicios/detalle/turno", className: "rounded-r-lg   lg:rounded-r-none lg:rounded-b-lg hover:text-white", color: "secondary" },
   ];
 
   return (
-    <aside className="flex justify-center ">
-      <div className="flex flex-row md:flex-col">
+    <aside className="flex justify-center m-2">
+      <div className="flex flex-row lg:flex-col">
         {buttons.map((button, index) => (
           <Button
             key={index}
