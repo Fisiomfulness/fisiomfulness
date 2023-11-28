@@ -6,6 +6,7 @@
   html {
     @apply bg-pale-blue;
     @apply text-secondary;
+    scrollbar-gutter: stable ;
   }
 
   h1 {

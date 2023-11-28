@@ -8,7 +8,7 @@ import data from "@/components/Servicios/data/comentarios.json"
 const ServicioDetalles = () => {
   
   return (
-    <div className="flex flex-col md:flex-row justify-around">
+    <div className="flex flex-col lg:flex-row justify-around">
       <div>
         <ServicioAsideBar/>
       </div>
