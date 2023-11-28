@@ -16,7 +16,7 @@ const ServicioPrecioCard = ({ servicios }) => {
           >
             <CardBody>
               <div className="grid grid-cols-4 gap-3  items-center ">
-                <div className="flex flex-col col-span-4 lg:col-span-2  gap-3 p-5 justify-center items-center">
+                <div className="flex flex-col col-span-4 lg:col-span-2  gap-3 p-5  ">
                   <Chip
                     size="lg"
                     className="bg-action-green p-2"
@@ -26,7 +26,7 @@ const ServicioPrecioCard = ({ servicios }) => {
                       {servicio.nombre}
                     </p>
                   </Chip>
-                  <p className="text-medium w-[70%] lg:w-full" >{servicio.descripcion}</p>
+                  <p className="text-medium  lg:w-full" >{servicio.descripcion}</p>
                 </div>
                 <div className="flex col-span-2 lg:col-span-1 items-center justify-center">
                   <h2>Precio: {servicio.precio}</h2>
