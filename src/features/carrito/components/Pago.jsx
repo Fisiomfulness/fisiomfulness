@@ -4,7 +4,6 @@ import { cn } from "@/features/ui";
 import {
 	Modal,
 	ModalContent,
-	useDisclosure,
 	Button,
 	RadioGroup,
 	Radio,
@@ -214,8 +213,8 @@ function SecondModal({ onClose }) {
 	});
 
 	useEffect(() => {
-		if (isSubmit) console.log("submit");
-	}, [isSubmit]);
+		if (isSubmit) onClose();
+	}, [isSubmit, onClose]);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -247,22 +246,26 @@ function SecondModal({ onClose }) {
 				<div className="flex flex-col gap-6 pt-4 w-80">
 					<CustomInput
 						name="titular"
+						defaultValue="***** *****"
 						isInvalid={isInvalid.titular}
 						label="Titular de la tarjeta"
 					/>
 					<CustomInput
 						name="tarjeta"
+						defaultValue="**** **** **** ****"
 						isInvalid={isInvalid.tarjeta}
 						label="Número de tarjeta"
 					/>
 					<div className="flex flex-row justify-between">
 						<CustomSmallInput
 							name="vencimiento"
+							defaultValue="**/**"
 							isInvalid={isInvalid.vencimiento}
 							label="Vencimiento"
 						/>
 						<CustomSmallInput
 							name="ccv"
+							defaultValue="***"
 							isInvalid={isInvalid.ccv}
 							label="ccv"
 						/>
@@ -290,7 +293,15 @@ const defaultIconMapping = {
 	),
 };
 
-function ThirdModal({ status = "loading" }) {
+function ThirdModal({ onClose, status = "loading" }) {
+	const [state, setState] = useState(status);
+
+	useEffect(() => {
+		setTimeout(() => {
+			setState("success");
+		}, 1500);
+	}, []);
+
 	const content = {
 		loading: (
 			<p>
@@ -309,15 +320,16 @@ function ThirdModal({ status = "loading" }) {
 	return (
 		<div className="w-56 h-72 flex flex-col">
 			<ModalBody className="flex justify-center gap-0 items-center my-16 p-0">
-				{defaultIconMapping[status]}
-				{content[status]}
+				{defaultIconMapping[state]}
+				{content[state]}
 			</ModalBody>
 			<ModalFooter className="flex flex-col p-0">
-				{status !== "loading" && (
+				{state !== "loading" && (
 					<Button
 						radius="sm"
 						color="primary"
 						className="uppercase text-black p-0"
+						onPress={onClose}
 					>
 						Volver
 					</Button>
@@ -327,8 +339,33 @@ function ThirdModal({ status = "loading" }) {
 	);
 }
 
+function ModalContainer({ children, ...otherProps }) {
+	return (
+		<Modal placement="center" className="max-w-fit !mx-2" {...otherProps}>
+			<ModalContent className="rounded-md p-8 overflow-hidden">
+				{children}
+			</ModalContent>
+		</Modal>
+	);
+}
+
 function ModalBase() {
-	const { isOpen, onOpen, onOpenChange } = useDisclosure();
+	const [step, setStep] = useState({
+		first: false,
+		second: false,
+		third: false,
+	});
+
+	const onOpenChange = (_step) => {
+		const draft = {
+			first: false,
+			second: false,
+			third: false,
+			[_step]: step[_step] ? false : true,
+		};
+
+		setStep(draft);
+	};
 
 	return (
 		<>
@@ -336,21 +373,29 @@ function ModalBase() {
 				color="primary"
 				radius="sm"
 				className="text-base"
-				onPress={onOpen}
+				onPress={() => onOpenChange("first")}
 			>
 				Asigna tu metodo de pago
 			</Button>
 
-			<Modal
-				isOpen={isOpen}
-				onOpenChange={onOpenChange}
-				placement="center"
-				className="max-w-fit !mx-0"
+			<ModalContainer
+				isOpen={step.first}
+				onOpenChange={() => onOpenChange("first")}
 			>
-				<ModalContent className="rounded-md p-8 overflow-hidden">
-					{(onClose) => <ThirdModal onClose={onClose} />}
-				</ModalContent>
-			</Modal>
+				<FirstModal onClose={() => onOpenChange("second")} />
+			</ModalContainer>
+			<ModalContainer
+				isOpen={step.second}
+				onOpenChange={() => onOpenChange("second")}
+			>
+				<SecondModal onClose={() => onOpenChange("third")} />
+			</ModalContainer>
+			<ModalContainer
+				isOpen={step.third}
+				onOpenChange={() => onOpenChange("third")}
+			>
+				<ThirdModal onClose={() => onOpenChange("second")} />
+			</ModalContainer>
 		</>
 	);
 }
