@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { cn } from "@/features/ui";
 import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
@@ -16,14 +16,12 @@ export default function Drop({ defaultItems, placeholder }) {
         classNames: {
           base: cn("px-2 py-1 bg-white"),
           innerWrapper: cn("!border-none !shadow-none px-2"),
-          inputWrapper: cn(
-            "!border-none !shadow-none after:!hidden"
-          ),
+          inputWrapper: cn("!border-none !shadow-none after:!hidden"),
           input: cn(
             "placeholder:!not-italic placeholder:text-inherit",
-            "!border-none max-w-[130px] !p-0"
+            "!border-none max-w-[130px] !p-0",
           ),
-        }
+        },
       }}
       popoverProps={{
         radius: "sm",
@@ -32,21 +30,18 @@ export default function Drop({ defaultItems, placeholder }) {
         offset: 2,
         classNames: {
           content: cn("p-0"),
-        }
+        },
       }}
       listboxProps={{
-        classNames:{
-          list: cn("[&_li]:!rounded-md"),
+        itemClasses: {
+          base: cn("!rounded-md"),
         },
-        color: "secondary"
+        color: "primary",
       }}
     >
       {(item) => (
-        <AutocompleteItem key={item.value}>
-          {item.value}
-        </AutocompleteItem>
+        <AutocompleteItem key={item.value}>{item.value}</AutocompleteItem>
       )}
     </Autocomplete>
-  )
+  );
 }
-

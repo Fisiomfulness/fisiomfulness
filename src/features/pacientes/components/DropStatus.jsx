@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
 import { cn } from "@/features/ui";
 
 export default function DropStatus({ defaultItems, placeholder }) {
-  const [status, setStatus] = useState(placeholder)
+  const [status, setStatus] = useState(placeholder);
 
   return (
     <Autocomplete
@@ -16,7 +16,7 @@ export default function DropStatus({ defaultItems, placeholder }) {
       aria-label={placeholder}
       size="sm"
       classNames={{
-        clearButton: "!text-inherit"
+        clearButton: "!text-inherit",
       }}
       inputProps={{
         classNames: {
@@ -27,16 +27,14 @@ export default function DropStatus({ defaultItems, placeholder }) {
             status === "Reprogramada" && "bg-lime-500",
           ),
           innerWrapper: cn("!border-none !shadow-none px-2"),
-          inputWrapper: cn(
-            "!border-none !shadow-none after:!hidden"
-          ),
+          inputWrapper: cn("!border-none !shadow-none after:!hidden"),
           input: cn(
             "placeholder:!not-italic placeholder:text-inherit placeholder:font-bold",
             "!border-none max-w-[120px] !p-0 !font-bold",
             "uppercase !text-white",
             status === "Reprogramada" && "!text-black",
           ),
-        }
+        },
       }}
       popoverProps={{
         radius: "sm",
@@ -45,21 +43,19 @@ export default function DropStatus({ defaultItems, placeholder }) {
         offset: 2,
         classNames: {
           content: cn("p-0 uppercase"),
-        }
+        },
       }}
       listboxProps={{
-        classNames:{
-          list: cn("[&_li]:!rounded-md"),
+        itemClasses: {
+          base: cn("!rounded-md"),
         },
-        color: "secondary"
+        color: "primary",
       }}
       onInputChange={(value) => setStatus(value || placeholder)}
     >
       {(item) => (
-        <AutocompleteItem key={item.value}>
-          {item.value}
-        </AutocompleteItem>
+        <AutocompleteItem key={item.value}>{item.value}</AutocompleteItem>
       )}
     </Autocomplete>
-  )
+  );
 }
