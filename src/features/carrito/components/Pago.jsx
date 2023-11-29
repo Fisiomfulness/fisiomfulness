@@ -204,7 +204,7 @@ function CustomSmallInput({ ...otherProps }) {
 	);
 }
 
-function SecondModal({ onOpenChange }) {
+function SecondModal({ onOpenChange, onCheck }) {
 	const [isSubmit, setIsSubmit] = useState(false);
 	const [isInvalid, setIsInvalid] = useState({
 		titular: false,
@@ -214,7 +214,10 @@ function SecondModal({ onOpenChange }) {
 	});
 
 	useEffect(() => {
-		if (isSubmit) onOpenChange("third");
+		if (isSubmit) {
+			onCheck();
+			onOpenChange("third");
+		}
 	}, [isSubmit, onOpenChange]);
 
 	const handleSubmit = (event) => {
@@ -301,15 +304,7 @@ const defaultIconMapping = {
 	),
 };
 
-function ThirdModal({ onClose, status = "loading" }) {
-	const [state, setState] = useState(status);
-
-	useEffect(() => {
-		setTimeout(() => {
-			setState("success");
-		}, 1500);
-	}, []);
-
+function ThirdModal({ onBack, onClose, status = "loading" }) {
 	const content = {
 		loading: (
 			<p>
@@ -325,19 +320,28 @@ function ThirdModal({ onClose, status = "loading" }) {
 		success: <p>Pago realizado con exito</p>,
 	};
 
+	const onPress = () => {
+		if (status === "success") {
+			onClose();
+			return;
+		}
+
+		onBack();
+	};
+
 	return (
 		<div className="w-56 h-72 flex flex-col">
 			<ModalBody className="flex justify-center gap-0 items-center my-16 p-0">
-				{defaultIconMapping[state]}
-				{content[state]}
+				{defaultIconMapping[status]}
+				{content[status]}
 			</ModalBody>
 			<ModalFooter className="flex flex-col p-0">
-				{state !== "loading" && (
+				{status !== "loading" && (
 					<Button
 						radius="sm"
 						color="primary"
 						className="uppercase text-black p-0"
-						onPress={onClose}
+						onPress={onPress}
 					>
 						Volver
 					</Button>
@@ -362,6 +366,17 @@ function ModalContainer({ children, className, ...otherProps }) {
 }
 
 function ModalBase() {
+	const [status, setStatus] = useState("");
+
+	useEffect(() => {
+		if (status !== "loading") return;
+
+		setTimeout(() => {
+			setStatus("success");
+			// setStatus("error");
+		}, 1500);
+	}, [status]);
+
 	const [step, setStep] = useState({
 		first: false,
 		second: false,
@@ -400,14 +415,23 @@ function ModalBase() {
 				isOpen={step.second}
 				onOpenChange={() => onOpenChange("second")}
 			>
-				<SecondModal onOpenChange={onOpenChange} />
+				<SecondModal
+					onOpenChange={onOpenChange}
+					onCheck={() => setStatus("loading")}
+				/>
 			</ModalContainer>
 			<ModalContainer
 				isOpen={step.third}
-				onOpenChange={() => onOpenChange("third")}
 				className={"min-w-0"}
+				onOpenChange={() => onOpenChange("third")}
+				hideCloseButton
+				isDismissable={false}
 			>
-				<ThirdModal onClose={() => onOpenChange("second")} />
+				<ThirdModal
+					status={status}
+					onBack={() => onOpenChange("second")}
+					onClose={() => onOpenChange("third")}
+				/>
 			</ModalContainer>
 		</>
 	);
