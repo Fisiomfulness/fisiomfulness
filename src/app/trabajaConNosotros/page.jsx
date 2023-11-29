@@ -64,10 +64,10 @@ const TrabajaConNosotros = () => {
             
             <form onSubmit={handleSubmit} className=' justify-center w-full'>
                 
-                <div className='px-60 py-20 flex gap-10 items-start justify-start'>
+                <div className=' mt-5 flex flex-row gap-10 items-start justify-start overflow-hidden  min-[360px]:p-0 max-[850px]:flex-col'>
                     <div className="flex flex-col gap-10 itemes-center w-full">
                         <div className='flex flex-col gap-2'>
-                            <div className='flex  w-full justify-between '>
+                            <div className='flex  justify-between '>
                                 <label>Tipo de documento</label>
                                 <label className='text-[#FF0000]'>{errors && errors.dni}</label>
                             </div>
@@ -76,7 +76,7 @@ const TrabajaConNosotros = () => {
                         </div>
 
                         <div className='flex flex-col gap-2'>
-                            <div className='flex  w-full justify-between '>
+                            <div className='flex  justify-between '>
                                 <label>Número de documento</label>
                                 <label className='text-[#FF0000]'>{errors && errors.nroDni}</label>
                             </div>
@@ -84,15 +84,62 @@ const TrabajaConNosotros = () => {
                         </div>
 
                         <div className='flex flex-col gap-2'>
-                            <div className='flex  w-full justify-between '>
+                            <div className='flex  justify-between '>
                                 <label>Número de télefono</label>
                                 <label className='text-[#FF0000]'>{errors && errors.phone}</label>
                             </div>
                             <input type='number' name='phone' value={form.phone} onChange={handleChange}    placeholder='+09 9 999 999 999' className={errors.phone ? 'border border-slate-200 rounded-sm px-2 bg-slate-200 h-8 border-[#FF0000]': 'border border-slate-200 rounded-sm px-2 bg-slate-200 h-8'} />
                         </div>
 
-                        
-                        <Button type='submit' onPress={onOpen}  className='w-full text-white bg-[#06B0FF] rounded' color="primary">
+                    </div>
+                    <div className="flex flex-col gap-10 itemes-center w-full">
+                        <div className='flex flex-col gap-2'>
+                            <div className='flex  justify-between '>
+                                <label>Email</label>
+                                <label className='text-[#FF0000]'>{errors && errors.email}</label>
+                            </div>
+                            <input type='email' name='email' value={form.email} onChange={handleChange}    placeholder='mail@mail.com' className={errors.email ? 'border border-slate-200 rounded-sm px-2 bg-slate-200 h-8 border-[#FF0000]': 'border border-slate-200 rounded-sm px-2 bg-slate-200 h-8'} />
+                        </div>
+
+                        <div className="flex flex-col gap-2">
+                            
+                            <div className='flex  justify-between '>
+                                <label>Agrega tu CV</label>
+                                <label className='text-[#FF0000]'>{errors && errors.cv}</label>
+                            </div>
+                            
+                            <div className={errors.cv ? "relative  border border-slate-200 bg-slate-200 rounded-sm px-2 py-1 h-8 border-[#FF0000]" :"relative border border-slate-200 bg-slate-200 rounded-sm px-2 py-1 h-8"}>
+                                <input
+                                    type="text"
+                                    className="bg-transparent"
+                                    placeholder="file.pdf"
+                                    name='cv'
+                                    value={form.cv} 
+                                    onChange={handleChange} 
+                                />
+                                <Button
+                                isIconOnly
+                                className="bg-transparent font-bold py-1 px-2 absolute top-1/2 right transform -translate-y-1/2 text-sky-500 w-10/12"
+                                >
+                                    <CgAttachment />
+                                </Button>
+                            </div>
+                        </div>
+
+
+                        <div className='flex flex-col gap-2'>
+                            <div className='flex  justify-between '>
+                                <label>Mensaje</label>
+                                <label className='text-[#FF0000]'>{errors && errors.message}</label>
+                            </div>
+                            <textarea value={form.message} onChange={handleChange} name='message'  placeholder='Mensaje...' className={errors.cv ? 'border border-slate-200 rounded-sm px-2 bg-slate-200 h-8 border-[#FF0000]': 'border border-slate-200 rounded-sm px-2 bg-slate-200 h-8'} />
+                        </div>
+
+                    </div>
+                    
+                </div>
+                <div className=" flex mt-5  min-[360px]:p-0 max-[850px]: flex justify-start w-full">
+                    <Button type='submit' onPress={onOpen}  className='text-white bg-[#06B0FF] rounded w-2/4' color="primary">
                             ENVIAR
                         </Button>
                         {
@@ -133,52 +180,6 @@ const TrabajaConNosotros = () => {
                             </Modal> 
                             )
                         }
-
-                    </div>
-                    <div className="flex flex-col gap-10 itemes-center w-full">
-                        <div className='flex flex-col gap-2'>
-                            <div className='flex  w-full justify-between '>
-                                <label>Email</label>
-                                <label className='text-[#FF0000]'>{errors && errors.email}</label>
-                            </div>
-                            <input type='email' name='email' value={form.email} onChange={handleChange}    placeholder='mail@mail.com' className={errors.email ? 'border border-slate-200 rounded-sm px-2 bg-slate-200 h-8 border-[#FF0000]': 'border border-slate-200 rounded-sm px-2 bg-slate-200 h-8'} />
-                        </div>
-
-                        <div className="flex flex-col gap-2">
-                            
-                            <div className='flex  w-full justify-between '>
-                                <label>Agrega tu CV</label>
-                                <label className='text-[#FF0000]'>{errors && errors.cv}</label>
-                            </div>
-                            
-                            <div className={errors.cv ? "relative border border-slate-200 bg-slate-200 rounded-sm px-2 py-1 h-8 border-[#FF0000]" :"relative border border-slate-200 bg-slate-200 rounded-sm px-2 py-1 h-8"}>
-                                <input
-                                    type="text"
-                                    className="w-full bg-transparent"
-                                    placeholder="file.pdf"
-                                    name='cv'
-                                    value={form.cv} 
-                                    onChange={handleChange} 
-                                />
-                                <Button
-                                isIconOnly
-                                className="bg-transparent font-bold py-1 px-2 absolute top-1/2 right transform -translate-y-1/2 text-sky-500"
-                                >
-                                    <CgAttachment />
-                                </Button>
-                            </div>
-                        </div>
-
-
-                        <div className='flex flex-col gap-2'>
-                            <div className='flex  w-full justify-between '>
-                                <label>Mensaje</label>
-                                <label className='text-[#FF0000]'>{errors && errors.message}</label>
-                            </div>
-                            <textarea value={form.message} onChange={handleChange} name='message'  placeholder='Mensaje...' className={errors.cv ? 'border border-slate-200 rounded-sm px-2 bg-slate-200 h-8 border-[#FF0000]': 'border border-slate-200 rounded-sm px-2 bg-slate-200 h-8'} />
-                        </div>
-
-                    </div>
                 </div>
             </form>
         </div>
