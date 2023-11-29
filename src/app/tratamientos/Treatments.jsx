@@ -4,7 +4,7 @@ import data from "./assets/treatmentsList.json";
 
 const Treatments = () => {
   return (
-<content className="flex flex-wrap gap-4 h-[34rem] p-4 w-[850px]">
+<content className="flex flex-wrap gap-4 h-[34rem] w-[850px]">
   {data.results.map((el, index) => (
     <Card
       key={index}
