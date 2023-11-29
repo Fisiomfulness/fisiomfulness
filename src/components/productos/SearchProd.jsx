@@ -1,6 +1,7 @@
 "use client";
 import { MdOutlineSearch } from "react-icons/md";
 import { useEffect, useState } from "react";
+import { Select, SelectItem } from "@nextui-org/react";
 
 export const SearchProd = ({ prods, setProdFiltrados }) => {
   const [filter, setFilter] = useState({
@@ -23,7 +24,7 @@ export const SearchProd = ({ prods, setProdFiltrados }) => {
   };
 
   return (
-    <>
+    <div className="flex flex-col sm:flex-row w-full items-center justify-center gap-5">
       <div className="relative flex items-center text-sm">
         <input
           id="nombre"
@@ -45,12 +46,14 @@ export const SearchProd = ({ prods, setProdFiltrados }) => {
           onChange={(e) => handleOnChange(e)}
           placeholder={filter.categoria}
         >
-          <option value="categoria">Todas</option>
+          <option value="categoria" className="">
+            Todas
+          </option>
           <option value="categoria 1">Categoria 1</option>
           <option value="categoria 2">Categoria 2</option>
           <option value="categoria 3">Categoria 3</option>
         </select>
       </div>
-    </>
+    </div>
   );
 };
