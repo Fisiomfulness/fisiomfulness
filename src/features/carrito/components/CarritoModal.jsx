@@ -9,14 +9,15 @@ import {
 	ModalFooter,
 	useDisclosure,
 } from "@nextui-org/react";
-import { useState } from "react";
+import { useAtom, useSetAtom } from "jotai";
 import { MdErrorOutline, MdShoppingCart } from "react-icons/md";
+import { cartAtom } from "../store";
 
 function ModalContainer({ children, className, ...otherProps }) {
 	return (
 		<Modal
 			placement="center"
-			className={cn("max-w-fit min-w-[665px] !mx-2", className)}
+			className={cn("!mx-2", className)}
 			{...otherProps}
 		>
 			<ModalContent className="rounded-md p-8 overflow-hidden">
@@ -48,28 +49,59 @@ function ThirdModal({ onClose }) {
 }
 
 function ListProducts() {
+	const [{ cart }] = useAtom(cartAtom);
+
 	return (
-		<div>
-			<div>aaaaaaaa</div>
-			<div>aaaaaaaa</div>
-			<div>aaaaaaaa</div>
+		<div className="flex flex-col gap-4 text-secondary my-8">
+			{cart.map((product) => (
+				<div key={product.key} className="flex flex-row gap-5">
+					{/* eslint-disable-next-line */}
+					<img
+						src={product.img}
+						alt={product.name}
+						className="min-w-[160px] h-24 object-cover object-bottom rounded-lg"
+					/>
+					<div className="w-80">
+						<p className="font-bold text-md">{product.name}</p>
+						<p className="line-clamp-3">{product.description}</p>
+					</div>
+					<div className="text-right flex flex-col gap-2 justify-center">
+						<p className="font-bold text-xl">${product.price}</p>
+						<Button color="danger" className="font-bold" radius="sm" size="sm">
+							eliminar
+						</Button>
+					</div>
+				</div>
+			))}
 		</div>
 	);
 }
 
-function FirstModal() {
+function FirstModal({ onClose }) {
+	const setCart = useSetAtom(cartAtom);
+
 	return (
 		<div className="overflow-x-auto">
 			<p className="border-b border-primary w-fit mb-4 text-lg font-semibold">
 				TU CARRO
 			</p>
-			<div className="flex flex-col gap-8">
-				<div className="flex flex-col gap-4 w-72">
-					<ListProducts />
-					<Button color="primary" className="uppercase font-bold" radius="sm">
+			<div className="mx-auto w-fit">
+				<ListProducts />
+				<div className="w-72 flex flex-col gap-4 mx-auto">
+					<Button
+						color="primary"
+						className="uppercase font-bold"
+						radius="sm"
+						onPress={onClose}
+					>
 						Checkout
 					</Button>
-					<Button color="danger" className="uppercase font-bold" radius="sm">
+					<Button
+						color="danger"
+						className="uppercase font-bold"
+						radius="sm"
+						onPress={() => setCart((value) => ({ ...value, cart: [] }))}
+					>
 						Borrar todo
 					</Button>
 				</div>
@@ -78,36 +110,35 @@ function FirstModal() {
 	);
 }
 
-const products = new Array(3).fill().map((_, index) => ({
-	key: index + 1,
-	name: `Producto ${index + 1}`,
-	price: 100,
-	description: "Descripcion del producto",
-	img: "/prod1Prueba.png",
-}));
-
 export default function CarritoModal() {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
-	const [cart, setCart] = useState(products);
+	const [{ cart }] = useAtom(cartAtom);
 
 	return (
 		<div>
 			<button onClick={onOpen}>
 				<MdShoppingCart className="w-8 h-8 text-primary" />
 			</button>
-			<ModalContainer
-				isOpen={isOpen}
-				className={"min-w-0"}
-				onOpenChange={onOpenChange}
-				hideCloseButton={!cart.length}
-				isDismissable={false}
-			>
-				{cart.length ? (
-					<FirstModal />
-				) : (
-					(onClose) => <ThirdModal onClose={onClose} />
-				)}
-			</ModalContainer>
+			{cart.length ? (
+				<ModalContainer
+					isOpen={isOpen}
+					onOpenChange={onOpenChange}
+					isDismissable={false}
+					className={"max-w-3xl"}
+				>
+					{(onClose) => <FirstModal onClose={onClose} />}
+				</ModalContainer>
+			) : (
+				<ModalContainer
+					isOpen={isOpen}
+					className={"max-w-fit"}
+					onOpenChange={onOpenChange}
+					hideCloseButton
+					isDismissable={false}
+				>
+					{(onClose) => <ThirdModal onClose={onClose} />}
+				</ModalContainer>
+			)}
 		</div>
 	);
 }
