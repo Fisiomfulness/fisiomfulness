@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 
 import { MdOutlineCached, MdOutlineCheckCircle } from "react-icons/md";
 import { MdErrorOutline } from "react-icons/md";
+import { IoIosArrowBack } from "react-icons/io";
 
 function TablaPagar() {
 	return (
@@ -203,7 +204,7 @@ function CustomSmallInput({ ...otherProps }) {
 	);
 }
 
-function SecondModal({ onClose }) {
+function SecondModal({ onOpenChange }) {
 	const [isSubmit, setIsSubmit] = useState(false);
 	const [isInvalid, setIsInvalid] = useState({
 		titular: false,
@@ -213,8 +214,8 @@ function SecondModal({ onClose }) {
 	});
 
 	useEffect(() => {
-		if (isSubmit) onClose();
-	}, [isSubmit, onClose]);
+		if (isSubmit) onOpenChange("third");
+	}, [isSubmit, onOpenChange]);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -239,10 +240,17 @@ function SecondModal({ onClose }) {
 
 	return (
 		<div className="overflow-x-auto">
+			<p
+				className="mb-4 cursor-pointer w-fit"
+				onClick={() => onOpenChange("first")}
+			>
+				<IoIosArrowBack className="inline text-primary w-5 h-5" /> Volver a
+				elegir tu método de pago
+			</p>
 			<p className="border-b border-primary w-fit mb-4 text-lg font-semibold">
 				Ingresá tus datos
 			</p>
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit} className="flex justify-center">
 				<div className="flex flex-col gap-6 pt-4 w-80">
 					<CustomInput
 						name="titular"
@@ -339,9 +347,13 @@ function ThirdModal({ onClose, status = "loading" }) {
 	);
 }
 
-function ModalContainer({ children, ...otherProps }) {
+function ModalContainer({ children, className, ...otherProps }) {
 	return (
-		<Modal placement="center" className="max-w-fit !mx-2" {...otherProps}>
+		<Modal
+			placement="center"
+			className={cn("max-w-fit min-w-[665px] !mx-2", className)}
+			{...otherProps}
+		>
 			<ModalContent className="rounded-md p-8 overflow-hidden">
 				{children}
 			</ModalContent>
@@ -388,11 +400,12 @@ function ModalBase() {
 				isOpen={step.second}
 				onOpenChange={() => onOpenChange("second")}
 			>
-				<SecondModal onClose={() => onOpenChange("third")} />
+				<SecondModal onOpenChange={onOpenChange} />
 			</ModalContainer>
 			<ModalContainer
 				isOpen={step.third}
 				onOpenChange={() => onOpenChange("third")}
+				className={"min-w-0"}
 			>
 				<ThirdModal onClose={() => onOpenChange("second")} />
 			</ModalContainer>
