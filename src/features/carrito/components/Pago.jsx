@@ -218,7 +218,7 @@ function SecondModal({ onOpenChange, onCheck }) {
 			onCheck();
 			onOpenChange("third");
 		}
-	}, [isSubmit, onOpenChange]);
+	}, [isSubmit, onOpenChange, onCheck]);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -355,7 +355,7 @@ function ModalContainer({ children, className, ...otherProps }) {
 	return (
 		<Modal
 			placement="center"
-			className={cn("max-w-fit min-w-[665px] !mx-2", className)}
+			className={cn("max-w-fit !mx-2", className)}
 			{...otherProps}
 		>
 			<ModalContent className="rounded-md p-8 overflow-hidden">
