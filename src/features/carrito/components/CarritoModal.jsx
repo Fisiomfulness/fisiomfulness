@@ -2,6 +2,7 @@
 
 import { cn } from "@/features/ui";
 import {
+	Badge,
 	Button,
 	Modal,
 	ModalBody,
@@ -9,7 +10,7 @@ import {
 	ModalFooter,
 	useDisclosure,
 } from "@nextui-org/react";
-import { useAtom, useSetAtom } from "jotai";
+import { useAtom } from "jotai";
 import { MdErrorOutline, MdShoppingCart } from "react-icons/md";
 import { cartAtom } from "../store";
 import { useCart } from "../hooks";
@@ -124,12 +125,14 @@ function FirstModal({ onClose }) {
 
 export default function CarritoModal() {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
-	const [{ cart }] = useAtom(cartAtom);
+	const [{ cart, quantity }] = useAtom(cartAtom);
 
 	return (
 		<div>
 			<button onClick={onOpen}>
-				<MdShoppingCart className="w-8 h-8 text-primary" />
+				<Badge content={quantity} color="danger" placement="top-left" size="md">
+					<MdShoppingCart className="w-8 h-8 text-primary" />
+				</Badge>
 			</button>
 			{cart.length ? (
 				<ModalContainer

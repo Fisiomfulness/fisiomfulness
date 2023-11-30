@@ -20,7 +20,7 @@ const products = new Array(4).fill().map((_, index) => ({
 	quantity: 1,
 }));
 
-// TODO: Agregar total y quantity
+// TODO: Implementar total y quantity
 export const cartAtom = atom({
 	cart: products,
 	total: products.length * 100,
@@ -44,7 +44,13 @@ export const removeItemAtom = atom(null, (get, set, item) => {
 		if (item.key !== cartItem.key) {
 			return acc.concat(cartItem);
 		} else {
-			if (cartItem.quantity === 1) return acc;
+			if (cartItem.quantity === 1) {
+				set(cartAtom, (prev) => ({
+					...prev,
+					quantity: prev.quantity - 1,
+				}));
+				return acc;
+			}
 			return acc.concat({ ...item, quantity: item.quantity - 1 });
 		}
 	}, []);
