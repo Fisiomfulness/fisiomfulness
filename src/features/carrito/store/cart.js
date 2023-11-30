@@ -1,6 +1,6 @@
 import { atom } from "jotai";
 
-const products = new Array(3).fill().map((_, index) => ({
+const products = new Array(4).fill().map((_, index) => ({
 	key: index + 1,
 	name: `Producto ${index + 1}`,
 	price: 100,
@@ -17,10 +17,74 @@ const products = new Array(3).fill().map((_, index) => ({
     ea consectetur et est culpa et culpa duis.
   `,
 	img: "/prod1Prueba.png",
+	quantity: 1,
 }));
 
+// TODO: Agregar total y quantity
 export const cartAtom = atom({
 	cart: products,
-	total: 0,
-	quantity: 0,
+	total: products.length * 100,
+	quantity: products.length,
+});
+
+export const removeItemAtom = atom(null, (get, set, item) => {
+	const { cart } = get(cartAtom);
+	const isInCart = cart.some((cartItem) => cartItem.key === item.key);
+
+	if (!isInCart) {
+		const draft = cart.concat({ ...item, quantity: 1 });
+		set(cartAtom, (prev) => ({
+			...prev,
+			cart: draft,
+		}));
+		return;
+	}
+
+	const draft = cart.reduce((acc, cartItem) => {
+		if (item.key !== cartItem.key) {
+			return acc.concat(cartItem);
+		} else {
+			if (cartItem.quantity === 1) return acc;
+			return acc.concat({ ...item, quantity: item.quantity - 1 });
+		}
+	}, []);
+
+	set(cartAtom, (prev) => ({
+		...prev,
+		cart: draft,
+	}));
+});
+
+export const addItemAtom = atom(null, (get, set, item) => {
+	const { cart } = get(cartAtom);
+	const isInCart = cart.some((cartItem) => cartItem.key === item.key);
+
+	if (!isInCart) {
+		const draft = cart.concat({ ...item, quantity: 1 });
+		set(cartAtom, (prev) => ({
+			...prev,
+			cart: draft,
+		}));
+		return;
+	}
+
+	const draft = cart.reduce((acc, cartItem) => {
+		if (item.key !== cartItem.key) {
+			return acc.concat(cartItem);
+		} else {
+			return acc.concat({ ...item, quantity: item.quantity + 1 });
+		}
+	}, []);
+
+	set(cartAtom, (prev) => ({
+		...prev,
+		cart: draft,
+	}));
+});
+
+export const clearCartAtom = atom(null, (_get, set) => {
+	set(cartAtom, (prev) => ({
+		...prev,
+		cart: [],
+	}));
 });
