@@ -1,6 +1,6 @@
-import Tratments from './Treatments';
+import Treatments from './Treatments';
 const tratamientos= () => {
-  return <Tratments />
+  return <Treatments />
 }
 
 export default tratamientos;
