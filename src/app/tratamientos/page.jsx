@@ -1,9 +1,6 @@
-import React from 'react'
-
-const page = () => {
-  return (
-    <div>page</div>
-  )
+import Treatments from './Treatments';
+const tratamientos= () => {
+  return <Treatments />
 }
 
-export default page
+export default tratamientos;
