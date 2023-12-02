@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
     <html lang="es">
       <body className={raleway.className}>
         <Providers>
-          <div className="max-w-10xl min-h-screen flex flex-col">
+          <div className="min-h-screen flex flex-col">
             <Nav />
             <main className="flex-1">{children}</main>
             <Footer />
