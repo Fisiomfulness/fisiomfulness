@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/features/ui";
-import { Input, forwardRef } from "@nextui-org/react";
+import { Avatar, Input, forwardRef } from "@nextui-org/react";
 import { useLayoutEffect, useRef, useState } from "react";
 import { RiArrowUpCircleLine } from "react-icons/ri";
 
@@ -63,26 +63,69 @@ const defaultValue = [
 	{
 		id: 1,
 		type: "bot",
-		text: "Hello ",
+		text: "Mensaje al usuario",
 	},
 	{
 		id: 2,
 		type: "bot",
 		text: (
-			<p
-				className="cursor-pointer text-yellow-400 font-bold"
-				onClick={() => alert("This is a ReactNode (╯°□°）╯︵ ┻━┻")}
-			>
-				This is a ReactNode
-			</p>
+			<>
+				<span
+					className={cn("cursor-pointer font-extrabold", "animate-pulse")}
+					onClick={() => alert("This is a ReactNode (╯°□°）╯︵ ┻━┻")}
+				>
+					This is a ReactNode
+				</span>{" "}
+				<span>(╯°□°）╯︵ ┻━┻</span>
+			</>
 		),
 	},
 	{
 		id: 3,
 		type: "user",
-		text: "Hi",
+		text: "Respuesta del usuario",
+	},
+	{
+		id: 4,
+		type: "bot",
+		text: "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+	},
+	{
+		id: 5,
+		type: "user",
+		text: "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+	},
+	{
+		id: 6,
+		type: "user",
+		text: "Respuesta del usuario",
+	},
+	{
+		id: 7,
+		type: "bot",
+		text: "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+	},
+	{
+		id: 8,
+		type: "user",
+		text: "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
 	},
 ];
+
+function Message({ type, children }) {
+	return (
+		<div
+			className={cn(
+				"rounded-2xl max-w-[80%] text-white px-5 py-2 text-justify",
+				type === "bot"
+					? "bg-primary text-left self-start rounded-bl-none"
+					: "bg-secondary-light text-right self-end rounded-br-none",
+			)}
+		>
+			{children}
+		</div>
+	);
+}
 
 function Chat({ isCollapsable = false }) {
 	const containerRef = useRef(null);
@@ -97,7 +140,7 @@ function Chat({ isCollapsable = false }) {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		const value = event.target.message;
+		const { value } = event.target.message;
 
 		if (!value) return;
 
@@ -113,27 +156,27 @@ function Chat({ isCollapsable = false }) {
 	};
 
 	const content = (
-		<div className="flex flex-col gap-4 max-w-lg m-auto p-4 rounded-md bg-red-100">
+		<div className="flex flex-col max-w-lg m-auto rounded-md bg-zinc-100">
+			<div
+				className={cn(
+					"bg-secondary-light px-8 py-3 rounded-lg mx-6 text-white",
+					"flex justify-between items-center",
+				)}
+			>
+				<Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
+				<p className="text-lg">Ronald Marino</p>
+			</div>
 			<div
 				ref={containerRef}
-				className="flex flex-col gap-2 h-[300px] overflow-y-auto no-scrollbar"
+				className="flex flex-col gap-2 h-[300px] overflow-y-auto px-4 pl-6 py-2"
 			>
 				{messages.map((message) => (
-					<div
-						key={message.id}
-						className={`rounded-lg px-3 py-0.5 max-w-[80%]
-              ${
-								message.type === "bot"
-									? "bg-slate-500 text-left self-start rounded-bl-none"
-									: "bg-blue-500 text-right self-end rounded-br-none"
-							}
-            `}
-					>
+					<Message key={message.id} type={message.type}>
 						{message.text}
-					</div>
+					</Message>
 				))}
 			</div>
-			<form className="flex items-center" onSubmit={handleSubmit}>
+			<form className="flex items-center px-6" onSubmit={handleSubmit}>
 				<CustomInput
 					type="text"
 					name="message"

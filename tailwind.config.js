@@ -12,6 +12,7 @@ module.exports = {
 			colors: {
 				primary: "#3397C6",
 				secondary: "#112732",
+				"secondary-light": "#003953",
 				"primary-opacity": "rgb(17, 39, 50, 0.5)",
 				"light-blue": "#ACD9EC",
 				"action-green": "#36A793",
@@ -38,4 +39,3 @@ module.exports = {
 	darkMode: "class",
 	plugins: [nextui()],
 };
-
