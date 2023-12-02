@@ -118,7 +118,7 @@ function Message({ type, children }) {
 			className={cn(
 				"rounded-2xl max-w-[80%] text-white px-5 py-2 text-justify",
 				type === "bot"
-					? "bg-primary text-left self-start rounded-bl-none"
+					? "bg-primary-light text-black text-left self-start rounded-bl-none"
 					: "bg-secondary-light text-right self-end rounded-br-none",
 			)}
 		>
@@ -156,7 +156,7 @@ function Chat({ isCollapsable = false }) {
 	};
 
 	const content = (
-		<div className="flex flex-col max-w-lg m-auto rounded-md bg-zinc-100">
+		<div className="flex flex-col max-w-lg w-full rounded-md">
 			<div
 				className={cn(
 					"bg-secondary-light px-8 py-3 rounded-lg mx-6 text-white",
@@ -168,7 +168,7 @@ function Chat({ isCollapsable = false }) {
 			</div>
 			<div
 				ref={containerRef}
-				className="flex flex-col gap-2 h-[300px] overflow-y-auto px-4 pl-6 py-2"
+				className="flex flex-col gap-2 overflow-y-auto px-4 pl-6 py-2"
 			>
 				{messages.map((message) => (
 					<Message key={message.id} type={message.type}>
