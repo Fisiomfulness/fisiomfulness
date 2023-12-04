@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import {
   Navbar,
   NavbarBrand,
@@ -9,11 +9,11 @@ import {
   NavbarMenu,
   NavbarMenuToggle,
   NavbarMenuItem,
-  
 } from "@nextui-org/react";
 import LoginDropDown from "./LoginDropDown";
-import Image from 'next/image';
-import NextLink from "next/link"
+import Image from "next/image";
+import NextLink from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import FisiumLogo from "../assets/Logo.svg";
 
@@ -21,32 +21,58 @@ export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLogged, setIsLogged] = useState(false);
 
+  const path = usePathname();
+
+  const handleMenuToogle = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   const menuItems = [
-    "Home",
-    "Servicios",
-    "Profesionales",
-    "Pregunta a un especialista",
-    "Comunidad",
-    "Productos",
+    { name: "Home", href: "/" },
+    { name: "Servicios y especialistas", href: "/servicios" },
+    { name: "Productos", href: "/productos" },
+    { name: "Tratamientos", href: "/tratamientos" },
+    { name: "Comunidad", href: "#" },
+    { name: "Blog", href: "/blog" },
   ];
 
   return (
-    <Navbar maxWidth={"xl"} height={`100px`} onMenuOpenChange={setIsMenuOpen}>
+    <Navbar
+      maxWidth={"xl"}
+      height={`100px`}
+      isMenuOpen={isMenuOpen}
+      onMenuOpenChange={setIsMenuOpen}
+    >
       <NavbarContent justify="start">
         <NavbarMenuToggle
+          isselected="true"
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="lg:hidden"
         />
         <NavbarBrand>
-          <Image width={120} src={FisiumLogo} alt="Logo Fisiom fulness" priority />
+          <Link as={NextLink} href={menuItems[0].href}>
+            <Image
+              width={120}
+              src={FisiumLogo}
+              alt="Logo Fisiom fulness"
+              priority
+            />
+          </Link>
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent className="hidden lg:flex gap-5" justify="center">
         {menuItems.map((item, index) => (
-          <NavbarItem key={`${item}-${index}`} isActive={index === 1}>
-            <Link as={NextLink} color="secondary" href="#" aria-current={index === 1 ? "page" : undefined}>
-              {item}
+          <NavbarItem
+            key={`${item.name}-${index}`}
+            isActive={path === item.href}
+          >
+            <Link
+              as={NextLink}
+              color={path === item.href ? "primary" : "foreground"}
+              href={item.href}
+            >
+              {item.name}
             </Link>
           </NavbarItem>
         ))}
@@ -55,13 +81,7 @@ export default function Nav() {
       <NavbarContent justify="end">
         <NavbarItem>
           {!isLogged ? (
-            <Button
-              onClick={setIsLogged}
-              as={Link}
-              color="secondary"
-              href="#"
-              
-            >
+            <Button onClick={setIsLogged} as={Link} color="secondary" href="#">
               Sign Up
             </Button>
           ) : (
@@ -72,21 +92,21 @@ export default function Nav() {
 
       <NavbarMenu>
         {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
+          <NavbarMenuItem
+            key={`${item.name}-${index}`}
+            isActive={path === item.href}
+          >
             <Link
               as={NextLink}
-              color={
-                index === 2
-                  ? "secondary"
-                  : index === menuItems.length - 1
-                  ? "danger"
-                  : "foreground"
-              }
+              color={path === item.href ? "secondary" : "foreground"}
               className="w-full"
-              href="#"
+              href={item.href}
               size="lg"
+              onPress={() => {
+                handleMenuToogle();
+              }}
             >
-              {item}
+              {item.name}
             </Link>
           </NavbarMenuItem>
         ))}
