@@ -26,7 +26,9 @@ const ServicioPrecioCard = ({ servicios }) => {
                       {servicio.nombre}
                     </p>
                   </Chip>
-                  <p className="text-medium  lg:w-full" >{servicio.descripcion}</p>
+                  <p className="text-medium  lg:w-full">
+                    {servicio.descripcion}
+                  </p>
                 </div>
                 <div className="flex col-span-2 lg:col-span-1 items-center justify-center">
                   <h2>Precio: {servicio.precio}</h2>

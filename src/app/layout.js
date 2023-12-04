@@ -2,6 +2,7 @@ import { Raleway } from "next/font/google";
 import { Providers } from "./providers";
 import Nav from "@/components/Nav";
 import "./globals.css";
+import "react-big-calendar/lib/css/react-big-calendar.css";
 import Footer from "../components/Footer/Footer";
 
 const raleway = Raleway({

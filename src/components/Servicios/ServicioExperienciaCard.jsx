@@ -5,7 +5,7 @@ const ServicioPrecioCard = ({ experiencia }) => {
   return (
     <>
       {experiencia.map((experiencia, index) => (
-        <div key={index} className="flex flex-col lg:flex-row  mt-2">
+        <div key={index} className="flex flex-col lg:flex-row   mt-2">
           <Card
             isBlurred
             className="border-none w-full  bg-background/60 dark:bg-default-100/50 max-w-[1118px] rounded-r-none md:rounded"
