@@ -2,6 +2,17 @@ import { cn } from "@/features/ui";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import fs from "fs";
+import path from "path";
+
+const directoryPath = path.join(__dirname, "../../../../src/app/");
+
+const getDirectories = (source) =>
+  fs
+    .readdirSync(source, { withFileTypes: true })
+    .filter((file) => file.isDirectory() && file.name !== "only_development")
+    .map((file) => file.name);
+
 function CustomLink({ children, href }) {
   return (
     <Link
@@ -16,21 +27,7 @@ function CustomLink({ children, href }) {
   );
 }
 
-const routes = [
-  "about",
-  "blog",
-  "calendario",
-  "carrito",
-  "login",
-  "mis_compras",
-  "mis_mensajes",
-  "pacientes",
-  "productos",
-  "registro",
-  "servicios",
-  "trabajaConNosotros",
-  "tratamientos",
-];
+const routes = getDirectories(directoryPath);
 
 function Container({ children }) {
   return (
