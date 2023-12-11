@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@types/react-big-calendar": "^1.8.6",
+    "@swc-jotai/react-refresh": "^0.1.0",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.3",
