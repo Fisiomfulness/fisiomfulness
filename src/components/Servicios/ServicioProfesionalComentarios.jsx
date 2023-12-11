@@ -1,25 +1,19 @@
 "use client";
 import { Accordion, AccordionItem, Avatar } from "@nextui-org/react";
 import ServicioReportComentario from "./ServicioReportComentario";
-
 import dynamic from "next/dynamic";
-/* const ServicioReportComentario = dynamic(
-  () => import("./ServicioReportComentario"),
-  {
-    ssr: false,
-  }
-); */
 const StarRatings = dynamic(() => import("react-star-ratings"), {
   ssr: false,
 });
 
 const ServicioProfesionalComentarios = ({ comentarios }) => {
-  const indexes = comentarios.map((_, index) => String(index));
+  
+  const indexes = comentarios?.map((_, index) => String(index));
 
   return (
     <div className="m-2">
-      <Accordion selectionMode="multiple" defaultExpandedKeys={indexes}>
-        {comentarios.map((comentario, index) => (
+      { <Accordion selectionMode="multiple" defaultExpandedKeys={indexes}>
+        {comentarios?.map((comentario, index) => (
           <AccordionItem
             key={index}
             aria-label={comentario.name}
@@ -31,7 +25,7 @@ const ServicioProfesionalComentarios = ({ comentarios }) => {
                 src={comentario.avatarSrc}
               />
             }
-            title={comentario.title}
+            title={comentario.name}
             subtitle={
               <StarRatings
                 rating={comentario.rating}
@@ -44,12 +38,12 @@ const ServicioProfesionalComentarios = ({ comentarios }) => {
             }
           >
             <div className="flex justify-between">
-              {comentario.content}
+              {comentario.comentario}
               <ServicioReportComentario />
             </div>
           </AccordionItem>
         ))}
-      </Accordion>
+      </Accordion> }
     </div>
   );
 };

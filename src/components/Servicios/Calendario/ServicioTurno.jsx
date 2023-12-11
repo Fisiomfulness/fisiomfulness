@@ -9,8 +9,8 @@ const localizer = momentLocalizer(moment);
 
 const events = [
   {
-    start: moment("2023-11-29T10:00:00").toDate(),
-    end: moment("2023-11-29T11:00:00").toDate(),
+    start: moment("2023-12-06T10:00:00").toDate(),
+    end: moment("2023-12-06T11:00:00").toDate(),
     title: "Psiquiatra",
   },
 ];
@@ -34,11 +34,8 @@ const Calendario = () => {
         className="border-none w-full  bg-background/60 dark:bg-default-100/50 max-w-[1118px] rounded-r-none md:rounded"
         shadow="sm"
       >
-        <CardBody >
-          <div
-            
-            className="bigCalendar-container  m-2 h-[600px] "
-          >
+        <CardBody>
+          <div className="bigCalendar-container  m-2 h-[600px] ">
             <Calendar
               className="w-full"
               date={date}

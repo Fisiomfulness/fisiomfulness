@@ -1,5 +1,5 @@
 "use client";
-import { Card, CardBody, Chip, Button } from "@nextui-org/react";
+import { Card, CardBody, Chip } from "@nextui-org/react";
 
 const ServicioPrecioCard = ({ experiencia }) => {
   return (
@@ -14,7 +14,7 @@ const ServicioPrecioCard = ({ experiencia }) => {
             <CardBody>
               <div className="flex  items-center ">
                 <div className="flex flex-col gap-3 p-5  ">
-                    <h2>{experiencia.fecha}</h2>
+                  <h2>{experiencia.fecha}</h2>
                   <Chip
                     size="md"
                     className="bg-action-green p-2"
@@ -24,9 +24,7 @@ const ServicioPrecioCard = ({ experiencia }) => {
                       {experiencia.institucion}
                     </p>
                   </Chip>
-                  <p className="text-medium  ">
-                    {experiencia.descripcion}
-                  </p>
+                  <p className="text-medium  ">{experiencia.descripcion}</p>
                 </div>
               </div>
             </CardBody>
