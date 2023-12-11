@@ -11,6 +11,7 @@ const ProdRelacionados = ({ prods }) => {
       {prods?.slice(0, 5).map((e) => {
         return (
           <div
+            onClick={() => router.push(`/productos/${e.id}`)}
             key={e.id}
             className="flex gap-2 border border-white cursor-pointer rounded-sm hover:border-[#003953]  duration-300"
           >

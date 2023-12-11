@@ -6,7 +6,7 @@
   html {
     @apply bg-pale-blue;
     @apply text-secondary;
-    scrollbar-gutter: stable ;
+    scrollbar-gutter: stable;
   }
 
   h1 {
@@ -42,24 +42,25 @@
   }
 
   ::-webkit-scrollbar {
-    width: 0.5rem;
-    height: 0.5rem;
+    width: 0.7rem;
+    height: 0.7rem;
   }
 
   ::-webkit-scrollbar-thumb {
     /* background-color: rgba(217,217,227,.8); */
-    background-color: rgba(167, 167, 177, 0.8);
-    border-color: rgba(255, 255, 255, 1);
-    border-radius: 9999px;
-    border-width: 1px;
+    /* background-color: rgba(167, 167, 177, 0.8); */
+    @apply bg-primary;
+    @apply rounded-full;
+    @apply border-3 border-solid border-zinc-300;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(167, 167, 177, 1);
+    /* background-color: rgba(167, 167, 177, 1); */
+    @apply bg-secondary-light;
   }
 
   ::-webkit-scrollbar-track {
-    background-color: transparent;
+    @apply bg-zinc-300;
     border-radius: 9999px;
   }
 }

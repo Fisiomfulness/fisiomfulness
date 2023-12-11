@@ -1,7 +1,6 @@
 "use client";
 import { MdOutlineSearch } from "react-icons/md";
 import { useEffect, useState } from "react";
-import { Select, SelectItem } from "@nextui-org/react";
 
 export const SearchProd = ({ prods, setProdFiltrados }) => {
   const [filter, setFilter] = useState({
