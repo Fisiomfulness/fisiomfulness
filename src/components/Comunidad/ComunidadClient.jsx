@@ -6,7 +6,7 @@ import UsersContainer from "./UsersContainer";
 import MapComunidad from "./MapComunidad";
 
 const ComunidadClient = ({ users }) => {
-  const [usersFiltered, setUsersFiltered] = useState(users);
+  const [usersFiltered, setUsersFiltered] = useState([...users]);
 
   return (
     <div className="w-full min-h-screen mb-10 flex flex-row gap-5 pt-6 md:pr-5 md:pl-5">
