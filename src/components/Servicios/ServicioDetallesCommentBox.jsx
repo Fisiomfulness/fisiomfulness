@@ -6,7 +6,7 @@ const StarRatings = dynamic(() => import("react-star-ratings"), {
   ssr: false,
 });
 
-const ServicioDetallesCommentBox = () => {
+const ServicioDetallesCommentBox = ({profesional}) => {
   const [rating, setRating] = useState(0);
 
   const handleRatingChange = (newRating) => {
@@ -18,7 +18,7 @@ const ServicioDetallesCommentBox = () => {
       <Input
         type="comentarios"
         variant="underlined"
-        label="Deja un comentario"
+        label={`Deja un comentario a ${profesional?.nombre}`}
       />
       <div className="flex items-center justify-between mt-2">
         <Chip color="primary" size="lg" variant="bordered" className="mr-2">

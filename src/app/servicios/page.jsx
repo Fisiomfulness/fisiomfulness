@@ -1,7 +1,15 @@
-import React from "react";
+import CalendarioMain from "@/components/Servicios/Calendario/CalendarioMain";
+import ServicioMain from "@/components/Servicios/ServicioMain";
+import data from "@/components/Servicios/data/profesionales.json"
 
 const ServiciosPage = () => {
-  return <div>ServiciosPage</div>;
+  
+  return (
+    <>
+      <ServicioMain data={data.profesionales}/>
+     {/*  <CalendarioMain /> */}
+    </>
+  );
 };
 
 export default ServiciosPage;
