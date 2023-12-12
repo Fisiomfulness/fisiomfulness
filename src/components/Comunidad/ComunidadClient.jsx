@@ -3,10 +3,16 @@
 import { useState } from "react";
 import SearchUsers from "./SearchUser";
 import UsersContainer from "./UsersContainer";
-import MapComunidad from "./MapComunidad";
+import Map from "@/components/Map";
 
 const ComunidadClient = ({ users }) => {
   const [usersFiltered, setUsersFiltered] = useState([...users]);
+
+  const markers = [
+    { position: [51.505, -0.09], popup: "Profesional 1" },
+    { position: [51.504, -0.06], popup: "Profesional 2" },
+    { position: [51.5, -0.11], popup: "Profesional 3" },
+  ];
 
   return (
     <div className="w-full min-h-screen mb-10 flex flex-row gap-5 pt-6 md:pr-5 md:pl-5">
@@ -18,7 +24,9 @@ const ComunidadClient = ({ users }) => {
         />
         <UsersContainer users={usersFiltered} />
       </div>
-      <MapComunidad />
+      <div className="hidden md:w-1/2 md:flex h-screen">
+        <Map markers={markers} />
+      </div>
     </div>
   );
 };
