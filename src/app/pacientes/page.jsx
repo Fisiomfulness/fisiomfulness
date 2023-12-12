@@ -6,13 +6,11 @@ export default function PacientesPage() {
     <div
       className={cn(
         "flex justify-center flex-col items-center",
-        "px-4  min-h-screen overflow-hidden"
+        "px-6 pb-12 overflow-hidden w-full",
       )}
     >
-      <p className="pb-6 text-xl font-semibold">
-        Historia Clinica - Pacientes
-      </p>
+      <p className="pb-6 text-xl font-semibold">Historia Clinica - Pacientes</p>
       <Tabla />
     </div>
-  )
+  );
 }
