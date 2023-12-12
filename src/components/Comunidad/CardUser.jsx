@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@nextui-org/react";
 import { MdLocationPin, MdChecklist } from "react-icons/md";
 import img from "../../../public/imgPerfil.png";
