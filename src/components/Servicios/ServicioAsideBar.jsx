@@ -5,13 +5,16 @@ import NextLink from "next/link";
 
 const ServicioAsideBar = () => {
   const path = usePathname();
+  const matricula = path.match(/[0-9-]/g).join("");
+  console.log(matricula)
+  
  
 
   const buttons = [
-    { name: "Perfil profesional", href: "/servicios/detalle/perfil",color:"secondary" ,className: "text-white rounded-l-lg lg:rounded-t-lg lg:rounded-l-none hover:text-white" },
-    { name: "precios", href: "/servicios/detalle/precios", color: "secondary", className:"hover:text-white" },
-    { name: "experiencia", href: "/servicios/detalle/experiencia", color: "secondary",  className:"hover:text-white"},
-    { name: "turno", href: "/servicios/detalle/turno", className: "rounded-r-lg   lg:rounded-r-none lg:rounded-b-lg hover:text-white", color: "secondary" },
+    { name: "Perfil profesional", href: `/servicios/detalle${matricula}/perfil`,color:"secondary" ,className: "text-white rounded-l-lg lg:rounded-t-lg lg:rounded-l-none hover:text-white" },
+    { name: "precios", href: `/servicios/detalle${matricula}/precios`, color: "secondary", className:"hover:text-white" },
+    { name: "experiencia", href: `/servicios/detalle${matricula}/experiencia`, color: "secondary",  className:"hover:text-white"},
+    { name: "turno", href: `/servicios/detalle${matricula}/turno`, className: "rounded-r-lg   lg:rounded-r-none lg:rounded-b-lg hover:text-white", color: "secondary" },
   ];
 
   return (

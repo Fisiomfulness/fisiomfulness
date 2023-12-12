@@ -23,6 +23,8 @@
     "tailwind-merge": "^2.0.0"
   },
   "devDependencies": {
+
+    "@types/react-big-calendar": "^1.8.6",
     "@swc-jotai/react-refresh": "^0.1.0",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",

@@ -2,6 +2,7 @@
 import { Card, CardBody, Chip, Button } from "@nextui-org/react";
 
 const ServicioPrecioCard = ({ servicios }) => {
+ 
   return (
     <>
       {servicios.map((servicio, index) => (
