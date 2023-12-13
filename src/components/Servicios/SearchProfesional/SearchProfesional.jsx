@@ -1,8 +1,11 @@
 import { FaUserDoctor } from "react-icons/fa6";
 import { AiFillHome } from "react-icons/ai";
-import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
+import { Autocomplete, AutocompleteItem, Input } from "@nextui-org/react";
+import { MdOutlineSearch } from "react-icons/md";
+import { useState } from "react";
 
 const SearchProfesional = ({ profesionales, setProfesionalesFiltrados }) => {
+  const [inputValue, setInputValue] = useState("");
   let contador = 1;
   const especialidadesUnicas = Array.from(
     new Set(profesionales.map((profesional) => profesional.especialidad))
@@ -18,12 +21,26 @@ const SearchProfesional = ({ profesionales, setProfesionalesFiltrados }) => {
     setProfesionalesFiltrados(profesionalesFiltrados);
   };
 
+  const filtrarPorNombre = (nombre) => {
+    const profesionalesFiltradosNombre = profesionales.filter((profesional) =>
+      profesional.nombre.includes(nombre)
+    );
+    setProfesionalesFiltrados(profesionalesFiltradosNombre);
+  };
+
   const onSelectionChange = (especialidad) => {
     if (especialidad === "" || especialidad === null) {
       setProfesionalesFiltrados([...profesionales]);
     } else {
       filtrarPorEspecialidad(especialidad);
     }
+  };
+  const onChange = (e) => {
+    setInputValue(e.target.value);
+  };
+  const onClear = () => {
+    setProfesionalesFiltrados([...profesionales]);
+    setInputValue("");
   };
 
   const onInputChange = (value) => {
@@ -36,6 +53,17 @@ const SearchProfesional = ({ profesionales, setProfesionalesFiltrados }) => {
 
   return (
     <div className="flex m-2 gap-4">
+      <Input
+        label="Busqueda"
+        isClearable
+        radius="lg"
+        onChange={onChange}
+        value={inputValue}
+        onValueChange={filtrarPorNombre}
+        onClear={onClear}
+        placeholder="Busqueda del profesional..."
+        startContent={<MdOutlineSearch color="#62CFE4" size="20px" />}
+      />
       <Autocomplete
         startsWidth={<AiFillHome />}
         label="Seleccione:"
