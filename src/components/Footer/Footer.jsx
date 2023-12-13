@@ -4,62 +4,51 @@ import Link from "next/link";
 import { AiOutlineInstagram } from "react-icons/ai";
 import { AiOutlineLinkedin } from "react-icons/ai";
 import { AiOutlineFacebook } from "react-icons/ai";
-import Image from "next/image";
-import FisiumLogo from "../../assets/Logo.svg";
 
 function Footer() {
   return (
-    <footer className="w-full h-[145px] bg-secondary">
-      <div>
-        <div className="w-full flex justify-evenly ">
+    <footer className="bg-secondary py-6">
+      <div className="flex flex-col gap-6">
+        <div className="flex justify-evenly items-center max-sm:flex-col gap-4">
           <div>
-            <Image
+            {/* eslint-disable-next-line */}
+            <img
               width={200}
-              src={FisiumLogo}
+              src="/Logo.png"
               alt="Logo Fisiom fulness"
-              className="pt-5 lg:w-15"
+              loading="lazy"
             />
-            <div className="flex w-50 items-center justify-evenly px-12  lg:px-8 text-white pt-1">
-              <Link href="/" target="_blank">
-                <AiOutlineFacebook className="text-xl lg:text-2xl hover:scale-110" />
-              </Link>
-              <Link href="/" target="_blank">
-                <AiOutlineInstagram className="text-xl lg:text-2xl hover:scale-110" />
-              </Link>
-              <Link href="/" target="_blank">
-                <AiOutlineLinkedin className="text-xl lg:text-2xl hover:scale-110" />
-              </Link>
+            <div className="flex justify-center gap-4 text-white pt-4 max-sm:text-center">
+              {[AiOutlineFacebook, AiOutlineInstagram, AiOutlineLinkedin].map(
+                (Component, index) => (
+                  <Link
+                    key={index}
+                    href="/"
+                    target="_blank"
+                    className="hover:text-inherit"
+                  >
+                    <Component className="text-2xl" />
+                  </Link>
+                ),
+              )}
             </div>
           </div>
-          <div className="pt-5 text-white py-1 lg:text-base">
-            <p className=" py-1">
+          <div className="text-white flex flex-col justify-evenly max-sm:items-center">
+            {["Trabaja con nosotros", "Quienes somos", "Blog"].map((item) => (
               <Link
-                className="hover:text-light-blue hover:no-underline text-sm"
+                key={item}
+                className="block hover:text-inherit hover:no-underline"
                 href="/"
               >
-                Trabaja con nosotros
+                {item}
               </Link>
-            </p>
-            <p className=" py-1">
-              <Link
-                className="hover:text-light-blue hover:no-underline text-sm"
-                href="/"
-              >
-                Quienes somos
-              </Link>
-            </p>
-            <p className=" py-1">
-              <Link
-                className="hover:text-light-blue hover:no-underline text-sm"
-                href="/blog"
-              >
-                Blog
-              </Link>
-            </p>
+            ))}
           </div>
         </div>
-        <div className="mx-auhref text-center">
-          <p className="text-xs text-white">Copyright © FisiomFulness</p>
+        <div className="text-center">
+          <p className="text-white text-sm">
+            Copyright © {new Date().getFullYear()} FisiomFulness
+          </p>
         </div>
       </div>
     </footer>

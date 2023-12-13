@@ -6,7 +6,6 @@
   html {
     @apply bg-pale-blue;
     @apply text-secondary;
-    scrollbar-gutter: stable;
   }
 
   h1 {
@@ -31,14 +30,6 @@
 
   label {
     @apply text-sm mt-2 font-semibold;
-  }
-
-  .background-image {
-    background-image: url("/Home.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-
-    height: 100vh;
   }
 
   ::-webkit-scrollbar {
