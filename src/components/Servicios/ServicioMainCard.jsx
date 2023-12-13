@@ -76,7 +76,7 @@ const ServicioMainCard = ({ profesional }) => {
                 <div className="flex  flex-col">
                   <p className="font-bold">Consulta</p>
 
-                  <p>{profesional.valor}</p>
+                  <p>${profesional.valor}</p>
                 </div>
               </div>
             </div>
