@@ -1,24 +1,32 @@
+"use client";
 import React, { useState } from 'react';
-import Star from './Star';
+import dynamic from "next/dynamic";
+const StarRatings = dynamic(() => import("react-star-ratings"), {
+  ssr: false,
+});
 
 const Rating = () => {
   const [rating, setRating] = useState(0);
 
-  const handleStarClick = (index) => {
-    setRating(index + 1);
-  };
 
+  const handleRatingChange = (newRating) => {
+    setRating(newRating);
+  };
   return (
     <div>
      
       <div >
-        {[...Array(5)].map((_, index) => (
-          <Star
-            key={index}
-            filled={index < rating}
-            onClick={() => handleStarClick(index)}
+      <StarRatings
+            starRatedColor="#ffb829"
+            starHoverColor="#ffb829"
+            isSelectable={true}
+            rating={rating}
+            changeRating={handleRatingChange}
+            numberOfStars={5}
+            starDimension="20px"
+            starSpacing="2px"
+            name="rating"
           />
-        ))}
       </div>
     </div>
   );
