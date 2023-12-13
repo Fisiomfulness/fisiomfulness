@@ -26,7 +26,7 @@ function TablaCompras() {
 
 export default function MisComprasPage() {
   return (
-    <div className="p-8">
+    <div className="p-8 w-full m-auto">
       <TablaCompras />
     </div>
   );
