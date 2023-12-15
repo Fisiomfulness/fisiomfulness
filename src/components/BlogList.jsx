@@ -6,7 +6,7 @@ import {Image} from "@nextui-org/react";
 
 export default function BlogList() {
   const variants = ["flat"];
-  const animals =  [ {label: "Cat", value: "cat", description: "The second most popular pet in the world"},
+  const a =  [ {label: "Cat", value: "cat", description: "The second most popular pet in the world"},
   {label: "Dog", value: "dog", description: "The most popular pet in the world"},
   {label: "Elephant", value: "elephant", description: "The largest land animal"},
   {label: "Lion", value: "lion", description: "The king of the jungle"},
@@ -27,12 +27,8 @@ export default function BlogList() {
         type="search"
       />
 
-<Select items={animals} placeholder="filtrar" className="max-w-xs mt-10">
-{/* {animals.map((animal) => (
-          <SelectItem key={animal.value} value={animal.value}>
-            {animal.label}
-          </SelectItem>
-        ))} */}
+<Select items={a} placeholder="filtrar" className="max-w-xs mt-10">
+
 </Select>
 
 
