@@ -32,7 +32,7 @@ export default function Nav() {
     { name: "Servicios y especialistas", href: "/servicios" },
     { name: "Productos", href: "/productos" },
     { name: "Tratamientos", href: "/tratamientos" },
-    { name: "Comunidad", href: "#" },
+    { name: "Comunidad", href: "/comunidad" },
     { name: "Blog", href: "/blog" },
   ];
 

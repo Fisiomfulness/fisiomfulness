@@ -3,7 +3,12 @@
 import { useState } from "react";
 import SearchUsers from "./SearchUser";
 import UsersContainer from "./UsersContainer";
-import Map from "@/components/Map";
+import dynamic from "next/dynamic";
+
+const Map = dynamic(()=> import ("@/components/Map"), {
+  loading: () => <p>loading...</p>,
+  ssr: false
+})
 
 const ComunidadClient = ({ users }) => {
   const [usersFiltered, setUsersFiltered] = useState([...users]);
