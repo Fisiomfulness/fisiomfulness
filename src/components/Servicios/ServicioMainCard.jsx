@@ -16,7 +16,7 @@ const ServicioMainCard = ({ profesional }) => {
     <div className="flex flex-col ">
       <Card
         isBlurred
-        className="border-none bg-background/60 dark:bg-default-100/50 max-w-[30vw] rounded-r-none lg:rounded "
+        className="border-none bg-background/60 w-[40vw] dark:bg-default-100/50  rounded-r-none lg:rounded "
         shadow="sm"
       >
         <CardBody>

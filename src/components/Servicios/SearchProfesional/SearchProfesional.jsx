@@ -52,7 +52,7 @@ const SearchProfesional = ({ profesionales, setProfesionalesFiltrados }) => {
   };
 
   return (
-    <div className="flex m-2 gap-4">
+    <div className="flex m-4 gap-5">
       <Input
         label="Busqueda"
         isClearable
