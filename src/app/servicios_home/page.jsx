@@ -7,8 +7,11 @@ export default function ServiciosHomePage() {
         <div
           key={index}
           className={cn(
-            `bg-[url('/servicios_img/salud_${item.toLocaleLowerCase()}.jpg')]`,
-            "bg-no-repeat bg-cover"
+            "bg-no-repeat bg-cover",
+            item === "Mental" && "bg-[url('/servicios_img/salud_mental.jpg')]",
+            item === "Fisica" && "bg-[url('/servicios_img/salud_fisica.jpg')]",
+            item === "Nutricional" &&
+              "bg-[url('/servicios_img/salud_nutricional.jpg')]"
           )}
         >
           <div
