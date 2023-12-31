@@ -1,8 +1,7 @@
 "use client";
 
-import { cn } from "@/features/ui";
+import { CustomButton, CustomInput, cn } from "@/features/ui";
 import {
-  Button,
   Select,
   SelectItem,
   Modal,
@@ -11,7 +10,6 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-  Input,
   Link,
 } from "@nextui-org/react";
 import { useState } from "react";
@@ -28,8 +26,8 @@ function ModalForm({ onClose }) {
     <>
       <ModalHeader className="flex flex-col gap-1">Iniciar sesión</ModalHeader>
       <ModalBody>
-        <Input autoFocus label="Correo electrónico" variant="bordered" />
-        <Input label="Contraseña" type="password" variant="bordered" />
+        <CustomInput autoFocus label="Correo electrónico" variant="bordered" />
+        <CustomInput label="Contraseña" type="password" variant="bordered" />
         <div className="flex py-2 px-1 justify-between">
           <Link color="primary" href="#" size="sm">
             ¿Has olvidado la contraseña?
@@ -37,12 +35,12 @@ function ModalForm({ onClose }) {
         </div>
       </ModalBody>
       <ModalFooter>
-        <Button color="secondary" onPress={onClose}>
+        <CustomButton color="secondary" onPress={onClose}>
           Cerrar
-        </Button>
-        <Button color="primary" onPress={onClose}>
+        </CustomButton>
+        <CustomButton color="primary" onPress={onClose}>
           Ingresar
-        </Button>
+        </CustomButton>
       </ModalFooter>
     </>
   );
@@ -129,22 +127,16 @@ export default function Selector() {
       </Select>
       {state !== defaultValue && (
         <div className="flex flex-row gap-2">
-          <Button
-            radius="sm"
-            color="secondary"
-            className="w-28"
-            onPress={onOpen}
-          >
+          <CustomButton color="secondary" className="w-28" onPress={onOpen}>
             Aceptar
-          </Button>
-          <Button
-            radius="sm"
+          </CustomButton>
+          <CustomButton
             color="primary"
             className="w-28"
             onPress={() => setState(defaultValue)}
           >
             Cancelar
-          </Button>
+          </CustomButton>
         </div>
       )}
       <ModalBase isOpen={isOpen} onOpenChange={onOpenChange}>
@@ -155,12 +147,12 @@ export default function Selector() {
               <p>{message}</p>
             </ModalBody>
             <ModalFooter className="flex flex-col p-4">
-              <Button radius="sm" color="primary" onPress={openForm}>
+              <CustomButton color="primary" onPress={openForm}>
                 Acceptar
-              </Button>
-              <Button radius="sm" color="secondary" onPress={onClose}>
+              </CustomButton>
+              <CustomButton color="secondary" onPress={onClose}>
                 Cancelar
-              </Button>
+              </CustomButton>
             </ModalFooter>
           </>
         )}

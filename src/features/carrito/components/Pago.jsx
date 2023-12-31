@@ -1,13 +1,11 @@
 "use client";
 
-import { cn } from "@/features/ui";
+import { CustomButton, CustomInput, cn } from "@/features/ui";
 import {
   Modal,
   ModalContent,
-  Button,
   RadioGroup,
   Radio,
-  Input,
   ModalBody,
   ModalFooter,
 } from "@nextui-org/react";
@@ -131,76 +129,17 @@ function FirstModal({ onClose }) {
         <div>
           <div className="flex flex-col gap-4 w-72">
             <TablaPagar />
-            <Input
-              variant="bordered"
+            <CustomInput
               label="Cupon de descuento"
               placeholder="Ingresa el codigo de tu cupon"
-              labelPlacement="outside"
-              radius="sm"
-              classNames={{
-                label: cn("m-0 font-normal text-base"),
-                input: cn(
-                  "placeholder:!not-italic placeholder:text-base text-base",
-                ),
-                inputWrapper: cn("bg-zinc-200 border-1 border-gray-500"),
-              }}
             />
-            <Button
-              color="primary"
-              onPress={onClose}
-              size="lg"
-              className="uppercase font-bold"
-              radius="sm"
-            >
+            <CustomButton color="primary" onPress={onClose}>
               Pagar
-            </Button>
+            </CustomButton>
           </div>
         </div>
       </div>
     </div>
-  );
-}
-
-function CustomInput({ ...otherProps }) {
-  const errorMessage = otherProps.isInvalid ? "Requerido" : "";
-
-  return (
-    <Input
-      variant="bordered"
-      labelPlacement="outside"
-      placeholder=" "
-      radius="sm"
-      errorMessage={errorMessage}
-      classNames={{
-        label: cn("m-0 font-normal text-base !text-inherit"),
-        input: cn("placeholder:!not-italic placeholder:text-base text-base"),
-        inputWrapper: cn("bg-zinc-200 border-1 border-gray-500"),
-      }}
-      {...otherProps}
-    />
-  );
-}
-
-function CustomSmallInput({ ...otherProps }) {
-  const errorMessage = otherProps.isInvalid ? "Requerido" : "";
-
-  return (
-    <Input
-      variant="bordered"
-      labelPlacement="outside"
-      placeholder=" "
-      radius="sm"
-      errorMessage={errorMessage}
-      classNames={{
-        base: cn("w-32"),
-        label: cn("m-0 font-normal text-base !text-inherit"),
-        input: cn(
-          "placeholder:!not-italic placeholder:text-base text-base !w-[100px]",
-        ),
-        inputWrapper: cn("bg-zinc-200 border-1 border-gray-500"),
-      }}
-      {...otherProps}
-    />
   );
 }
 
@@ -258,8 +197,8 @@ function SecondModal({ onOpenChange, onCheck }) {
           <CustomInput
             name="titular"
             defaultValue="***** *****"
-            isInvalid={isInvalid.titular}
             label="Titular de la tarjeta"
+            isInvalid={isInvalid.titular}
           />
           <CustomInput
             name="tarjeta"
@@ -268,28 +207,32 @@ function SecondModal({ onOpenChange, onCheck }) {
             label="Número de tarjeta"
           />
           <div className="flex flex-row justify-between">
-            <CustomSmallInput
+            <CustomInput
               name="vencimiento"
               defaultValue="**/**"
               isInvalid={isInvalid.vencimiento}
               label="Vencimiento"
+              classNames={{
+                base: cn("w-32"),
+                label: cn("m-0 font-normal text-base !text-inherit"),
+                input: cn("!w-[100px]"),
+              }}
             />
-            <CustomSmallInput
+            <CustomInput
               name="ccv"
               defaultValue="***"
               isInvalid={isInvalid.ccv}
               label="ccv"
+              classNames={{
+                base: cn("w-32"),
+                label: cn("m-0 font-normal text-base !text-inherit"),
+                input: cn("!w-[100px]"),
+              }}
             />
           </div>
-          <Button
-            color="primary"
-            type="submit"
-            size="lg"
-            className="uppercase font-bold"
-            radius="sm"
-          >
+          <CustomButton color="primary" type="submit">
             Pagar
-          </Button>
+          </CustomButton>
         </div>
       </form>
     </div>
@@ -337,14 +280,9 @@ function ThirdModal({ onBack, onClose, status = "loading" }) {
       </ModalBody>
       <ModalFooter className="flex flex-col p-0">
         {status !== "loading" && (
-          <Button
-            radius="sm"
-            color="primary"
-            className="uppercase text-black p-0"
-            onPress={onPress}
-          >
+          <CustomButton color="primary" onPress={onPress}>
             Volver
-          </Button>
+          </CustomButton>
         )}
       </ModalFooter>
     </div>
@@ -371,10 +309,12 @@ function ModalBase() {
   useEffect(() => {
     if (status !== "loading") return;
 
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       setStatus("success");
       // setStatus("error");
     }, 1500);
+
+    return () => clearTimeout(timeout);
   }, [status]);
 
   const [step, setStep] = useState({
@@ -396,14 +336,9 @@ function ModalBase() {
 
   return (
     <>
-      <Button
-        color="primary"
-        radius="sm"
-        className="text-base"
-        onPress={() => onOpenChange("first")}
-      >
+      <CustomButton color="primary" onPress={() => onOpenChange("first")}>
         Asigna tu metodo de pago
-      </Button>
+      </CustomButton>
 
       <ModalContainer
         isOpen={step.first}

@@ -1,16 +1,8 @@
 "use client";
 
-import {
-  Button,
-  Input,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  Textarea,
-} from "@nextui-org/react";
+import { Modal, ModalBody, ModalContent, ModalFooter } from "@nextui-org/react";
 import { useState } from "react";
-import { cn } from "@/features/ui";
+import { CustomButton, CustomInput, CustomTextarea, cn } from "@/features/ui";
 import { MdOutlineCheckCircle } from "react-icons/md";
 
 function ModalContainer({ children, className, ...otherProps }) {
@@ -41,57 +33,12 @@ function ModalConfirm({ isOpen, onClose }) {
           <p>Servicio creado</p>
         </ModalBody>
         <ModalFooter className="flex flex-col p-0">
-          <Button
-            radius="sm"
-            color="primary"
-            className="uppercase text-black p-0"
-            onPress={onClose}
-          >
+          <CustomButton color="primary" onPress={onClose}>
             Volver
-          </Button>
+          </CustomButton>
         </ModalFooter>
       </div>
     </ModalContainer>
-  );
-}
-
-function CustomInput({ ...otherProps }) {
-  const errorMessage = otherProps.isInvalid ? "Requerido" : "";
-
-  return (
-    <Input
-      variant="bordered"
-      labelPlacement="outside"
-      placeholder=" "
-      radius="sm"
-      errorMessage={errorMessage}
-      classNames={{
-        label: cn("m-0 font-normal text-base !text-inherit"),
-        input: cn("placeholder:!not-italic placeholder:text-base text-base"),
-        inputWrapper: cn("bg-zinc-200 border-1 border-gray-500"),
-      }}
-      {...otherProps}
-    />
-  );
-}
-
-function CustomTextarea({ ...otherProps }) {
-  const errorMessage = otherProps.isInvalid ? "Requerido" : "";
-
-  return (
-    <Textarea
-      variant="bordered"
-      labelPlacement="outside"
-      placeholder=" "
-      radius="sm"
-      errorMessage={errorMessage}
-      classNames={{
-        label: cn("m-0 font-normal text-base !text-inherit"),
-        input: cn("placeholder:!not-italic placeholder:text-base text-base"),
-        inputWrapper: cn("bg-zinc-200 border-1 border-gray-500"),
-      }}
-      {...otherProps}
-    />
   );
 }
 
@@ -147,15 +94,9 @@ export default function SecondModal() {
             label="Descripción"
             minRows={7}
           />
-          <Button
-            color="primary"
-            type="submit"
-            size="lg"
-            className="uppercase font-bold"
-            radius="sm"
-          >
+          <CustomButton color="primary" type="submit">
             Crear
-          </Button>
+          </CustomButton>
         </div>
       </form>
       <ModalConfirm isOpen={isSubmit} onClose={() => setIsSubmit(false)} />
