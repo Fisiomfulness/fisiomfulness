@@ -1,8 +1,12 @@
 import { CarritoModal } from "@/features/carrito";
-import { CustomInput, cn } from "@/features/ui";
+import { CustomInput, CustomTextarea, cn } from "@/features/ui";
 
 function Box({ className, children, ...props }) {
-  return <div className={cn("py-3", className)}>{children}</div>;
+  return (
+    <div className={cn("py-3", className)} {...props}>
+      {children}
+    </div>
+  );
 }
 
 export default function OnlyDevelopmentPage() {
@@ -18,6 +22,15 @@ export default function OnlyDevelopmentPage() {
           name="message"
           placeholder="mensaje..."
           label="Custom Input"
+        />
+      </Box>
+      <Box>
+        <CustomTextarea
+          type="text"
+          defaultValue="Custom Textarea"
+          name="message"
+          placeholder="Custom Textarea ..."
+          label="Custom Textarea"
         />
       </Box>
     </div>
