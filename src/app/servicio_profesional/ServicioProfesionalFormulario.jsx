@@ -6,7 +6,6 @@ import {
   ModalBody,
   ModalContent,
   ModalFooter,
-  Textarea,
 } from "@nextui-org/react";
 import { useState } from "react";
 import { CustomInput, CustomTextarea, cn } from "@/features/ui";
