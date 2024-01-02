@@ -20,14 +20,13 @@ export default function OnlyDevelopmentPage() {
         <CustomInput
           type="text"
           name="message"
-          placeholder="mensaje..."
+          placeholder="Custom Input ..."
           label="Custom Input"
         />
       </Box>
       <Box>
         <CustomTextarea
           type="text"
-          defaultValue="Custom Textarea"
           name="message"
           placeholder="Custom Textarea ..."
           label="Custom Textarea"

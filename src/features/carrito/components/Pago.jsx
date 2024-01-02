@@ -1,13 +1,12 @@
 "use client";
 
-import { cn } from "@/features/ui";
+import { CustomInput, cn } from "@/features/ui";
 import {
   Modal,
   ModalContent,
   Button,
   RadioGroup,
   Radio,
-  Input,
   ModalBody,
   ModalFooter,
 } from "@nextui-org/react";
@@ -131,19 +130,9 @@ function FirstModal({ onClose }) {
         <div>
           <div className="flex flex-col gap-4 w-72">
             <TablaPagar />
-            <Input
-              variant="bordered"
+            <CustomInput
               label="Cupon de descuento"
               placeholder="Ingresa el codigo de tu cupon"
-              labelPlacement="outside"
-              radius="sm"
-              classNames={{
-                label: cn("m-0 font-normal text-base"),
-                input: cn(
-                  "placeholder:!not-italic placeholder:text-base text-base",
-                ),
-                inputWrapper: cn("bg-zinc-200 border-1 border-gray-500"),
-              }}
             />
             <Button
               color="primary"
@@ -161,47 +150,10 @@ function FirstModal({ onClose }) {
   );
 }
 
-function CustomInput({ ...otherProps }) {
+function CustomValidatedInput({ ...otherProps }) {
   const errorMessage = otherProps.isInvalid ? "Requerido" : "";
 
-  return (
-    <Input
-      variant="bordered"
-      labelPlacement="outside"
-      placeholder=" "
-      radius="sm"
-      errorMessage={errorMessage}
-      classNames={{
-        label: cn("m-0 font-normal text-base !text-inherit"),
-        input: cn("placeholder:!not-italic placeholder:text-base text-base"),
-        inputWrapper: cn("bg-zinc-200 border-1 border-gray-500"),
-      }}
-      {...otherProps}
-    />
-  );
-}
-
-function CustomSmallInput({ ...otherProps }) {
-  const errorMessage = otherProps.isInvalid ? "Requerido" : "";
-
-  return (
-    <Input
-      variant="bordered"
-      labelPlacement="outside"
-      placeholder=" "
-      radius="sm"
-      errorMessage={errorMessage}
-      classNames={{
-        base: cn("w-32"),
-        label: cn("m-0 font-normal text-base !text-inherit"),
-        input: cn(
-          "placeholder:!not-italic placeholder:text-base text-base !w-[100px]",
-        ),
-        inputWrapper: cn("bg-zinc-200 border-1 border-gray-500"),
-      }}
-      {...otherProps}
-    />
-  );
+  return <CustomInput errorMessage={errorMessage} {...otherProps} />;
 }
 
 function SecondModal({ onOpenChange, onCheck }) {
@@ -255,30 +207,40 @@ function SecondModal({ onOpenChange, onCheck }) {
       </p>
       <form onSubmit={handleSubmit} className="flex justify-center">
         <div className="flex flex-col gap-6 pt-4 w-80">
-          <CustomInput
+          <CustomValidatedInput
             name="titular"
             defaultValue="***** *****"
-            isInvalid={isInvalid.titular}
             label="Titular de la tarjeta"
+            isInvalid={isInvalid.titular}
           />
-          <CustomInput
+          <CustomValidatedInput
             name="tarjeta"
             defaultValue="**** **** **** ****"
             isInvalid={isInvalid.tarjeta}
             label="Número de tarjeta"
           />
           <div className="flex flex-row justify-between">
-            <CustomSmallInput
+            <CustomValidatedInput
               name="vencimiento"
               defaultValue="**/**"
               isInvalid={isInvalid.vencimiento}
               label="Vencimiento"
+              classNames={{
+                base: cn("w-32"),
+                label: cn("m-0 font-normal text-base !text-inherit"),
+                input: cn("!w-[100px]"),
+              }}
             />
-            <CustomSmallInput
+            <CustomValidatedInput
               name="ccv"
               defaultValue="***"
               isInvalid={isInvalid.ccv}
               label="ccv"
+              classNames={{
+                base: cn("w-32"),
+                label: cn("m-0 font-normal text-base !text-inherit"),
+                input: cn("!w-[100px]"),
+              }}
             />
           </div>
           <Button
@@ -371,10 +333,12 @@ function ModalBase() {
   useEffect(() => {
     if (status !== "loading") return;
 
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       setStatus("success");
       // setStatus("error");
     }, 1500);
+
+    return () => clearTimeout(timeout);
   }, [status]);
 
   const [step, setStep] = useState({

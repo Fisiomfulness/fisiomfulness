@@ -1,7 +1,7 @@
 "use client";
 
-import { cn } from "@/features/ui";
-import { Avatar, Input, forwardRef } from "@nextui-org/react";
+import { CustomInput, cn } from "@/features/ui";
+import { Avatar } from "@nextui-org/react";
 import { useLayoutEffect, useRef, useState } from "react";
 import { RiArrowUpCircleLine } from "react-icons/ri";
 
@@ -38,26 +38,6 @@ function Collapse({ children }) {
     </>
   );
 }
-
-const CustomInput = forwardRef(({ ...otherProps }, ref) => {
-  return (
-    <Input
-      ref={ref}
-      variant="bordered"
-      labelPlacement="outside"
-      radius="sm"
-      classNames={{
-        label: cn("m-0 font-normal text-base !text-inherit"),
-        input: cn(
-          "placeholder:!not-italic placeholder:text-base text-base flex-1",
-        ),
-        inputWrapper: cn("border-1 border-gray-500", "bg-zinc-200 h-12 px-4"),
-        innerWrapper: cn("justify-between"),
-      }}
-      {...otherProps}
-    />
-  );
-});
 
 const defaultValue = [
   {
@@ -181,6 +161,9 @@ function Chat({ isCollapsable = false }) {
           type="text"
           name="message"
           placeholder="mensaje..."
+          classNames={{
+            input: cn("px-1"),
+          }}
           endContent={
             <>
               <button type="submit">
