@@ -150,12 +150,6 @@ function FirstModal({ onClose }) {
   );
 }
 
-function CustomValidatedInput({ ...otherProps }) {
-  const errorMessage = otherProps.isInvalid ? "Requerido" : "";
-
-  return <CustomInput errorMessage={errorMessage} {...otherProps} />;
-}
-
 function SecondModal({ onOpenChange, onCheck }) {
   const [isSubmit, setIsSubmit] = useState(false);
   const [isInvalid, setIsInvalid] = useState({
@@ -207,20 +201,20 @@ function SecondModal({ onOpenChange, onCheck }) {
       </p>
       <form onSubmit={handleSubmit} className="flex justify-center">
         <div className="flex flex-col gap-6 pt-4 w-80">
-          <CustomValidatedInput
+          <CustomInput
             name="titular"
             defaultValue="***** *****"
             label="Titular de la tarjeta"
             isInvalid={isInvalid.titular}
           />
-          <CustomValidatedInput
+          <CustomInput
             name="tarjeta"
             defaultValue="**** **** **** ****"
             isInvalid={isInvalid.tarjeta}
             label="Número de tarjeta"
           />
           <div className="flex flex-row justify-between">
-            <CustomValidatedInput
+            <CustomInput
               name="vencimiento"
               defaultValue="**/**"
               isInvalid={isInvalid.vencimiento}
@@ -231,7 +225,7 @@ function SecondModal({ onOpenChange, onCheck }) {
                 input: cn("!w-[100px]"),
               }}
             />
-            <CustomValidatedInput
+            <CustomInput
               name="ccv"
               defaultValue="***"
               isInvalid={isInvalid.ccv}

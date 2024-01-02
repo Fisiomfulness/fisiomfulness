@@ -2,24 +2,11 @@
 
 import { Input } from "@nextui-org/react";
 import { forwardRef } from "react";
-import { cn } from "../utils";
-
-function mergeKeepValues(t1, t2) {
-  const obj1 = { ...t1 };
-  const obj2 = { ...t2 };
-
-  for (let key in obj2) {
-    if (!(key in obj1)) {
-      obj1[key] = obj2[key];
-    } else {
-      obj1[key] += " " + obj2[key];
-    }
-  }
-
-  return obj1;
-}
+import { cn, mergeKeepValues } from "../../utils";
 
 const CustomInput = forwardRef(({ classNames, ...otherProps }, ref) => {
+  const errorMessage = otherProps.isInvalid ? "Requerido" : "";
+
   const defaultClassNames = {
     label: cn("m-0 font-normal text-base !text-inherit"),
     input: cn(
@@ -37,6 +24,7 @@ const CustomInput = forwardRef(({ classNames, ...otherProps }, ref) => {
       placeholder=" "
       radius="sm"
       classNames={mergeKeepValues(defaultClassNames, classNames)}
+      errorMessage={errorMessage}
       {...otherProps}
     />
   );
