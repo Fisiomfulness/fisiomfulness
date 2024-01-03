@@ -12,7 +12,7 @@ function Box({ className, children, ...props }) {
 export default function OnlyDevelopmentPage() {
   return (
     <div className="flex flex-col divide-y divide-primary-700">
-      <Box className="pb-2 flex flex-row gap-4">
+      <Box className="pb-0 flex flex-row gap-4">
         <p>Carrito Modal</p>
         <CarritoModal />
       </Box>

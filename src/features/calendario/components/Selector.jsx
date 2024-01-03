@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/features/ui";
+import { CustomInput, cn } from "@/features/ui";
 import {
   Button,
   Select,
@@ -11,7 +11,6 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-  Input,
   Link,
 } from "@nextui-org/react";
 import { useState } from "react";
@@ -28,8 +27,8 @@ function ModalForm({ onClose }) {
     <>
       <ModalHeader className="flex flex-col gap-1">Iniciar sesión</ModalHeader>
       <ModalBody>
-        <Input autoFocus label="Correo electrónico" variant="bordered" />
-        <Input label="Contraseña" type="password" variant="bordered" />
+        <CustomInput autoFocus label="Correo electrónico" variant="bordered" />
+        <CustomInput label="Contraseña" type="password" variant="bordered" />
         <div className="flex py-2 px-1 justify-between">
           <Link color="primary" href="#" size="sm">
             ¿Has olvidado la contraseña?

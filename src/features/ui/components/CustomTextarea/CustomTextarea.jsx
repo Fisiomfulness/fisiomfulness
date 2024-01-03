@@ -12,7 +12,7 @@ const CustomTextarea = forwardRef(({ classNames, ...otherProps }, ref) => {
     input: cn(
       "placeholder:!not-italic placeholder:text-gray-500 text-base flex-1",
     ),
-    inputWrapper: cn("bg-zinc-200 border-1 border-gray-500"),
+    inputWrapper: cn("bg-zinc-200/70 border-1 border-gray-500/70"),
     innerWrapper: cn("justify-between"),
   };
 

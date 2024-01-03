@@ -31,8 +31,10 @@ const routes = getDirectories(directoryPath);
 
 function Container({ children }) {
   return (
-    <div className="flex flex-col justify-center items-center gap-4 p-4">
-      <p className="text-2xl font-bold">This page only works in development.</p>
+    <div className="flex flex-col justify-center items-center gap-4 p-4 w-full">
+      <p className="text-2xl font-bold underline">
+        This page only works in development.
+      </p>
       <div className="flex flex-row w-full justify-between gap-4">
         <div className="flex flex-col gap-1">
           <p className="text-lg font-bold">Routes</p>
