@@ -12,7 +12,7 @@ const CustomInput = forwardRef(({ classNames, ...otherProps }, ref) => {
     input: cn(
       "placeholder:!not-italic placeholder:text-gray-500 text-base flex-1",
     ),
-    inputWrapper: cn("bg-zinc-200/70 border-1 border-gray-500/70"),
+    inputWrapper: cn("bg-zinc-200/70 border-1 border-gray-500/70 rounded-md"),
     innerWrapper: cn("justify-between"),
   };
 
@@ -22,7 +22,6 @@ const CustomInput = forwardRef(({ classNames, ...otherProps }, ref) => {
       variant="bordered"
       labelPlacement="outside"
       placeholder=" "
-      radius="sm"
       classNames={mergeKeepValues(defaultClassNames, classNames)}
       errorMessage={errorMessage}
       {...otherProps}

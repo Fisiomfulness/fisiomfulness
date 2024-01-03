@@ -1,6 +1,10 @@
 import { CarritoModal } from "@/features/carrito";
 import { CustomInput, CustomTextarea, cn } from "@/features/ui";
 
+export const metadata = {
+  title: "Only Development",
+};
+
 function Box({ className, children, ...props }) {
   return (
     <div className={cn("py-3", className)} {...props}>
