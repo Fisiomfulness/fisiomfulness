@@ -1,5 +1,5 @@
 import { CarritoModal } from "@/features/carrito";
-import { CustomInput, CustomTextarea, cn } from "@/features/ui";
+import { CustomButton, CustomInput, CustomTextarea, cn } from "@/features/ui";
 
 export const metadata = {
   title: "Only Development",
@@ -35,6 +35,17 @@ export default function OnlyDevelopmentPage() {
           placeholder="Custom Textarea ..."
           label="Custom Textarea"
         />
+      </Box>
+      <Box>
+        <p>Custom Button</p>
+        <div className="pt-2 grid grid-cols-2 gap-1">
+          <CustomButton color="default">default</CustomButton>
+          <CustomButton color="danger">danger</CustomButton>
+          <CustomButton color="primary">primary</CustomButton>
+          <CustomButton color="secondary">secondary</CustomButton>
+          <CustomButton color="success">success</CustomButton>
+          <CustomButton color="warning">warning</CustomButton>
+        </div>
       </Box>
     </div>
   );
