@@ -1,10 +1,11 @@
 "use client";
 
-import { Textarea } from "@nextui-org/react";
-import { forwardRef } from "react";
+import { Textarea, forwardRef } from "@nextui-org/react";
 import { cn, mergeKeepValues } from "../../utils";
 
-const CustomTextarea = forwardRef(({ classNames, ...otherProps }, ref) => {
+const CustomTextarea = forwardRef((props, ref) => {
+  const { classNames, ...otherProps } = props;
+
   const errorMessage = otherProps.isInvalid ? "Requerido" : "";
 
   const defaultClassNames = {

@@ -1,10 +1,11 @@
 "use client";
 
-import { Input } from "@nextui-org/react";
-import { forwardRef } from "react";
+import { Input, forwardRef } from "@nextui-org/react";
 import { cn, mergeKeepValues } from "../../utils";
 
-const CustomInput = forwardRef(({ classNames, ...otherProps }, ref) => {
+const CustomInput = forwardRef((props, ref) => {
+  const { classNames, ...otherProps } = props;
+
   const errorMessage = otherProps.isInvalid ? "Requerido" : "";
 
   const defaultClassNames = {
