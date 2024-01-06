@@ -18,4 +18,6 @@ const CustomButton = forwardRef((props, ref) => {
   );
 });
 
+CustomButton.displayName = "CustomButton";
+
 export default CustomButton;

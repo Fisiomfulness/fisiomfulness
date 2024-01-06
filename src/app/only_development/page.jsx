@@ -39,12 +39,18 @@ export default function OnlyDevelopmentPage() {
       <Box>
         <p>Custom Button</p>
         <div className="pt-2 grid grid-cols-2 gap-1">
-          <CustomButton color="default">default</CustomButton>
-          <CustomButton color="danger">danger</CustomButton>
-          <CustomButton color="primary">primary</CustomButton>
-          <CustomButton color="secondary">secondary</CustomButton>
-          <CustomButton color="success">success</CustomButton>
-          <CustomButton color="warning">warning</CustomButton>
+          {[
+            "default",
+            "danger",
+            "primary",
+            "secondary",
+            "success",
+            "warning",
+          ].map((color) => (
+            <CustomButton color={color} key={color}>
+              {color}
+            </CustomButton>
+          ))}
         </div>
       </Box>
     </div>
