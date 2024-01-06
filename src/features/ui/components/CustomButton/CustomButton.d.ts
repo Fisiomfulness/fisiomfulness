@@ -1,8 +1,6 @@
-import type { ButtonProps } from "@nextui-org/react";
-import type { FC, ButtonHTMLAttributes } from "react";
+import { ButtonProps, forwardRef } from "@nextui-org/react";
+import { ButtonHTMLAttributes } from "react";
 
-interface Props extends ButtonProps, ButtonHTMLAttributes<HTMLButtonElement> {}
-
-const CustomButton: FC<Props>;
+const CustomButton = forwardRef<"button", ButtonProps>();
 
 export default CustomButton;

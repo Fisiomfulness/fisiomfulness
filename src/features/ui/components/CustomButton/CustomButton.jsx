@@ -1,24 +1,21 @@
 "use client";
 
-import { Button } from "@nextui-org/react";
-import { forwardRef } from "react";
+import { Button, forwardRef } from "@nextui-org/react";
 import { cn } from "../../utils";
 
-const CustomButton = forwardRef(
-  ({ children, className, ...otherProps }, ref) => {
-    return (
-      <Button
-        ref={ref}
-        color="primary"
-        className={cn("rounded-md font-bold uppercase", className)}
-        {...otherProps}
-      >
-        {children}
-      </Button>
-    );
-  },
-);
+const CustomButton = forwardRef((props, ref) => {
+  const { children, className, ...otherProps } = props;
 
-CustomButton.displayName = "CustomButton";
+  return (
+    <Button
+      ref={ref}
+      color="primary"
+      className={cn("rounded-md font-bold uppercase", className)}
+      {...otherProps}
+    >
+      {children}
+    </Button>
+  );
+});
 
 export default CustomButton;
