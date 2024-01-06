@@ -1,8 +1,5 @@
-import type { InputProps } from "@nextui-org/react";
-import type { FC, InputHTMLAttributes } from "react";
+import { InputProps, forwardRef } from "@nextui-org/react";
 
-interface Props extends InputProps, InputHTMLAttributes<HTMLInputElement> {}
-
-const CustomInput: FC<Props>;
+const CustomInput = forwardRef<"input", InputProps>();
 
 export default CustomInput;
