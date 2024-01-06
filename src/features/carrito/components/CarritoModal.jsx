@@ -1,9 +1,8 @@
 "use client";
 
-import { cn } from "@/features/ui";
+import { CustomButton, cn } from "@/features/ui";
 import {
   Badge,
-  Button,
   Modal,
   ModalBody,
   ModalContent,
@@ -37,14 +36,9 @@ function ThirdModal({ onClose }) {
         No tienes items en tu carro
       </ModalBody>
       <ModalFooter className="flex flex-col p-0">
-        <Button
-          radius="sm"
-          color="primary"
-          className="uppercase text-white p-0"
-          onPress={onClose}
-        >
+        <CustomButton color="primary" onPress={onClose}>
           Volver
-        </Button>
+        </CustomButton>
       </ModalFooter>
     </div>
   );
@@ -74,15 +68,14 @@ function ListProducts() {
           </div>
           <div className="text-right flex flex-col gap-2 justify-center">
             <p className="font-bold text-xl">${product.price}</p>
-            <Button
+            <CustomButton
               color="danger"
-              className="font-bold"
-              radius="sm"
               size="sm"
+              className="px-2 py-1 lowercase"
               onPress={() => removeItem(product)}
             >
               eliminar
-            </Button>
+            </CustomButton>
           </div>
         </div>
       ))}
@@ -101,22 +94,12 @@ function FirstModal({ onClose }) {
       <div className="mx-auto max-w-fit">
         <ListProducts />
         <div className="w-64 flex flex-col gap-4 mx-auto">
-          <Button
-            color="primary"
-            className="uppercase font-bold"
-            radius="sm"
-            onPress={onClose}
-          >
+          <CustomButton color="primary" onPress={onClose}>
             Checkout
-          </Button>
-          <Button
-            color="danger"
-            className="uppercase font-bold"
-            radius="sm"
-            onPress={clearCart}
-          >
+          </CustomButton>
+          <CustomButton color="danger" onPress={clearCart}>
             Borrar todo
-          </Button>
+          </CustomButton>
         </div>
       </div>
     </div>

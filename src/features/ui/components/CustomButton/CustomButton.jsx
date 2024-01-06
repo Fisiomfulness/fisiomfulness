@@ -10,7 +10,11 @@ const CustomButton = forwardRef((props, ref) => {
     <Button
       ref={ref}
       color="primary"
-      className={cn("rounded-md font-bold uppercase", className)}
+      className={cn(
+        "h-auto py-2.5",
+        "rounded-md font-bold text-sm uppercase",
+        className,
+      )}
       {...otherProps}
     >
       {children}
