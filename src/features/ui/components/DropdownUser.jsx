@@ -43,7 +43,7 @@ export default function DropdownUser() {
             "h-auto px-4 py-2 w-[260px]",
             "flex flex-row gap-4",
             "!opacity-100 !transform-none",
-            state && "border-b-0 rounded-b-none"
+            state && "border-1 border-b-0 rounded-b-none"
           )}
         >
           <p className="truncate w-3/4">Maria Perez Gutierrez</p>
