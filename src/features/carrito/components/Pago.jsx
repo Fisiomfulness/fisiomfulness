@@ -1,10 +1,10 @@
 "use client";
 
-import { CustomInput, cn } from "@/features/ui";
+import { CustomButton, CustomInput, cn } from "@/features/ui";
+
 import {
   Modal,
   ModalContent,
-  Button,
   RadioGroup,
   Radio,
   ModalBody,
@@ -134,15 +134,9 @@ function FirstModal({ onClose }) {
               label="Cupon de descuento"
               placeholder="Ingresa el codigo de tu cupon"
             />
-            <Button
-              color="primary"
-              onPress={onClose}
-              size="lg"
-              className="uppercase font-bold"
-              radius="sm"
-            >
+            <CustomButton color="primary" onPress={onClose}>
               Pagar
-            </Button>
+            </CustomButton>
           </div>
         </div>
       </div>
@@ -237,15 +231,9 @@ function SecondModal({ onOpenChange, onCheck }) {
               }}
             />
           </div>
-          <Button
-            color="primary"
-            type="submit"
-            size="lg"
-            className="uppercase font-bold"
-            radius="sm"
-          >
+          <CustomButton color="primary" type="submit">
             Pagar
-          </Button>
+          </CustomButton>
         </div>
       </form>
     </div>
@@ -293,14 +281,9 @@ function ThirdModal({ onBack, onClose, status = "loading" }) {
       </ModalBody>
       <ModalFooter className="flex flex-col p-0">
         {status !== "loading" && (
-          <Button
-            radius="sm"
-            color="primary"
-            className="uppercase text-black p-0"
-            onPress={onPress}
-          >
+          <CustomButton color="primary" onPress={onPress}>
             Volver
-          </Button>
+          </CustomButton>
         )}
       </ModalFooter>
     </div>
@@ -354,14 +337,9 @@ function ModalBase() {
 
   return (
     <>
-      <Button
-        color="primary"
-        radius="sm"
-        className="text-base"
-        onPress={() => onOpenChange("first")}
-      >
+      <CustomButton color="primary" onPress={() => onOpenChange("first")}>
         Asigna tu metodo de pago
-      </Button>
+      </CustomButton>
 
       <ModalContainer
         isOpen={step.first}

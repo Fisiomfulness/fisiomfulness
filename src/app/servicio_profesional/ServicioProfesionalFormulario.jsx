@@ -1,14 +1,10 @@
 "use client";
 
-import {
-  Button,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-} from "@nextui-org/react";
+
+import { Modal, ModalBody, ModalContent, ModalFooter } from "@nextui-org/react";
 import { useState } from "react";
-import { CustomInput, CustomTextarea, cn } from "@/features/ui";
+import { CustomButton, CustomInput, CustomTextarea, cn } from "@/features/ui";
+
 import { MdOutlineCheckCircle } from "react-icons/md";
 
 function ModalContainer({ children, className, ...otherProps }) {
@@ -39,14 +35,9 @@ function ModalConfirm({ isOpen, onClose }) {
           <p>Servicio creado</p>
         </ModalBody>
         <ModalFooter className="flex flex-col p-0">
-          <Button
-            radius="sm"
-            color="primary"
-            className="uppercase text-black p-0"
-            onPress={onClose}
-          >
+          <CustomButton color="primary" onPress={onClose}>
             Volver
-          </Button>
+          </CustomButton>
         </ModalFooter>
       </div>
     </ModalContainer>
@@ -105,15 +96,9 @@ export default function SecondModal() {
             label="Descripción"
             minRows={7}
           />
-          <Button
-            color="primary"
-            type="submit"
-            size="lg"
-            className="uppercase font-bold"
-            radius="sm"
-          >
+          <CustomButton color="primary" type="submit">
             Crear
-          </Button>
+          </CustomButton>
         </div>
       </form>
       <ModalConfirm isOpen={isSubmit} onClose={() => setIsSubmit(false)} />
