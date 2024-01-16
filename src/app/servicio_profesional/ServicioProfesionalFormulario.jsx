@@ -2,15 +2,13 @@
 
 import {
   Button,
-  Input,
   Modal,
   ModalBody,
   ModalContent,
   ModalFooter,
-  Textarea,
 } from "@nextui-org/react";
 import { useState } from "react";
-import { cn } from "@/features/ui";
+import { CustomInput, CustomTextarea, cn } from "@/features/ui";
 import { MdOutlineCheckCircle } from "react-icons/md";
 
 function ModalContainer({ children, className, ...otherProps }) {
@@ -52,46 +50,6 @@ function ModalConfirm({ isOpen, onClose }) {
         </ModalFooter>
       </div>
     </ModalContainer>
-  );
-}
-
-function CustomInput({ ...otherProps }) {
-  const errorMessage = otherProps.isInvalid ? "Requerido" : "";
-
-  return (
-    <Input
-      variant="bordered"
-      labelPlacement="outside"
-      placeholder=" "
-      radius="sm"
-      errorMessage={errorMessage}
-      classNames={{
-        label: cn("m-0 font-normal text-base !text-inherit"),
-        input: cn("placeholder:!not-italic placeholder:text-base text-base"),
-        inputWrapper: cn("bg-zinc-200 border-1 border-gray-500"),
-      }}
-      {...otherProps}
-    />
-  );
-}
-
-function CustomTextarea({ ...otherProps }) {
-  const errorMessage = otherProps.isInvalid ? "Requerido" : "";
-
-  return (
-    <Textarea
-      variant="bordered"
-      labelPlacement="outside"
-      placeholder=" "
-      radius="sm"
-      errorMessage={errorMessage}
-      classNames={{
-        label: cn("m-0 font-normal text-base !text-inherit"),
-        input: cn("placeholder:!not-italic placeholder:text-base text-base"),
-        inputWrapper: cn("bg-zinc-200 border-1 border-gray-500"),
-      }}
-      {...otherProps}
-    />
   );
 }
 
