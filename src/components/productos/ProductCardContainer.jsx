@@ -1,6 +1,7 @@
 import { ProductCard } from "./ProductCard";
 
 const ProductCardContainer = ({ prods }) => {
+  console.log(prods);
   return (
     <div className="flex flex-wrap min-w-full min-h-full gap-4 justify-center pl-5 pr-5">
       {prods.length ? (
