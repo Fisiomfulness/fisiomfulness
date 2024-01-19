@@ -1,48 +1,14 @@
 "use client";
 
-
-import { Modal, ModalBody, ModalContent, ModalFooter } from "@nextui-org/react";
 import { useState } from "react";
-import { CustomButton, CustomInput, CustomTextarea, cn } from "@/features/ui";
+import {
+  CustomButton,
+  CustomInput,
+  CustomModal,
+  CustomTextarea,
+} from "@/features/ui";
 
 import { MdOutlineCheckCircle } from "react-icons/md";
-
-function ModalContainer({ children, className, ...otherProps }) {
-  return (
-    <Modal
-      placement="center"
-      className={cn("max-w-fit !mx-2", className)}
-      {...otherProps}
-    >
-      <ModalContent className="rounded-md p-8 overflow-hidden">
-        {children}
-      </ModalContent>
-    </Modal>
-  );
-}
-
-function ModalConfirm({ isOpen, onClose }) {
-  return (
-    <ModalContainer
-      isOpen={isOpen}
-      className={"min-w-0"}
-      onOpenChange={onClose}
-      isDismissable={false}
-    >
-      <div className="w-56 h-72 flex flex-col">
-        <ModalBody className="flex justify-center gap-0 items-center my-16 p-0">
-          <MdOutlineCheckCircle className="w-10 h-10 text-primary mb-4" />
-          <p>Servicio creado</p>
-        </ModalBody>
-        <ModalFooter className="flex flex-col p-0">
-          <CustomButton color="primary" onPress={onClose}>
-            Volver
-          </CustomButton>
-        </ModalFooter>
-      </div>
-    </ModalContainer>
-  );
-}
 
 export default function SecondModal() {
   const [isSubmit, setIsSubmit] = useState(false);
@@ -101,7 +67,19 @@ export default function SecondModal() {
           </CustomButton>
         </div>
       </form>
-      <ModalConfirm isOpen={isSubmit} onClose={() => setIsSubmit(false)} />
+      <CustomModal isOpen={isSubmit} onOpenChange={() => setIsSubmit(false)}>
+        <CustomModal.SmallContent>
+          <CustomModal.Body>
+            <MdOutlineCheckCircle className="w-10 h-10 text-primary mb-4" />
+            <p>Servicio creado</p>
+          </CustomModal.Body>
+          <CustomModal.Footer>
+            <CustomButton onPress={() => setIsSubmit(false)}>
+              Volver
+            </CustomButton>
+          </CustomModal.Footer>
+        </CustomModal.SmallContent>
+      </CustomModal>
     </div>
   );
 }

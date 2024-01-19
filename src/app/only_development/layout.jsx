@@ -50,6 +50,10 @@ function Container({ children }) {
   );
 }
 
+export const metadata = {
+  title: "Only Development",
+};
+
 export default function OnlyDevelopmentLayout({ children }) {
   if (process.env.NODE_ENV !== "development") {
     notFound();

@@ -1,88 +1,30 @@
 "use client";
 
-import { CustomButton, CustomInput, cn } from "@/features/ui";
+import { CustomButton, CustomInput, CustomModal, cn } from "@/features/ui";
 
-import {
-  Select,
-  SelectItem,
-  Modal,
-  ModalHeader,
-  ModalContent,
-  ModalBody,
-  ModalFooter,
-  useDisclosure,
-  Link,
-} from "@nextui-org/react";
+import { Select, SelectItem, Link } from "@nextui-org/react";
 import { useState } from "react";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { MdOutlineCheckCircle } from "react-icons/md";
 
 const defaultIconMapping = {
-  success: <MdOutlineCheckCircle className="w-10 h-10 text-secondary" />,
-  question: <AiOutlineQuestionCircle className="w-10 h-10 text-secondary" />,
+  success: <MdOutlineCheckCircle className="w-10 h-10 mb-4 text-secondary" />,
+  question: (
+    <AiOutlineQuestionCircle className="w-10 h-10 mb-4 text-secondary" />
+  ),
 };
 
-function ModalForm({ onClose }) {
-  return (
-    <>
-      <ModalHeader className="flex flex-col gap-1">Iniciar sesión</ModalHeader>
-      <ModalBody>
-        <CustomInput autoFocus label="Correo electrónico" variant="bordered" />
-        <CustomInput label="Contraseña" type="password" variant="bordered" />
-        <div className="flex py-2 px-1 justify-between">
-          <Link color="primary" href="#" size="sm">
-            ¿Has olvidado la contraseña?
-          </Link>
-        </div>
-      </ModalBody>
-      <ModalFooter>
-        <CustomButton color="secondary" onPress={onClose}>
-          Cerrar
-        </CustomButton>
-        <CustomButton color="primary" onPress={onClose}>
-          Ingresar
-        </CustomButton>
-      </ModalFooter>
-    </>
-  );
-}
-
-export function ModalBase({ isOpen, onOpenChange, children }) {
-  const { isOpen: opened, onOpen, onOpenChange: closeModal } = useDisclosure();
-  const content =
-    typeof children === "function"
-      ? (onClose) =>
-          children(onClose, () => {
-            onClose();
-            onOpen();
-          })
-      : children;
-
-  return (
-    <>
-      <Modal
-        size="xs"
-        radius="sm"
-        isOpen={isOpen}
-        placement="center"
-        onOpenChange={onOpenChange}
-      >
-        <ModalContent className="h-80">{content}</ModalContent>
-      </Modal>
-      <Modal isOpen={opened} onOpenChange={closeModal} placement="center">
-        <ModalContent>
-          {(onClose) => <ModalForm onClose={onClose} />}
-        </ModalContent>
-      </Modal>
-    </>
-  );
-}
+const Step = Object.freeze({
+  first: 0,
+  second: 1,
+});
 
 export default function Selector() {
   const defaultValue = "Seleccione una opcion";
   const [state, setState] = useState(defaultValue);
   const [message, setMessage] = useState("");
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+  const [step, setStep] = useState(-1);
 
   return (
     <div className="w-full flex flex-row justify-between flex-wrap gap-4 pt-4">
@@ -128,7 +70,11 @@ export default function Selector() {
       </Select>
       {state !== defaultValue && (
         <div className="flex flex-row gap-2">
-          <CustomButton color="secondary" className="w-28" onPress={onOpen}>
+          <CustomButton
+            color="secondary"
+            className="w-28"
+            onPress={() => setStep(Step.first)}
+          >
             Aceptar
           </CustomButton>
           <CustomButton
@@ -140,24 +86,53 @@ export default function Selector() {
           </CustomButton>
         </div>
       )}
-      <ModalBase isOpen={isOpen} onOpenChange={onOpenChange}>
-        {(onClose, openForm) => (
-          <>
-            <ModalBody className="flex justify-center items-center px-4 py-0 pt-4">
-              {defaultIconMapping["question"]}
-              <p>{message}</p>
-            </ModalBody>
-            <ModalFooter className="flex flex-col p-4">
-              <CustomButton color="primary" onPress={openForm}>
-                Acceptar
-              </CustomButton>
-              <CustomButton color="secondary" onPress={onClose}>
-                Cancelar
-              </CustomButton>
-            </ModalFooter>
-          </>
-        )}
-      </ModalBase>
+      <CustomModal
+        isOpen={step === Step.first}
+        onOpenChange={() => setStep(-1)}
+      >
+        <CustomModal.SmallContent>
+          <CustomModal.Body>
+            {defaultIconMapping["question"]}
+            <p className="text-center">{message || "No se ha seleccionado"}</p>
+          </CustomModal.Body>
+          <CustomModal.Footer className="gap-2">
+            <CustomButton onPress={() => setStep(Step.second)}>
+              Aceptar
+            </CustomButton>
+            <CustomButton color="secondary" onPress={() => setStep(-1)}>
+              Cancelar
+            </CustomButton>
+          </CustomModal.Footer>
+        </CustomModal.SmallContent>
+      </CustomModal>
+      <CustomModal
+        isOpen={step === Step.second}
+        onOpenChange={() => setStep(-1)}
+        className="gap-2"
+      >
+        <CustomModal.Header className="underline font-bold">
+          Iniciar sesión
+        </CustomModal.Header>
+        <CustomModal.Body className="items-start">
+          <CustomInput
+            autoFocus
+            label="Correo electrónico"
+            variant="bordered"
+          />
+          <CustomInput label="Contraseña" type="password" variant="bordered" />
+          <Link color="primary" href="#" size="sm" className="px-1 py-2">
+            ¿Has olvidado la contraseña?
+          </Link>
+        </CustomModal.Body>
+        <CustomModal.Footer className="flex-row gap-2">
+          <CustomButton color="secondary" onPress={() => setStep(-1)}>
+            Cerrar
+          </CustomButton>
+          <CustomButton color="primary" onPress={() => setStep(-1)}>
+            Ingresar
+          </CustomButton>
+        </CustomModal.Footer>
+      </CustomModal>
     </div>
   );
 }
