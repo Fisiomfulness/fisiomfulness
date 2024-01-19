@@ -6,7 +6,7 @@ import NextLink from "next/link";
 const ServicioAsideBar = () => {
   const path = usePathname();
   const matricula = path.match(/[0-9-]/g).join("");
-  console.log(matricula)
+  
   
  
 
