@@ -1,48 +1,11 @@
 "use client";
 
-import { CustomButton, cn } from "@/features/ui";
-import {
-  Badge,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  useDisclosure,
-} from "@nextui-org/react";
+import { CustomButton, CustomModal, cn } from "@/features/ui";
+import { Badge, useDisclosure } from "@nextui-org/react";
 import { useAtom } from "jotai";
 import { MdErrorOutline, MdShoppingCart } from "react-icons/md";
 import { cartAtom } from "../store";
 import { useCart } from "../hooks";
-
-function ModalContainer({ children, className, ...otherProps }) {
-  return (
-    <Modal
-      placement="center"
-      className={cn("!mx-2", className)}
-      {...otherProps}
-    >
-      <ModalContent className="rounded-md p-8 overflow-hidden">
-        {children}
-      </ModalContent>
-    </Modal>
-  );
-}
-
-function ThirdModal({ onClose }) {
-  return (
-    <div className="w-56 h-72 flex flex-col">
-      <ModalBody className="flex justify-center gap-0 items-center my-16 p-0">
-        <MdErrorOutline className="w-10 h-10 text-primary mb-4" />
-        No tienes items en tu carro
-      </ModalBody>
-      <ModalFooter className="flex flex-col p-0">
-        <CustomButton color="primary" onPress={onClose}>
-          Volver
-        </CustomButton>
-      </ModalFooter>
-    </div>
-  );
-}
 
 function ListProducts() {
   const [{ cart }, { removeItem }] = useCart();
@@ -84,25 +47,39 @@ function ListProducts() {
 }
 
 function FirstModal({ onClose }) {
-  const [, { clearCart }] = useCart();
+  const [{ cart }, { clearCart }] = useCart();
+
+  if (cart.length === 0) {
+    return (
+      <CustomModal.SmallContent>
+        <CustomModal.Body>
+          <MdErrorOutline className="w-10 h-10 text-primary mb-4" />
+          No tienes items en tu carro
+        </CustomModal.Body>
+        <CustomModal.Footer>
+          <CustomButton color="primary" onPress={onClose}>
+            Volver
+          </CustomButton>
+        </CustomModal.Footer>
+      </CustomModal.SmallContent>
+    );
+  }
 
   return (
-    <div className="">
-      <p className="border-b border-primary w-fit mb-4 text-lg font-semibold">
-        TU CARRO
+    <>
+      <p className="border-b border-primary w-fit text-lg font-semibold">
+        Tu Carro
       </p>
       <div className="mx-auto max-w-fit">
         <ListProducts />
-        <div className="w-64 flex flex-col gap-4 mx-auto">
-          <CustomButton color="primary" onPress={onClose}>
-            Checkout
-          </CustomButton>
+        <div className="w-64 flex flex-col gap-2 mx-auto">
+          <CustomButton onPress={onClose}>Checkout</CustomButton>
           <CustomButton color="danger" onPress={clearCart}>
             Borrar todo
           </CustomButton>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
@@ -112,31 +89,18 @@ export default function CarritoModal() {
 
   return (
     <div>
-      <button onClick={onOpen}>
+      <button onClick={onOpen} className="p-2 pb-0">
         <Badge content={quantity} color="danger" placement="top-left" size="md">
           <MdShoppingCart className="w-8 h-8 text-primary" />
         </Badge>
       </button>
-      {cart.length ? (
-        <ModalContainer
-          isOpen={isOpen}
-          onOpenChange={onOpenChange}
-          isDismissable={false}
-          className={"max-w-3xl"}
-        >
-          {(onClose) => <FirstModal onClose={onClose} />}
-        </ModalContainer>
-      ) : (
-        <ModalContainer
-          isOpen={isOpen}
-          className={"max-w-fit"}
-          onOpenChange={onOpenChange}
-          hideCloseButton
-          isDismissable={false}
-        >
-          {(onClose) => <ThirdModal onClose={onClose} />}
-        </ModalContainer>
-      )}
+      <CustomModal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        className={cn(cart.length ? "max-w-3xl" : "max-w-fit")}
+      >
+        {(onClose) => <FirstModal onClose={onClose} />}
+      </CustomModal>
     </div>
   );
 }
