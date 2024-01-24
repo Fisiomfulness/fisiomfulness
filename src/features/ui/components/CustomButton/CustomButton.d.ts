@@ -1,5 +1,6 @@
-import { ButtonProps, forwardRef } from "@nextui-org/react";
+import { ButtonProps } from "@nextui-org/react";
+import { FC } from "react";
 
-const CustomButton = forwardRef<"button", ButtonProps>();
+const CustomButton: FC<ButtonProps>;
 
 export default CustomButton;

@@ -1,9 +1,9 @@
 "use client";
 
-import { Textarea, forwardRef } from "@nextui-org/react";
+import { Textarea } from "@nextui-org/react";
 import { cn, mergeKeepValues } from "../../utils";
 
-const CustomTextarea = forwardRef((props, ref) => {
+const CustomTextarea = (props) => {
   const { classNames, ...otherProps } = props;
 
   const errorMessage = otherProps.isInvalid ? "Requerido" : "";
@@ -19,7 +19,6 @@ const CustomTextarea = forwardRef((props, ref) => {
 
   return (
     <Textarea
-      ref={ref}
       variant="bordered"
       labelPlacement="outside"
       placeholder=" "
@@ -28,8 +27,6 @@ const CustomTextarea = forwardRef((props, ref) => {
       {...otherProps}
     />
   );
-});
-
-CustomTextarea.displayName = "CustomTextarea";
+};
 
 export default CustomTextarea;

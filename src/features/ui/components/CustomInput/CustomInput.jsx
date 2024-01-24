@@ -1,15 +1,16 @@
 "use client";
 
-import { Input, forwardRef } from "@nextui-org/react";
+import { Input } from "@nextui-org/react";
 import { cn, mergeKeepValues } from "../../utils";
 
-const CustomInput = forwardRef((props, ref) => {
+const CustomInput = (props) => {
   const { classNames, ...otherProps } = props;
 
   const errorMessage = otherProps.isInvalid ? "Requerido" : "";
 
   const defaultClassNames = {
     label: cn("m-0 font-normal text-base !text-inherit"),
+    base: cn("!mt-8"),
     input: cn(
       "placeholder:!not-italic placeholder:text-gray-500 text-base flex-1",
     ),
@@ -19,7 +20,6 @@ const CustomInput = forwardRef((props, ref) => {
 
   return (
     <Input
-      ref={ref}
       variant="bordered"
       labelPlacement="outside"
       placeholder=" "
@@ -28,8 +28,6 @@ const CustomInput = forwardRef((props, ref) => {
       {...otherProps}
     />
   );
-});
-
-CustomInput.displayName = "CustomInput";
+};
 
 export default CustomInput;
