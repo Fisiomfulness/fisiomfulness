@@ -1,5 +1,6 @@
-import { InputProps, forwardRef } from "@nextui-org/react";
+import { InputProps } from "@nextui-org/react";
+import { FC } from "react";
 
-const CustomInput = forwardRef<"input", InputProps>();
+const CustomInput: FC<InputProps>;
 
 export default CustomInput;

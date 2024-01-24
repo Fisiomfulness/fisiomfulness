@@ -1,5 +1,6 @@
-import { TextAreaProps, forwardRef } from "@nextui-org/react";
+import { TextAreaProps } from "@nextui-org/react";
+import { FC } from "react";
 
-const CustomTextarea = forwardRef<"textarea", TextAreaProps>();
+const CustomTextarea: FC<TextAreaProps>;
 
 export default CustomTextarea;
