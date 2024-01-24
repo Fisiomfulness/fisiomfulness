@@ -6,19 +6,19 @@ import fs from "fs";
 import path from "path";
 
 const directoryPath = path.join(__dirname, "../../../../src/app/");
-
 const getDirectories = (source) =>
   fs
     .readdirSync(source, { withFileTypes: true })
     .filter((file) => file.isDirectory() && file.name !== "only_development")
     .map((file) => file.name);
+const routes = getDirectories(directoryPath);
 
 function CustomLink({ children, href }) {
   return (
     <Link
       href={href}
       className={cn(
-        "bg-blue-300 px-4 py-1 rounded-sm whitespace-nowrap",
+        "bg-blue-300 px-3 py-1 rounded-sm whitespace-nowrap",
         "hover:bg-blue-200 hover:text-black",
       )}
     >
@@ -27,15 +27,13 @@ function CustomLink({ children, href }) {
   );
 }
 
-const routes = getDirectories(directoryPath);
-
 function Container({ children }) {
   return (
     <div className="flex flex-col justify-center items-center gap-4 p-4 w-full">
       <p className="text-2xl font-bold underline text-center">
         Esta pagina solo funciona en development
       </p>
-      <div className="flex flex-row w-full justify-between gap-4">
+      <div className="flex flex-row w-full gap-4 overflow-hidden">
         <div className="flex flex-col gap-1">
           <p className="text-lg font-bold underline">Rutas</p>
           {routes.map((route) => (
@@ -44,7 +42,7 @@ function Container({ children }) {
             </CustomLink>
           ))}
         </div>
-        <div className="flex flex-row gap-4 w-full flex-wrap">{children}</div>
+        <div className="overflow-auto w-full">{children}</div>
       </div>
     </div>
   );

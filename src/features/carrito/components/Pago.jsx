@@ -177,7 +177,7 @@ function SecondModal({ onOpenChange, onCheck, onBack }) {
       <p className="border-b border-primary w-fit text-lg font-semibold">
         Ingresá tus datos
       </p>
-      <form onSubmit={handleSubmit} className="pt-2 w-80">
+      <form onSubmit={handleSubmit} className="pt-4 w-80 flex flex-col gap-2">
         <CustomInput
           name="titular"
           defaultValue="***** *****"
@@ -214,7 +214,7 @@ function SecondModal({ onOpenChange, onCheck, onBack }) {
             }}
           />
         </div>
-        <CustomButton className="w-full mt-4" type="submit">
+        <CustomButton className="mt-4" type="submit">
           Pagar
         </CustomButton>
       </form>
