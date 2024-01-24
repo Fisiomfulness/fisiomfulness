@@ -27,6 +27,10 @@ export default function Nav() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const showOnRegister = () => {
+    if (path === "/registro" || "/login") return "hidden";
+  };
+
   const menuItems = [
     { name: "Home", href: "/" },
     { name: "Servicios y especialistas", href: "/servicios" },
@@ -42,6 +46,7 @@ export default function Nav() {
       height={`100px`}
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
+      className={showOnRegister()}
     >
       <NavbarContent justify="start">
         <NavbarMenuToggle
