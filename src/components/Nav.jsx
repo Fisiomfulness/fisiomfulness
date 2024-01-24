@@ -81,13 +81,22 @@ export default function Nav() {
       <NavbarContent justify="end">
         <NavbarItem>
           {!isLogged ? (
-            <Button onClick={setIsLogged} as={Link} color="secondary" href="#">
-              Sign Up
+          <Button onClick={setIsLogged} as={Link} color="secondary" href="#">
+            Sign Up
             </Button>
+            
           ) : (
             <LoginDropDown />
           )}
         </NavbarItem>
+        {/* Se agregan los botones de login y registro */}
+        <NavbarItem>
+            <Button onClick={setIsLogged} as={Link} color="secondary" href="/login">
+              Login
+            </Button>
+         
+        </NavbarItem>
+
       </NavbarContent>
 
       <NavbarMenu>

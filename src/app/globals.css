@@ -1,5 +1,5 @@
 @tailwind base;
-@tailwind components;
+@tailwind components; 
 @tailwind utilities;
 
 @layer base {
@@ -54,4 +54,25 @@
     @apply bg-zinc-300;
     border-radius: 9999px;
   }
+}
+
+@layer components {
+  .all-\[unset\] {
+    all: unset;
+  }
+}
+
+:root {
+  --action-blue: rgba(98, 207, 228, 1);
+  --action-green: rgba(54, 167, 147, 1);
+  --action-green-hover: rgba(54, 167, 147, 0.7);
+  --black: rgba(13, 13, 13, 1);
+  --disabled-blue: rgba(17, 39, 50, 0.5);
+  --light-blue: rgba(172, 217, 236, 1);
+  --pale-blue: rgba(242, 248, 250, 1);
+  --pale-blue-opacity: rgba(242, 248, 250, 0.5);
+  --primary-blue: rgba(17, 39, 50, 1);
+  --primary-hover: rgba(17, 39, 50, 0.7);
+  --secondary-blue: rgba(51, 151, 198, 1);
+  --white: rgba(250, 250, 250, 1);
 }
