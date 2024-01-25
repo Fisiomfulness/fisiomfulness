@@ -29,7 +29,7 @@ function Footer() {
                   >
                     <Component className="text-2xl" />
                   </Link>
-                ),
+                )
               )}
             </div>
           </div>
@@ -38,7 +38,13 @@ function Footer() {
               <Link
                 key={item}
                 className="block hover:text-inherit hover:no-underline"
-                href="/"
+                href={
+                  item === "Trabaja con nosotros"
+                    ? "/trabajaConNosotros"
+                    : item === "Quienes somos"
+                    ? "/about"
+                    : "/blog"
+                }
               >
                 {item}
               </Link>
