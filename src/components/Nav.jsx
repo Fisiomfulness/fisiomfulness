@@ -34,6 +34,7 @@ export default function Nav() {
     { name: "Tratamientos", href: "/tratamientos" },
     { name: "Comunidad", href: "/comunidad" },
     { name: "Blog", href: "/blog" },
+    { name: "Pregunta a un experto", href: "/pregunta_experto" },
   ];
 
   return (
