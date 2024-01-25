@@ -1,273 +1,169 @@
-{/* .login {
+.container {
     background-color: #68bce3;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    max-width: 1440px;
     width: 100%;
+    max-height: 1024px;
+    height: 100%;
 }
 
-.login .overlap-wrapper {
-    background-color: #68bce3;
-    width: 1440px;
-    height: 1024px;
+.form-container{
+    max-width: 1310px;
+    width: 100%;
+    max-height: 925px;
+    height: 100%;
+  
 }
 
-.login .overlap {
-    position: absolute;
-    width: 1310px;
-    height: 925px;
-    top: 99px;
+.group {
+    max-width: 1127px;
+    width: 100%;
+    max-height: 667px;
+    height: 100%;
+   
 }
 
-.login .group {
-    position: absolute;
-    width: 1127px;
-    height: 667px;
-    top: 2px;
-    left: 183px;
-    background-color: #ffffff;
-    border-radius: 6px;
+.formulario {
+    max-width: 1127px;
+    width: 100%;
+    max-height: 667px;
+    height: 100%;
+    border-radius: 10px;
+    margin: 0 auto;
+    padding: 0 50px;
     box-shadow: 0px 4px 4px #00000040;
 }
 
-.login .overlap-group-wrapper {
-    position: absolute;
-    width: 186px;
-    height: 65px;
-    top: 285px;
-    left: 372px;
-}
-
-.login .overlap-group {
+.logo-container {
+    width: 50%;
     position: relative;
-    height: 64px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;   
 }
 
-.login .logo {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    top: 0;
-    left: 72px;
-    object-fit: cover;
+.input-container{
+    width: 50%;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
 }
 
-.login .text-wrapper {
-    position: absolute;
-    top: 27px;
-    left: 22px;
-    font-family: "Open Sans-ExtraBold", Helvetica;
-    font-weight: 800;
-    color: #3daadd;
-    font-size: 20px;
-    letter-spacing: 0;
-    line-height: normal;
+.input-content{
+    width: 100%;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
 }
 
-.login .div {
-    position: absolute;
-    top: 29px;
-    left: 92px;
-    font-family: "Raleway-ExtraBold", Helvetica;
-    font-weight: 800;
-    color: #565454;
-    font-size: 20px;
-    letter-spacing: 0;
-    line-height: normal;
-    white-space: nowrap;
+.logo-fisiom{
+    width: 100%;
+    height: auto;
+    max-width: 922px;
+    max-height: 925px;
+
 }
 
-.login .p {
-    position: absolute;
-    top: 52px;
-    left: 0;
-    font-family: "Raleway-MediumItalic", Helvetica;
-    font-weight: 500;
-    font-style: italic;
-    color: #5f5f5f;
-    font-size: 10px;
-    letter-spacing: 0;
-    line-height: normal;
-    white-space: nowrap;
-}
-
-.login .group-2 {
-    position: absolute;
-    width: 329px;
-    height: 232px;
-    top: 192px;
-    left: 823px;
-}
-
-.login .group-3 {
-    position: absolute;
-    width: 327px;
-    height: 124px;
-    top: 108px;
-    left: 1px;
-}
-
-.login .contrase-a-olvidada {
-    position: absolute;
-    top: 113px;
-    left: 10px;
-    font-family: "Raleway-Regular", Helvetica;
-    font-weight: 400;
-    color: #000000;
-    font-size: 9px;
-    letter-spacing: 0;
-    line-height: normal;
-}
-
-.login .span {
-    font-family: "Raleway-Italic", Helvetica;
-    font-style: italic;
-}
-
-.login .text-wrapper-2 {
-    font-family: "Raleway-BoldItalic", Helvetica;
-    font-weight: 700;
-    font-style: italic;
-}
-
-.login .div-wrapper {
-    position: absolute;
-    width: 57px;
-    height: 22px;
-    top: 0;
-    left: 6px;
-}
-
-.login .text-wrapper-3 {
-    position: absolute;
-    top: 5px;
-    left: 4px;
-    font-family: "Raleway-Regular", Helvetica;
-    font-weight: 400;
-    color: #ff6060;
-    font-size: 12px;
-    letter-spacing: 0;
-    line-height: normal;
-    white-space: nowrap;
-}
-
-.login .overlap-group-2 {
-    position: absolute;
-    width: 323px;
-    height: 37px;
-    top: 52px;
-    left: 0;
-    background-color: #68bce3;
-}
-
-.login .text-wrapper-4 {
-    position: absolute;
-    top: 13px;
-    left: 145px;
-    font-family: "Raleway-Bold", Helvetica;
-    font-weight: 700;
-    color: #ffffff;
-    font-size: 12px;
-    letter-spacing: 0;
-    line-height: normal;
-    white-space: nowrap;
-}
-
-.login .overlap-2 {
-    position: absolute;
-    width: 325px;
-    height: 32px;
-    top: 65px;
-    left: 0;
-  
-    background-size: 100% 100%;
-}
-
-.login .text-wrapper-5 {
-    position: absolute;
-    top: 10px;
-    left: 11px;
-    font-family: "Raleway-Regular", Helvetica;
-    font-weight: 400;
-    color: #4a4a4a;
-    font-size: 12px;
-    letter-spacing: 0;
-    line-height: normal;
-    white-space: nowrap;
-}
-
-.login .overlap-3 {
-    position: absolute;
-    width: 325px;
-    height: 32px;
-    top: 0;
-    left: 0;
+@media screen and (max-width: 1540px) {
+    .container {
+        padding: 100px 0;
+    }
+    .group {
+        max-width: 100%;
+        flex-direction: column;
+    }
+    .logo-container {
+        width: 100%;
+        margin-bottom: 50px;
+    }
+    .input-container {
+        width: 100%;
+    }
+    .input-content {
+        width: 100%;
+    }
+    .formulario {
+        padding: 0 20px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .logo-fisiom {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
     
-    background-size: 100% 100%;
-    background-image: url(./img/rectangle-9.svg);
 }
 
-.login .text-wrapper-6 {
-    position: absolute;
-    top: 9px;
-    left: 11px;
-    font-family: "Raleway-Regular", Helvetica;
-    font-weight: 400;
-    color: #4a4a4a;
-    font-size: 12px;
-    letter-spacing: 0;
-    line-height: normal;
-    white-space: nowrap;
+
+@media screen and (max-width: 1024px) {
+    .container {
+        padding: 100px 0;
+    }
+    .group {
+        max-width: 100%;
+        flex-direction: column;
+    }
+    .logo-container {
+        width: 100%;
+        margin-bottom: 50px;
+    }
+    .input-container {
+        width: 100%;
+    }
+    .input-content {
+        width: 100%;
+    }
+    .formulario {
+        padding: 0 20px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .logo-fisiom {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+    
 }
 
-.login .LOGO-FISIOMFULNESS-f {
-    position: absolute;
-    width: 922px;
-    height: 925px;
-    top: 0;
-    left: 0;
-    object-fit: cover;
-}
 
-.login .group-4 {
-    position: absolute;
-    width: 95px;
-    height: 25px;
-    top: 483px;
-    left: 970px;
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 100px 0;
+    }
+    .group {
+        max-width: 100%;
+        flex-direction: column;
+    }
+    .logo-container {
+        width: 100%;
+        margin-bottom: 50px;
+    }
+    .input-container {
+        width: 100%;
+    }
+    .input-content {
+        width: 100%;
+    }
+    .formulario {
+        padding: 0 20px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .logo-fisiom {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+    
+    
 }
-
-.login .overlap-4 {
-    position: relative;
-    width: 93px;
-    height: 25px;
-    background-color: #68bce3;
-    border-radius: 3px;
-}
-
-.login .text-wrapper-7 {
-    position: absolute;
-    top: 6px;
-    left: 21px;
-    font-family: "Raleway-Bold", Helvetica;
-    font-weight: 700;
-    color: #ffffff;
-    font-size: 10px;
-    letter-spacing: 0;
-    line-height: normal;
-    white-space: nowrap;
-}
-
-.login .text-wrapper-8 {
-    position: absolute;
-    top: 488px;
-    left: 878px;
-    font-family: "Raleway-Regular", Helvetica;
-    font-weight: 400;
-    color: #000000;
-    font-size: 10px;
-    letter-spacing: 0;
-    line-height: normal;
-    white-space: nowrap;
-}
-*/}
