@@ -6,8 +6,7 @@ import Nav from "@/components/Nav";
 import "./globals.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import Footer from "../components/Footer/Footer";
-import { usePathname } from 'next/navigation';
-import { metadata } from "./metadata";
+import { usePathname } from "next/navigation";
 
 const raleway = Raleway({
   weight: ["200", "300", "400", "700"],
@@ -15,11 +14,9 @@ const raleway = Raleway({
   display: "swap",
 });
 
-
-
 export default function RootLayout({ children }) {
   const pathname = usePathname();
-  const isLoginPage = pathname === '/login';
+  const isLoginPage = pathname === "/login";
 
   return (
     <html lang="es">
