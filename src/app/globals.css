@@ -1,5 +1,5 @@
 @tailwind base;
-@tailwind components;
+@tailwind components; 
 @tailwind utilities;
 
 @layer base {
@@ -55,3 +55,4 @@
     border-radius: 9999px;
   }
 }
+
