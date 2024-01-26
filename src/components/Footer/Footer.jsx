@@ -5,6 +5,18 @@ import { AiOutlineInstagram } from "react-icons/ai";
 import { AiOutlineLinkedin } from "react-icons/ai";
 import { AiOutlineFacebook } from "react-icons/ai";
 
+const socialItems = [
+  { logoComponent: AiOutlineFacebook, href: "/" },
+  { logoComponent: AiOutlineInstagram, href: "/" },
+  { logoComponent: AiOutlineLinkedin, href: "/" },
+];
+
+const navItems = [
+  { name: "Trabaja con nosotros", href: "/trabajaConNosotros" },
+  { name: "Quienes somos", href: "/about" },
+  { name: "Blog", href: "/blog" },
+];
+
 function Footer() {
   return (
     <footer className="bg-secondary py-6">
@@ -19,34 +31,27 @@ function Footer() {
               loading="lazy"
             />
             <div className="flex justify-center gap-4 text-white pt-4 max-sm:text-center">
-              {[AiOutlineFacebook, AiOutlineInstagram, AiOutlineLinkedin].map(
-                (Component, index) => (
-                  <Link
-                    key={index}
-                    href="/"
-                    target="_blank"
-                    className="hover:text-inherit"
-                  >
-                    <Component className="text-2xl" />
-                  </Link>
-                )
-              )}
+              {socialItems.map((item, index) => (
+                <Link
+                  key={index}
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="hover:text-inherit"
+                >
+                  <item.logoComponent className="text-2xl" />
+                </Link>
+              ))}
             </div>
           </div>
           <div className="text-white flex flex-col justify-evenly max-sm:items-center">
-            {["Trabaja con nosotros", "Quienes somos", "Blog"].map((item) => (
+            {navItems.map((item) => (
               <Link
-                key={item}
+                key={item.name}
                 className="block hover:text-inherit hover:no-underline"
-                href={
-                  item === "Trabaja con nosotros"
-                    ? "/trabajaConNosotros"
-                    : item === "Quienes somos"
-                    ? "/about"
-                    : "/blog"
-                }
+                href={item.href}
               >
-                {item}
+                {item.name}
               </Link>
             ))}
           </div>
