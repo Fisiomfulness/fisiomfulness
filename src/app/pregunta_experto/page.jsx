@@ -13,7 +13,7 @@ function PreguntaExperto() {
   useEffect(() => {
     const item = localStorage.getItem("comments");
     const comments = JSON.parse(item);
-    if (comments.length > 0) setComments(comments);
+    if (comments?.length > 0) setComments(comments);
   }, []);
 
   useEffect(() => {
