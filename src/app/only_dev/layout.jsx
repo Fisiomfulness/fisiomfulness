@@ -13,35 +13,34 @@ const getDirectories = (source) =>
     .map((file) => file.name);
 const routes = getDirectories(directoryPath);
 
-function CustomLink({ children, href }) {
-  return (
-    <Link
-      href={href}
-      className={cn(
-        "bg-blue-300 px-3 py-1 rounded-sm whitespace-nowrap",
-        "hover:bg-blue-200 hover:text-black",
-      )}
-    >
-      {children}
-    </Link>
-  );
-}
-
 function Container({ children }) {
   return (
-    <div className="flex flex-col justify-center items-center gap-4 p-4 w-full">
+    <div className="flex flex-col justify-center gap-4 px-4 w-full max-w-5xl mx-auto">
       <p className="text-2xl font-bold underline text-center">
         Esta pagina solo funciona en development
       </p>
-      <div className="flex flex-row w-full gap-4 overflow-hidden">
-        <div className="flex flex-col gap-1">
-          <p className="text-lg font-bold underline">Rutas</p>
+      <div>
+        <p className="text-lg font-bold underline">Rutas</p>
+        <div
+          className={[
+            "grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))]",
+            "overflow-hidden w-full",
+          ].join(" ")}
+        >
           {routes.map((route) => (
-            <CustomLink key={route} href={route}>
+            <Link
+              key={route}
+              href={route}
+              className={cn(
+                "border-l-2 border-primary whitespace-nowrap hover:font-bold px-1.5 leading-snug",
+              )}
+            >
               Ir a /{route}
-            </CustomLink>
+            </Link>
           ))}
         </div>
+      </div>
+      <div className="flex flex-row w-full gap-4 overflow-hidden">
         <div className="overflow-auto w-full">{children}</div>
       </div>
     </div>

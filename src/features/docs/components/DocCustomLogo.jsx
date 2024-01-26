@@ -1,25 +1,58 @@
-import { CustomLogo, cn } from "@/features/ui";
+import { CustomLogo } from "@/features/ui";
+import DocCode from "./DocCode";
+import DocTabs from "./DocTabs";
 
-function Code({ children }) {
-  return (
-    <span className="font-bold bg-zinc-200 rounded-md px-1">{children}</span>
-  );
-}
+const codeRender = `// Dark
+<CustomLogo
+  color="dark"
+  className={[
+    "bg-gradient-to-b from-primary-100 to-primary-300",
+    "p-2 rounded-md",
+  ].join(" ")}
+/>
+
+// Light
+<CustomLogo
+  color="light"
+  className={[
+    "bg-gradient-to-b from-secondary-600 to-secondary-500",
+    "p-2 rounded-md",
+  ].join(" ")}
+/>
+`;
+
+const previewRender = (
+  <div className="flex flex-col gap-2 max-w-80">
+    <p>Dark</p>
+    <CustomLogo
+      color="dark"
+      className={[
+        "bg-gradient-to-b from-primary-100 to-primary-300",
+        "p-2 rounded-md",
+      ].join(" ")}
+    />
+    <p>Light</p>
+    <CustomLogo
+      color="light"
+      className={[
+        "bg-gradient-to-b from-secondary-600 to-secondary-500",
+        "p-2 rounded-md",
+      ].join(" ")}
+    />
+  </div>
+);
 
 export default function DocCustomLogo() {
-  const classNames = (className) => cn("p-2 rounded-md", className);
-
   return (
     <>
-      <div className="text-sm pb-2">
-        <p>
-          Acepta la prop <Code>color</Code> que puede ser <Code>light</Code> o{" "}
-          <Code>dark</Code> y las props de la etiqueta <Code>img</Code>.
-        </p>
-      </div>
-      <p className="pb-2">Custom Logo</p>
-      <CustomLogo color="dark" className={classNames("bg-primary-200")} />
-      <CustomLogo color="light" className={classNames("bg-secondary")} />
+      <p className="text-lg font-bold">Custom Logo</p>
+      <p>
+        Acepta la prop <DocCode>color</DocCode> que puede ser{" "}
+        <DocCode>light</DocCode> o <DocCode>dark</DocCode>, y las props de la
+        etiqueta <DocCode>img</DocCode>.
+      </p>
+
+      <DocTabs previewRender={previewRender} codeRender={codeRender} />
     </>
   );
 }
