@@ -28,7 +28,7 @@ export default function Nav() {
   };
 
   const showOnRegister = () => {
-    if (path === "/registro" || "/login") return "hidden";
+    if (path === "/registro" || path === "/login") return "hidden";
   };
 
   const menuItems = [
@@ -86,7 +86,12 @@ export default function Nav() {
       <NavbarContent justify="end">
         <NavbarItem>
           {!isLogged ? (
-            <Button onClick={setIsLogged} as={Link} color="secondary" href="#">
+            <Button
+              onClick={setIsLogged}
+              as={Link}
+              color="secondary"
+              href="/login"
+            >
               Sign Up
             </Button>
           ) : (

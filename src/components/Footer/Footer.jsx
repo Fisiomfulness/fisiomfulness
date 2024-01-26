@@ -10,7 +10,7 @@ function Footer() {
   const path = usePathname();
 
   const showOnRegister = () => {
-    if (path === "/registro" || "/login") return "hidden";
+    if (path === "/registro" || path === "/login") return "hidden";
   };
   return (
     <footer className={`bg-secondary py-6 ${showOnRegister()}`}>
