@@ -1,5 +1,3 @@
-"use client";
-
 import { Textarea } from "@nextui-org/react";
 import { cn, mergeKeepValues } from "../../utils";
 

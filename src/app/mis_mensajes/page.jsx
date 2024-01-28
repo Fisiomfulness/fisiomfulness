@@ -1,5 +1,3 @@
-"use client";
-
 import { Chat } from "@/features/chat";
 import { cn } from "@/features/ui";
 import { Avatar } from "@nextui-org/react";
