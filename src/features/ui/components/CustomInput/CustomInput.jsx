@@ -1,5 +1,3 @@
-"use client";
-
 import { Input } from "@nextui-org/react";
 import { cn, mergeKeepValues } from "../../utils";
 

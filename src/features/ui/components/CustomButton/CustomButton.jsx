@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@nextui-org/react";
 import { cn } from "../../utils";
 
