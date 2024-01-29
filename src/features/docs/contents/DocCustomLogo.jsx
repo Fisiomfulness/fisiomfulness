@@ -1,6 +1,5 @@
 import { CustomLogo } from "@/features/ui";
-import DocCode from "./DocCode";
-import DocTabs from "./DocTabs";
+import { DocTabs, DocCode } from "../components";
 
 const codeRender = `// Dark
 <CustomLogo

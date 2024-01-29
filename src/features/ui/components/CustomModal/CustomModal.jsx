@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Modal,
   ModalBody,
@@ -8,11 +6,10 @@ import {
   ModalHeader,
 } from "@nextui-org/react";
 import { cn } from "../../utils";
-import { useLayoutEffect } from "react";
+import { CustomModalClient } from "./CustomModalClient";
 
 const _CustomModal = (props) => {
   const { children, className, ...otherProps } = props;
-  const isOpen = props.isOpen;
 
   const content =
     typeof children === "function" ? (
@@ -21,22 +18,21 @@ const _CustomModal = (props) => {
       <div className="overflow-x-auto">{children}</div>
     );
 
-  useLayoutEffect(() => {
-    const style = document.documentElement.style;
-    style.overflow = isOpen ? "hidden" : "auto";
-    style.paddingRight = isOpen ? "0.6rem" : "0px";
-  }, [isOpen]);
-
   return (
-    <Modal
-      placement="center"
-      className={cn("!rounded-md max-w-fit !mx-4", className)}
-      {...otherProps}
-    >
-      <ModalContent className="rounded-md p-6 overflow-x-auto">
-        {content}
-      </ModalContent>
-    </Modal>
+    <CustomModalClient isOpen={otherProps.isOpen}>
+      <Modal
+        placement="center"
+        className={cn("!rounded-md max-w-fit !mx-4", className)}
+        classNames={{
+          closeButton: cn("p-1.5"),
+        }}
+        {...otherProps}
+      >
+        <ModalContent className="rounded-md p-6 overflow-x-auto">
+          {content}
+        </ModalContent>
+      </Modal>
+    </CustomModalClient>
   );
 };
 

@@ -1,6 +1,6 @@
-export { default as DocCarritoModal } from "./DocCarritoModal";
-export { default as DocCustomInput } from "./DocCustomInput";
-export { default as DocCustomTextarea } from "./DocCustomTextarea";
-export { default as DocCustomButton } from "./DocCustomButton";
-// export { default as DocCustomModal } from "./DocCustomModal";
-export { default as DocCustomLogo } from "./DocCustomLogo";
+export { default as DocCode } from "./DocCode";
+export { default as DocSyntax } from "./DocSyntax";
+export { default as DocTabs } from "./DocTabs";
+export { default as DocPreview } from "./DocPreview";
+export { default as DocColorPalette } from "./DocColorPalette";
+export { default as DocRoutes } from "./DocRoutes";

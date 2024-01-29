@@ -1,5 +1,5 @@
 import { CarritoModal } from "@/features/carrito";
-import DocTabs from "./DocTabs";
+import { DocTabs } from "../components";
 
 export default function DocCarrito() {
   return (
