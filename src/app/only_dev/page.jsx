@@ -1,5 +1,3 @@
-"use client";
-
 import * as DocComponents from "@/features/docs/components";
 import * as DocUtils from "@/features/docs/utils";
 
@@ -17,7 +15,7 @@ const renderDocComponents = Object.keys(DocComponents).map(
   (component, index) => {
     const Component = DocComponents[component];
     return (
-      <Box key={index}>
+      <Box key={index} className="flex flex-col gap-2">
         <Component />
       </Box>
     );
@@ -27,7 +25,7 @@ const renderDocComponents = Object.keys(DocComponents).map(
 const renderDocUtils = Object.keys(DocUtils).map((component, index) => {
   const Component = DocUtils[component];
   return (
-    <Box key={index} className="pb-0 flex flex-col gap-4 overflow-hidden">
+    <Box key={index} className="flex flex-col gap-2 overflow-hidden">
       <Component />
     </Box>
   );
@@ -42,7 +40,7 @@ export default function OnlyDevelopmentPage() {
         <span className="font-bold">{`"@/features/ui"`}</span>
       </p>
       <div className="flex flex-row gap-4 w-full flex-wrap">
-        <div className="flex-1 min-w-[280px] max-w-[530px]">
+        <div className="flex-1 min-w-[280px] max-w-lg">
           <p className="text-lg font-bold underline">
             Componentes Reutilizables
           </p>
@@ -50,7 +48,7 @@ export default function OnlyDevelopmentPage() {
             {renderDocComponents}
           </div>
         </div>
-        <div className="flex-1 min-w-[280px] max-w-[530px]">
+        <div className="flex-1 min-w-[280px] max-w-lg">
           <p className="text-lg font-bold underline">Utilidades</p>
           <div className="flex flex-col divide-y divide-primary-700">
             {renderDocUtils}

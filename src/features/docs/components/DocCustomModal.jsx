@@ -1,3 +1,5 @@
+"use client";
+
 import { CustomModal } from "@/features/ui";
 import { useDisclosure } from "@nextui-org/react";
 

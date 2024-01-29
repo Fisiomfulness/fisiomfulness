@@ -1,15 +1,11 @@
 import { CarritoModal } from "@/features/carrito";
+import DocTabs from "./DocTabs";
 
 export default function DocCarrito() {
   return (
     <>
-      <div className="flex flex-row gap-4 items-center">
-        <p>
-          <span className="font-bold">WIP:</span> Carrito Modal
-        </p>
-        <CarritoModal />
-      </div>
-      <div className="text-sm">
+      <p className="text-lg font-bold">WIP: Carrito Modal</p>
+      <div>
         <p>No acepta ninguna prop ni referencia.</p>
         <p>Muestra y elimina los productos que hay en el carrito.</p>
         <p className="text-red-500">
@@ -25,6 +21,10 @@ export default function DocCarrito() {
           si se llama a más de uno en la misma pagina
         </p>
       </div>
+      <DocTabs
+        previewRender={<CarritoModal />}
+        codeRender={`<CarritoModal />`}
+      />
     </>
   );
 }

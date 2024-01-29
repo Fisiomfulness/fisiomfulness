@@ -1,9 +1,4 @@
-import { cx } from "class-variance-authority";
-import { twMerge } from "tailwind-merge";
-
-export function cn(...inputs) {
-  return twMerge(cx(inputs));
-}
+export * from "./cn";
 
 export function mergeKeepValues(t1, t2) {
   const obj1 = { ...t1 };

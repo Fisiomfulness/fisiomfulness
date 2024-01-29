@@ -6,20 +6,25 @@ const CustomInput = (props) => {
 
   const errorMessage = otherProps.isInvalid ? "Requerido" : "";
 
+  const variant = otherProps.variant === "flat" ? "flat" : "bordered";
+
   const defaultClassNames = {
     label: cn("m-0 font-normal text-base !text-inherit"),
-    base: cn("!mt-8"),
+    base: cn(variant !== "flat" && otherProps.label && "!mt-8"),
     input: cn(
-      "placeholder:!not-italic placeholder:text-gray-500 text-base flex-1",
+      "placeholder:!not-italic placeholder:text-gray-500",
+      "text-base flex-1 !w-auto overflow-hidden",
     ),
-    inputWrapper: cn("bg-zinc-200 border-gray-400 rounded-md"),
+    inputWrapper: cn(
+      "!bg-zinc-200 border-gray-400 rounded-md whitespace-nowrap",
+    ),
     innerWrapper: cn("justify-between"),
   };
 
   return (
     <Input
+      variant={variant}
       labelPlacement="outside"
-      variant="bordered"
       placeholder=" "
       classNames={mergeKeepValues(defaultClassNames, classNames)}
       errorMessage={errorMessage}
