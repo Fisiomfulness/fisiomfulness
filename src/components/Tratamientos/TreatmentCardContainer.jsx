@@ -6,17 +6,15 @@ const TreatmentCardContainer = ({ treats }) => {
   }
 
   return (
-    <div className="container mt-4">
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4 justify-center">
-        {treats.map((treat, index) => (
-          <div
-            key={treat.id}
-            className={`mb-4 ${index < 3 ? "md:col-span-2" : "md:col-span-3"}`}
-          >
-            <TreatmentCard treat={treat} />
-          </div>
-        ))}
-      </div>
+    <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
+      {treats.map((treat, index) => (
+        <div
+          key={treat.id}
+          className={`${index < 3 ? "md:col-span-2" : "md:col-span-3"}`}
+        >
+          <TreatmentCard treat={treat} />
+        </div>
+      ))}
     </div>
   );
 };
