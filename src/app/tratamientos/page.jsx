@@ -1,4 +1,6 @@
+
 import TreatmentClient from "@/components/Tratamientos/TreatmentClient";
+
 import data from "@/components/Tratamientos/data/treatmentsList.json";
 
 const TreatmentsPage = () => {

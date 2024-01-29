@@ -1,4 +1,5 @@
 import TreatmentCard from "./TreatmentCard";
+
 import React from 'react';
 
 const TreatmentCardContainer = ({ treats }) => {
@@ -14,9 +15,12 @@ const TreatmentCardContainer = ({ treats }) => {
         ) : (
           <h2>No hemos encontrado resultados.</h2>
         )}
+
       </div>
     </div>
   );
 };
 
+
 export default TreatmentCardContainer;
+

@@ -1,3 +1,31 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "allow": "as-needed",
+        "extensions": [".tsx", ".jsx"]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "src/app/**/page.tsx",
+        "src/app/**/layout.tsx",
+        "src/app/**/page.jsx",
+        "src/app/**/layout.jsx"
+      ],
+      "rules": {
+        "no-restricted-syntax": [
+          "error",
+          {
+            "selector": "Program:has(Literal[value='use client'])",
+            "message": "'use client' is not allowed at the top of the file for page or layout files."
+          }
+        ]
+      }
+    }
+  ]
 }

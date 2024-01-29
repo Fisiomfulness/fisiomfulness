@@ -34,6 +34,7 @@ export default function Nav() {
     { name: "Tratamientos", href: "/tratamientos" },
     { name: "Comunidad", href: "/comunidad" },
     { name: "Blog", href: "/blog" },
+    { name: "Pregunta a un experto", href: "/pregunta_experto" },
   ];
 
   return (
@@ -81,13 +82,22 @@ export default function Nav() {
       <NavbarContent justify="end">
         <NavbarItem>
           {!isLogged ? (
-            <Button onClick={setIsLogged} as={Link} color="secondary" href="#">
-              Sign Up
+          <Button onClick={setIsLogged} as={Link} color="secondary" href="#">
+            Sign Up
             </Button>
+            
           ) : (
             <LoginDropDown />
           )}
         </NavbarItem>
+        {/* Se agregan los botones de login y registro */}
+        <NavbarItem>
+            <Button onClick={setIsLogged} as={Link} color="secondary" href="/login">
+              Login
+            </Button>
+         
+        </NavbarItem>
+
       </NavbarContent>
 
       <NavbarMenu>
