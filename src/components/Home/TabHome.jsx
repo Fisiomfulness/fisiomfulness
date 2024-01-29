@@ -56,7 +56,7 @@ export default function TabHome({ especialidadesMedicas, ciudadesPeru }) {
                         <div className="flex items-center gap-2">
                           <FaUserDoctor
                             alt={item.label}
-                            className="text-action-blue"
+                            className="text-primary-300"
                           />
                           <span>{item.label}</span>
                         </div>
@@ -77,7 +77,7 @@ export default function TabHome({ especialidadesMedicas, ciudadesPeru }) {
                         <div className="flex items-center gap-2">
                           <CiLocationOn
                             alt={item.label}
-                            className="text-action-blue"
+                            className="text-primary-300"
                           />
                           <span>{item.label}</span>
                         </div>
@@ -115,7 +115,7 @@ export default function TabHome({ especialidadesMedicas, ciudadesPeru }) {
                         <div className="flex items-center gap-2">
                           <FaUserDoctor
                             alt={item.label}
-                            className="text-action-blue"
+                            className="text-primary-300"
                           />
                           <span>{item.label}</span>
                         </div>

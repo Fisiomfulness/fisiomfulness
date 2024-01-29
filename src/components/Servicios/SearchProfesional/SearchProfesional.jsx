@@ -80,7 +80,7 @@ const SearchProfesional = ({ profesionales, setProfesionalesFiltrados }) => {
         {(item) => (
           <AutocompleteItem key={item.index} textValue={item.profesion}>
             <div className="flex items-center gap-2">
-              <FaUserDoctor alt={item.profesion} className="text-action-blue" />
+              <FaUserDoctor alt={item.profesion} className="text-primary-300" />
               <span>{item.profesion}</span>
             </div>
           </AutocompleteItem>

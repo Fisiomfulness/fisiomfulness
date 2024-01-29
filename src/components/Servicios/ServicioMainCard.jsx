@@ -32,7 +32,7 @@ const ServicioMainCard = ({ profesional }) => {
                 </h1>
                 <div className="flex justify-between">
                   <Chip
-                    className="bg-action-blue"
+                    className="bg-primary-300"
                     variant="faded"
                     size="sm"
                     startContent={<FaUserDoctor />}
@@ -64,7 +64,7 @@ const ServicioMainCard = ({ profesional }) => {
 
             <div className="flex flex-col gap-1">
               <div className="flex  items-center gap-2 ">
-                <CiLocationOn className="text-action-blue w-8 h-8" />
+                <CiLocationOn className="text-primary-300 w-8 h-8" />
                 <div className="flex  flex-col">
                   <p className="font-bold">{profesional.Direccion}</p>
 
@@ -72,7 +72,7 @@ const ServicioMainCard = ({ profesional }) => {
                 </div>
               </div>
               <div className="flex  items-center gap-2 ">
-                <RiMoneyDollarCircleLine className="text-action-blue w-8 h-8" />
+                <RiMoneyDollarCircleLine className="text-primary-300 w-8 h-8" />
                 <div className="flex  flex-col">
                   <p className="font-bold">Consulta</p>
 

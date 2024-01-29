@@ -20,7 +20,7 @@ const ServicioPrecioCard = ({ servicios }) => {
                 <div className="flex flex-col col-span-4 lg:col-span-2  gap-3 p-5  ">
                   <Chip
                     size="lg"
-                    className="bg-action-green p-2"
+                    className="bg-[#36A793] p-2"
                     variant="faded"
                   >
                     <p className="text-large font-bold text-foreground/80 ">

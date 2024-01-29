@@ -12,9 +12,9 @@ export default function MisMensajesPage() {
             <div
               key={i}
               className={cn(
-                "bg-primary-light px-6 py-2 rounded-lg text-black w-64 mr-4",
+                "bg-primary-300 px-6 py-2 rounded-lg text-black w-64 mr-4",
                 "flex items-center",
-                2 === i && "bg-secondary-light text-white",
+                2 === i && "bg-primary-950 text-white",
               )}
             >
               <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />

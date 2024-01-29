@@ -40,7 +40,7 @@ const ServicioProfesionalCard = ({ profesional }) => {
                   </h1>
                   <div className="flex justify-between">
                     <Chip
-                      className="bg-action-blue"
+                      className="bg-primary-300"
                       variant="faded"
                       startContent={<FaUserDoctor />}
                     >
