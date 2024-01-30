@@ -18,6 +18,10 @@ function RegistroProfesional() {
     city: false,
     cv: false,
   });
+  const classNames = {
+    innerWrapper: "w-[300px]",
+    inputWrapper: "border-none !bg-zinc-100 my-3",
+  };
 
   const onChangeFile = (e) => {
     setFile(e.target.files[0]);
@@ -60,35 +64,35 @@ function RegistroProfesional() {
           name="name"
           placeholder="Nombre completo"
           type="text"
-          className="my-6"
+          classNames={classNames}
           isInvalid={isInvalid.name}
         />
         <CustomInput
           name="tel"
           placeholder="Telefono"
           type="text"
-          className="my-6"
+          classNames={classNames}
           isInvalid={isInvalid.tel}
         />
         <CustomInput
           name="email"
           placeholder="Email"
           type="email"
-          className="my-6"
+          classNames={classNames}
           isInvalid={isInvalid.email}
         />
         <CustomInput
           name="pass"
           placeholder="Contraseña"
           type="password"
-          classNames="my-6 border-none"
+          classNames={classNames}
           isInvalid={isInvalid.pass}
         />
         <CustomInput
           name="repitPass"
           placeholder="Repita contraseña"
           type="password"
-          className="my-6"
+          classNames={classNames}
           isInvalid={isInvalid.repitPass}
           errorMessage={errMsg}
         />
@@ -96,14 +100,14 @@ function RegistroProfesional() {
           name="numCol"
           placeholder="Numero colegiado"
           type="text"
-          className="my-6"
+          classNames={classNames}
           isInvalid={isInvalid.numCol}
         />
         <CustomInput
           name="city"
           placeholder="Ciudad"
           type="text"
-          className="my-4"
+          classNames={classNames}
           isInvalid={isInvalid.city}
         />
         <div className="flex flex-row justify-between items-center mt-4 rounded">

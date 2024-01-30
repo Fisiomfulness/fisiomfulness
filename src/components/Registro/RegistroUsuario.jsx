@@ -12,6 +12,11 @@ function RegistroUsuario() {
     repitPass: false,
   });
 
+  const classNames = {
+    innerWrapper: "w-[300px]",
+    inputWrapper: "border-none !bg-zinc-100 my-5",
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -42,28 +47,28 @@ function RegistroUsuario() {
           name="name"
           placeholder="Nombre completo"
           type="text"
-          className="my-8"
+          classNames={classNames}
           isInvalid={isInvalid.name}
         />
         <CustomInput
           name="email"
           placeholder="Email"
           type="email"
-          className="my-8"
+          classNames={classNames}
           isInvalid={isInvalid.email}
         />
         <CustomInput
           name="pass"
           placeholder="Contraseña"
           type="password"
-          className="my-8"
+          classNames={classNames}
           isInvalid={isInvalid.pass}
         />
         <CustomInput
           name="repitPass"
           placeholder="Repita contraseña"
           type="password"
-          className="my-8"
+          classNames={classNames}
           isInvalid={isInvalid.repitPass}
         />
 
