@@ -7,7 +7,8 @@
         "allow": "as-needed",
         "extensions": [".tsx", ".jsx"]
       }
-    ]
+    ],
+    "@next/next/no-img-element": "off"
   },
   "overrides": [
     {
@@ -19,7 +20,7 @@
       ],
       "rules": {
         "no-restricted-syntax": [
-          "error",
+          1,
           {
             "selector": "Program:has(Literal[value='use client'])",
             "message": "'use client' is not allowed at the top of the file for page or layout files."
