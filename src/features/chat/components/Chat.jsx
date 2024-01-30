@@ -98,8 +98,8 @@ function Message({ type, children }) {
       className={cn(
         "rounded-2xl max-w-[80%] text-white px-5 py-2 text-justify",
         type === "bot"
-          ? "bg-primary-light text-black text-left self-start rounded-bl-none"
-          : "bg-secondary-light text-right self-end rounded-br-none",
+          ? "bg-primary-300 text-black text-left self-start rounded-bl-none"
+          : "bg-primary-950 text-right self-end rounded-br-none",
       )}
     >
       {children}
@@ -139,7 +139,7 @@ function Chat({ isCollapsable = false }) {
     <div className="flex flex-col max-w-lg w-full rounded-md">
       <div
         className={cn(
-          "bg-secondary-light px-8 py-3 rounded-lg mx-6 text-white",
+          "bg-primary-950 px-8 py-3 rounded-lg mx-6 text-white",
           "flex justify-between items-center",
         )}
       >

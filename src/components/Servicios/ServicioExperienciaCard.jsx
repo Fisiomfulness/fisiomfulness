@@ -17,7 +17,7 @@ const ServicioPrecioCard = ({ experiencia }) => {
                   <h2>{experiencia.fecha}</h2>
                   <Chip
                     size="md"
-                    className="bg-action-green p-2"
+                    className="bg-[#36A793] p-2"
                     variant="faded"
                   >
                     <p className="text-large font-bold text-foreground/80 ">
