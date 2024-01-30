@@ -27,6 +27,10 @@ export default function Nav() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const showOnRegister = () => {
+    if (path === "/registro" || path === "/login") return "hidden";
+  };
+
   const menuItems = [
     { name: "Home", href: "/" },
     { name: "Servicios y especialistas", href: "/servicios" },
@@ -43,6 +47,7 @@ export default function Nav() {
       height={`100px`}
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
+      className={showOnRegister()}
     >
       <NavbarContent justify="start">
         <NavbarMenuToggle
@@ -82,22 +87,24 @@ export default function Nav() {
       <NavbarContent justify="end">
         <NavbarItem>
           {!isLogged ? (
-          <Button onClick={setIsLogged} as={Link} color="secondary" href="#">
-            Sign Up
+            <Button onClick={setIsLogged} as={Link} color="secondary" href="#">
+              Sign Up
             </Button>
-            
           ) : (
             <LoginDropDown />
           )}
         </NavbarItem>
         {/* Se agregan los botones de login y registro */}
         <NavbarItem>
-            <Button onClick={setIsLogged} as={Link} color="secondary" href="/login">
-              Login
-            </Button>
-         
+          <Button
+            onClick={setIsLogged}
+            as={Link}
+            color="secondary"
+            href="/login"
+          >
+            Login
+          </Button>
         </NavbarItem>
-
       </NavbarContent>
 
       <NavbarMenu>

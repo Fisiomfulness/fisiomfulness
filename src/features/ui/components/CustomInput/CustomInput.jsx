@@ -13,10 +13,10 @@ const CustomInput = (props) => {
     base: cn(variant !== "flat" && otherProps.label && "!mt-8"),
     input: cn(
       "placeholder:!not-italic placeholder:text-gray-500",
-      "text-base flex-1 !w-auto overflow-hidden",
+      "text-base flex-1 !w-auto overflow-hidden"
     ),
     inputWrapper: cn(
-      "!bg-zinc-200 border-gray-400 rounded-md whitespace-nowrap",
+      "!bg-zinc-200 border-gray-400 rounded-md whitespace-nowrap"
     ),
     innerWrapper: cn("justify-between"),
   };

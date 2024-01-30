@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AiOutlineInstagram } from "react-icons/ai";
 import { AiOutlineLinkedin } from "react-icons/ai";
 import { AiOutlineFacebook } from "react-icons/ai";
@@ -18,8 +19,13 @@ const navItems = [
 ];
 
 function Footer() {
+  const path = usePathname();
+
+  const showOnRegister = () => {
+    if (path === "/registro" || path === "/login") return "hidden";
+  };
   return (
-    <footer className="bg-secondary py-6">
+    <footer className={`bg-secondary py-6 ${showOnRegister()}`}>
       <div className="flex flex-col gap-6">
         <div className="flex justify-evenly items-center max-sm:flex-col gap-4">
           <div>
