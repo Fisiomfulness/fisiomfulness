@@ -27,7 +27,8 @@ function RegistroUsuario() {
 
     if (Object.values(draft).every((value) => value === false)) {
       setIsSubmit(true);
-      console.log("Submit");
+      if (pass !== repitPass) {
+      }
     } else {
       setIsSubmit(false);
     }
@@ -65,6 +66,7 @@ function RegistroUsuario() {
           className="my-8"
           isInvalid={isInvalid.repitPass}
         />
+
         {isSubmit ? <p className="text-green-600">Perfil creado</p> : <></>}
         <CustomButton type="submit">Crear perfil</CustomButton>
       </div>

@@ -11,7 +11,7 @@ const CustomInput = forwardRef((props, ref) => {
   const defaultClassNames = {
     label: cn("m-0 font-normal text-base !text-inherit"),
     input: cn(
-      "placeholder:!not-italic placeholder:text-gray-500 text-base flex-1",
+      "placeholder:!not-italic placeholder:text-gray-500 text-base flex-1"
     ),
     inputWrapper: cn("bg-zinc-200/70 border-1 border-gray-500/70 rounded-md"),
     innerWrapper: cn("justify-between"),

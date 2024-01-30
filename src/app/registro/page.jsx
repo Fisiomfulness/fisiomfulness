@@ -1,10 +1,17 @@
 "use client";
 import React, { useState } from "react";
 import FisiumLogo from "../../assets/Logo.svg";
-import FisiumLogoBackground from "../../assets/LogoSimple.svg";
 import Link from "next/link";
 import Image from "next/image";
-import { RadioGroup, Radio, Card, CardBody } from "@nextui-org/react";
+import {
+  RadioGroup,
+  Radio,
+  Card,
+  CardBody,
+  Checkbox,
+  CheckboxGroup,
+  cn,
+} from "@nextui-org/react";
 import RegistroUsuario from "@/components/Registro/RegistroUsuario";
 import RegistroProfesional from "@/components/Registro/RegistroProfesional";
 
@@ -13,12 +20,12 @@ const page = () => {
 
   return (
     <div className="flex justify-center items-center bg-[#68BCE3] w-full static">
-      <Card className="flex items-center h-auto w-4/5 md:w-[928px] min-h-[512px] h-auto">
+      <Card className="flex items-center h-auto w-full min-[440px]:w-4/5 md:w-[1028px] min-h-[512px] h-auto">
         <CardBody className="flex md:flex-row justify-between items-center w-full md:w-4/5">
-          <div className="flex flex-col">
+          <div className="flex flex-col justify-center items-center">
             <Link href="/" className="pb-16">
               <Image
-                width={240}
+                width={220}
                 src={FisiumLogo}
                 alt="Logo Fisiom fulness"
                 priority
@@ -34,6 +41,26 @@ const page = () => {
                 <Radio value="profesional">Profesional</Radio>
               </RadioGroup>
             </div>
+            {selected === "profesional" && (
+              <div className="p-8">
+                <label className="text-xs">
+                  <input type="checkbox" /> Acepto los{" "}
+                  <a className="text-primary"> términos y condiciones </a> del
+                  servicio de fisiom fulness. Declaro haber leído y entiendo la
+                  política de privacidad
+                </label>
+                <br />
+                <input type="checkbox" />
+                <label className="text-xs">
+                  {" "}
+                  Doy mi consentimiento y acepto recibir información sobre los{" "}
+                  <a className="text-primary">
+                    servicios y novedades de fisiom fulness . Qué significa
+                    esto?
+                  </a>
+                </label>
+              </div>
+            )}
           </div>
           {selected === "usuario" ? (
             <RegistroUsuario />
