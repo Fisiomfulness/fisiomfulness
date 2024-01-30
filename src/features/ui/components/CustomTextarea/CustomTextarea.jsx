@@ -1,26 +1,28 @@
-"use client";
-
-import { Textarea, forwardRef } from "@nextui-org/react";
+import { Textarea } from "@nextui-org/react";
 import { cn, mergeKeepValues } from "../../utils";
 
-const CustomTextarea = forwardRef((props, ref) => {
+const CustomTextarea = (props) => {
   const { classNames, ...otherProps } = props;
 
   const errorMessage = otherProps.isInvalid ? "Requerido" : "";
+
+  const variant = otherProps.variant === "flat" ? "flat" : "bordered";
 
   const defaultClassNames = {
     label: cn("m-0 font-normal text-base !text-inherit"),
     input: cn(
       "placeholder:!not-italic placeholder:text-gray-500 text-base flex-1",
     ),
-    inputWrapper: cn("bg-zinc-200/70 border-1 border-gray-500/70 rounded-md"),
+
+    inputWrapper: cn(
+      "!bg-zinc-200 border-gray-400 rounded-md whitespace-nowrap",
+    ),
     innerWrapper: cn("justify-between"),
   };
 
   return (
     <Textarea
-      ref={ref}
-      variant="bordered"
+      variant={variant}
       labelPlacement="outside"
       placeholder=" "
       classNames={mergeKeepValues(defaultClassNames, classNames)}
@@ -28,8 +30,6 @@ const CustomTextarea = forwardRef((props, ref) => {
       {...otherProps}
     />
   );
-});
-
-CustomTextarea.displayName = "CustomTextarea";
+};
 
 export default CustomTextarea;

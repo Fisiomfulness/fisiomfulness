@@ -4,7 +4,7 @@ const { nextui } = require("@nextui-org/react");
 module.exports = {
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx,html,css}",
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
@@ -24,6 +24,7 @@ module.exports = {
         "pale-blue-opacity": "rgb(242, 248, 250, 0.5)",
         white: "#FAFAFA",
         black: "#0D0D0D",
+        
       },
       animation: {
         "reverse-spin": "reverse-spin 1s linear infinite",

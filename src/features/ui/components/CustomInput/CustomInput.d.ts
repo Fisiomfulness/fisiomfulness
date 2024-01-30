@@ -1,5 +1,10 @@
-import { InputProps, forwardRef } from "@nextui-org/react";
+import { InputProps } from "@nextui-org/react";
+import { FC } from "react";
 
-const CustomInput = forwardRef<"input", InputProps>();
+interface Props extends Omit<InputProps, "color" | "variant"> {
+  variant?: "flat" | "bordered";
+}
+
+const CustomInput: FC<Props>;
 
 export default CustomInput;

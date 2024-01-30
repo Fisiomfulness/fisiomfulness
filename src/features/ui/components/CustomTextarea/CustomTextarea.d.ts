@@ -1,5 +1,10 @@
-import { TextAreaProps, forwardRef } from "@nextui-org/react";
+import { TextAreaProps } from "@nextui-org/react";
+import { FC } from "react";
 
-const CustomTextarea = forwardRef<"textarea", TextAreaProps>();
+interface Props extends Omit<TextAreaProps, "color" | "variant"> {
+  variant?: "flat" | "bordered";
+}
+
+const CustomTextarea: FC<Props>;
 
 export default CustomTextarea;

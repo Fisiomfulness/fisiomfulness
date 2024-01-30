@@ -1,15 +1,8 @@
 "use client";
 
-import { CustomButton, CustomInput, cn } from "@/features/ui";
+import { CustomButton, CustomInput, CustomModal, cn } from "@/features/ui";
 
-import {
-  Modal,
-  ModalContent,
-  RadioGroup,
-  Radio,
-  ModalBody,
-  ModalFooter,
-} from "@nextui-org/react";
+import { RadioGroup, Radio } from "@nextui-org/react";
 import TablaServicios from "./TablaServicios";
 import { useEffect, useState } from "react";
 
@@ -116,35 +109,29 @@ function Group({ label, values }) {
 
 function FirstModal({ onClose }) {
   return (
-    <div className="overflow-x-auto">
+    <>
       <p className="border-b border-primary w-fit mb-4 text-lg font-semibold">
         Elige tu método de pago
       </p>
-      <div className="flex flex-row gap-8">
-        <div>
-          <div className="flex flex-col gap-6">
-            <Group label="Método de pago" values={metodosDePago} />
-            <Group label="Otras formas de pago" values={formaDePago} />
-          </div>
+      <div className="flex flex-row gap-6">
+        <div className="flex flex-col gap-6">
+          <Group label="Método de pago" values={metodosDePago} />
+          <Group label="Otras formas de pago" values={formaDePago} />
         </div>
-        <div>
-          <div className="flex flex-col gap-4 w-72">
-            <TablaPagar />
-            <CustomInput
-              label="Cupon de descuento"
-              placeholder="Ingresa el codigo de tu cupon"
-            />
-            <CustomButton color="primary" onPress={onClose}>
-              Pagar
-            </CustomButton>
-          </div>
+        <div className="flex flex-col gap-4 w-72">
+          <TablaPagar />
+          <CustomInput
+            label="Cupon de descuento"
+            placeholder="Ingresa el codigo de tu cupon"
+          />
+          <CustomButton onPress={onClose}>Pagar</CustomButton>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
-function SecondModal({ onOpenChange, onCheck }) {
+function SecondModal({ onOpenChange, onCheck, onBack }) {
   const [isSubmit, setIsSubmit] = useState(false);
   const [isInvalid, setIsInvalid] = useState({
     titular: false,
@@ -156,7 +143,7 @@ function SecondModal({ onOpenChange, onCheck }) {
   useEffect(() => {
     if (isSubmit) {
       onCheck();
-      onOpenChange("third");
+      onOpenChange();
     }
   }, [isSubmit, onOpenChange, onCheck]);
 
@@ -182,61 +169,56 @@ function SecondModal({ onOpenChange, onCheck }) {
   };
 
   return (
-    <div className="overflow-x-auto">
-      <p
-        className="mb-4 cursor-pointer w-fit"
-        onClick={() => onOpenChange("first")}
-      >
-        <IoIosArrowBack className="inline text-primary w-5 h-5" /> Volver a
-        elegir tu método de pago
+    <>
+      <p className="mb-3 cursor-pointer w-fit" onClick={() => onBack()}>
+        <IoIosArrowBack className="-ml-1.5 inline text-primary w-5 h-5" />{" "}
+        Volver a elegir tu método de pago
       </p>
-      <p className="border-b border-primary w-fit mb-4 text-lg font-semibold">
+      <p className="border-b border-primary w-fit text-lg font-semibold">
         Ingresá tus datos
       </p>
-      <form onSubmit={handleSubmit} className="flex justify-center">
-        <div className="flex flex-col gap-6 pt-4 w-80">
+      <form onSubmit={handleSubmit} className="pt-4 w-80 flex flex-col gap-2">
+        <CustomInput
+          name="titular"
+          defaultValue="***** *****"
+          label="Titular de la tarjeta"
+          isInvalid={isInvalid.titular}
+        />
+        <CustomInput
+          name="tarjeta"
+          defaultValue="**** **** **** ****"
+          isInvalid={isInvalid.tarjeta}
+          label="Número de tarjeta"
+        />
+        <div className="flex flex-row justify-between">
           <CustomInput
-            name="titular"
-            defaultValue="***** *****"
-            label="Titular de la tarjeta"
-            isInvalid={isInvalid.titular}
+            name="vencimiento"
+            defaultValue="**/**"
+            isInvalid={isInvalid.vencimiento}
+            label="Vencimiento"
+            classNames={{
+              base: cn("w-32"),
+              label: cn("m-0 font-normal text-base !text-inherit"),
+              input: cn("!w-[100px]"),
+            }}
           />
           <CustomInput
-            name="tarjeta"
-            defaultValue="**** **** **** ****"
-            isInvalid={isInvalid.tarjeta}
-            label="Número de tarjeta"
+            name="ccv"
+            defaultValue="***"
+            isInvalid={isInvalid.ccv}
+            label="ccv"
+            classNames={{
+              base: cn("w-32"),
+              label: cn("m-0 font-normal text-base !text-inherit"),
+              input: cn("!w-[100px]"),
+            }}
           />
-          <div className="flex flex-row justify-between">
-            <CustomInput
-              name="vencimiento"
-              defaultValue="**/**"
-              isInvalid={isInvalid.vencimiento}
-              label="Vencimiento"
-              classNames={{
-                base: cn("w-32"),
-                label: cn("m-0 font-normal text-base !text-inherit"),
-                input: cn("!w-[100px]"),
-              }}
-            />
-            <CustomInput
-              name="ccv"
-              defaultValue="***"
-              isInvalid={isInvalid.ccv}
-              label="ccv"
-              classNames={{
-                base: cn("w-32"),
-                label: cn("m-0 font-normal text-base !text-inherit"),
-                input: cn("!w-[100px]"),
-              }}
-            />
-          </div>
-          <CustomButton color="primary" type="submit">
-            Pagar
-          </CustomButton>
         </div>
+        <CustomButton className="mt-4" type="submit">
+          Pagar
+        </CustomButton>
       </form>
-    </div>
+    </>
   );
 }
 
@@ -248,7 +230,9 @@ const defaultIconMapping = {
   ),
 };
 
-function ThirdModal({ onBack, onClose, status = "loading" }) {
+function ThirdModal({ onBack, onClose, status }) {
+  status ||= "success";
+
   const content = {
     loading: (
       <p>
@@ -269,40 +253,29 @@ function ThirdModal({ onBack, onClose, status = "loading" }) {
       onClose();
       return;
     }
-
     onBack();
   };
 
   return (
-    <div className="w-56 h-72 flex flex-col">
-      <ModalBody className="flex justify-center gap-0 items-center my-16 p-0">
+    <CustomModal.SmallContent>
+      <CustomModal.Body>
         {defaultIconMapping[status]}
         {content[status]}
-      </ModalBody>
-      <ModalFooter className="flex flex-col p-0">
+      </CustomModal.Body>
+      <CustomModal.Footer>
         {status !== "loading" && (
-          <CustomButton color="primary" onPress={onPress}>
-            Volver
-          </CustomButton>
+          <CustomButton onPress={onPress}>Volver</CustomButton>
         )}
-      </ModalFooter>
-    </div>
+      </CustomModal.Footer>
+    </CustomModal.SmallContent>
   );
 }
 
-function ModalContainer({ children, className, ...otherProps }) {
-  return (
-    <Modal
-      placement="center"
-      className={cn("max-w-fit !mx-2", className)}
-      {...otherProps}
-    >
-      <ModalContent className="rounded-md p-8 overflow-hidden">
-        {children}
-      </ModalContent>
-    </Modal>
-  );
-}
+const Step = Object.freeze({
+  first: 0,
+  second: 1,
+  third: 2,
+});
 
 function ModalBase() {
   const [status, setStatus] = useState("");
@@ -318,57 +291,42 @@ function ModalBase() {
     return () => clearTimeout(timeout);
   }, [status]);
 
-  const [step, setStep] = useState({
-    first: false,
-    second: false,
-    third: false,
-  });
-
-  const onOpenChange = (_step) => {
-    const draft = {
-      first: false,
-      second: false,
-      third: false,
-      [_step]: step[_step] ? false : true,
-    };
-
-    setStep(draft);
-  };
+  const [step, setStep] = useState(-1);
 
   return (
     <>
-      <CustomButton color="primary" onPress={() => onOpenChange("first")}>
+      <CustomButton onPress={() => setStep(Step.first)}>
         Asigna tu metodo de pago
       </CustomButton>
-
-      <ModalContainer
-        isOpen={step.first}
-        onOpenChange={() => onOpenChange("first")}
+      <CustomModal
+        isOpen={step === Step.first}
+        onOpenChange={() => setStep(-1)}
       >
-        <FirstModal onClose={() => onOpenChange("second")} />
-      </ModalContainer>
-      <ModalContainer
-        isOpen={step.second}
-        onOpenChange={() => onOpenChange("second")}
+        <FirstModal onClose={() => setStep(Step.second)} />
+      </CustomModal>
+      <CustomModal
+        isOpen={step === Step.second}
+        onOpenChange={() => setStep(-1)}
       >
         <SecondModal
-          onOpenChange={onOpenChange}
+          onOpenChange={() => setStep(Step.third)}
+          onBack={() => setStep(Step.first)}
           onCheck={() => setStatus("loading")}
         />
-      </ModalContainer>
-      <ModalContainer
-        isOpen={step.third}
+      </CustomModal>
+      <CustomModal
+        isOpen={step === Step.third}
         className={"min-w-0"}
-        onOpenChange={() => onOpenChange("third")}
+        onOpenChange={() => setStep(-1)}
         hideCloseButton
         isDismissable={false}
       >
         <ThirdModal
           status={status}
-          onBack={() => onOpenChange("second")}
-          onClose={() => onOpenChange("third")}
+          onBack={() => setStep(Step.second)}
+          onClose={() => setStep(-1)}
         />
-      </ModalContainer>
+      </CustomModal>
     </>
   );
 }

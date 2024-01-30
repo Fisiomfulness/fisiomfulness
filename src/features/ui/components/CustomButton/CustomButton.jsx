@@ -1,14 +1,11 @@
-"use client";
-
-import { Button, forwardRef } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 import { cn } from "../../utils";
 
-const CustomButton = forwardRef((props, ref) => {
+const CustomButton = (props) => {
   const { children, className, ...otherProps } = props;
 
   return (
     <Button
-      ref={ref}
       color="primary"
       className={cn(
         "h-auto py-2.5",
@@ -20,8 +17,6 @@ const CustomButton = forwardRef((props, ref) => {
       {children}
     </Button>
   );
-});
-
-CustomButton.displayName = "CustomButton";
+};
 
 export default CustomButton;
