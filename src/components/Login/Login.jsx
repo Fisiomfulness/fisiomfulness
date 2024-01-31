@@ -5,6 +5,7 @@ import { Group } from "../Group";
 import Link from "next/link";
 import "./Login.css";
 
+
 export const Login = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -55,9 +56,11 @@ export const Login = () => {
                     <span className="[font-family:'Raleway-Italic',Helvetica] italic">
                       Contraseña{" "}
                     </span>
-                    <span className="[font-family:'Raleway-BoldItalic',Helvetica] font-bold italic relative left-1">
+                    <Link href="/recupero" className="[font-family:'Raleway-BoldItalic',Helvetica] font-bold italic relative left-1">
                       olvidada ?
-                    </span>
+                    </Link>
+
+            
                   </p>
                   <div className="relative w-[57px] h-[22px]">
                     <div className="relative [font-family:'Raleway-Regular',Helvetica] font-normal text-[#ff6060] text-[12px] tracking-[0] leading-[normal] whitespace-nowrap hidden">
