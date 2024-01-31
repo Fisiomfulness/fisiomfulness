@@ -1,5 +1,5 @@
 import { CustomButton } from "@/features/ui";
-import DocTabs from "./DocTabs";
+import { DocTabs } from "../components";
 
 const codeRender = `// colors
 <div>
@@ -73,7 +73,7 @@ export default function DocCustomButton() {
     <>
       <p className="text-lg font-bold">Custom Button</p>
       <p>
-        Aceptas las mismas props del componente Button de NextUI. Consultar{" "}
+        Acepta las mismas props del componente Button de NextUI. Consultar{" "}
         <a
           href="https://nextui.org/docs/components/button#api"
           rel="noreferrer noopener"

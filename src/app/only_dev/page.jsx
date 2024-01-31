@@ -1,4 +1,4 @@
-import * as DocComponents from "@/features/docs/components";
+import * as DocContents from "@/features/docs/contents";
 import * as DocUtils from "@/features/docs/utils";
 
 import { cn } from "@/features/ui";
@@ -11,16 +11,14 @@ function Box({ className, children, ...props }) {
   );
 }
 
-const renderDocComponents = Object.keys(DocComponents).map(
-  (component, index) => {
-    const Component = DocComponents[component];
-    return (
-      <Box key={index} className="flex flex-col gap-2">
-        <Component />
-      </Box>
-    );
-  },
-);
+const renderDocContents = Object.keys(DocContents).map((component, index) => {
+  const Component = DocContents[component];
+  return (
+    <Box key={index} className="flex flex-col gap-2">
+      <Component />
+    </Box>
+  );
+});
 
 const renderDocUtils = Object.keys(DocUtils).map((component, index) => {
   const Component = DocUtils[component];
@@ -45,7 +43,7 @@ export default function OnlyDevelopmentPage() {
             Componentes Reutilizables
           </p>
           <div className="flex flex-col divide-y divide-primary-700">
-            {renderDocComponents}
+            {renderDocContents}
           </div>
         </div>
         <div className="flex-1 min-w-[280px] max-w-lg">

@@ -1,23 +1,22 @@
-import { CustomTextarea } from "@/features/ui";
-import DocCode from "./DocCode";
-import DocTabs from "./DocTabs";
+import { CustomInput } from "@/features/ui";
+import { DocTabs, DocCode } from "../components";
 
 const codeRender = `{["flat", "bordered"].map((variant) => (
-  <CustomTextarea
+  <CustomInput
     variant={variant}
     key={variant}
     placeholder={variant}
   />
 ))}
 
-<CustomTextarea
+<CustomInput
   label="Con placeholder"
   placeholder="placeholder ..."
   isInvalid
   isRequired
 />
 
-<CustomTextarea
+<CustomInput
   label="Sin placeholder"
   placeholder=""
   isInvalid
@@ -35,7 +34,7 @@ const previewRender = (
       ].join(" ")}
     >
       {["flat", "bordered"].map((variant) => (
-        <CustomTextarea variant={variant} key={variant} placeholder={variant} />
+        <CustomInput variant={variant} key={variant} placeholder={variant} />
       ))}
     </div>
     <div
@@ -44,13 +43,13 @@ const previewRender = (
         "gap-1 max-w-[530px] pb-2",
       ].join(" ")}
     >
-      <CustomTextarea
+      <CustomInput
         label="Con placeholder"
         placeholder="placeholder..."
         isInvalid
         isRequired
       />
-      <CustomTextarea
+      <CustomInput
         label="Sin placeholder"
         placeholder=""
         isInvalid
@@ -60,21 +59,21 @@ const previewRender = (
   </div>
 );
 
-export default function DocCustomTextarea() {
+export default function DocCustomInput() {
   return (
     <>
-      <p className="text-lg font-bold">Custom Textarea</p>
+      <p className="text-lg font-bold">Custom Input</p>
       <p>
-        Aceptas las mismas props del componente Textarea de NextUI, excepto{" "}
+        Acepta las mismas props del componente Input de NextUI, excepto{" "}
         <DocCode>color</DocCode> y solo accepta las variantes{" "}
         <DocCode>flat</DocCode> y <DocCode>bordered</DocCode>. Consultar{" "}
         <a
-          href="https://nextui.org/docs/components/textarea#api"
+          href="https://nextui.org/docs/components/input#api"
           rel="noreferrer noopener"
           target="_blank"
           className="text-primary-700 font-bold"
         >
-          Textarea | NextUI
+          Input | NextUI
         </a>
         .
       </p>

@@ -1,8 +1,6 @@
-import DocSyntax from "../components/DocSyntax";
 import { cn } from "@/features/ui";
 import { cx } from "class-variance-authority";
-import DocCode from "../components/DocCode";
-import DocTabs from "../components/DocTabs";
+import { DocCode, DocSyntax, DocTabs } from "../components";
 
 const codeString = `import { cn } from "@/features/ui";
 
@@ -55,34 +53,32 @@ const previewRender = (
   </div>
 );
 
-export default function Cn() {
+export default function DocCn() {
   return (
     <>
-      <div>
-        <p className="text-lg font-bold">cn</p>
-        <p>
-          Usa{" "}
-          <a
-            href="https://github.com/lukeed/clsx#usage"
-            rel="noreferrer noopener"
-            target="_blank"
-            className="text-primary-700 font-bold"
-          >
-            clsx
-          </a>{" "}
-          y{" "}
-          <a
-            href="https://github.com/dcastil/tailwind-merge#tailwind-merge"
-            rel="noreferrer noopener"
-            target="_blank"
-            className="text-primary-700 font-bold"
-          >
-            twMerge
-          </a>{" "}
-          para fusionar de manera eficiente las clases CSS de Tailwind en JS sin
-          conflictos de estilo.
-        </p>
-      </div>
+      <p className="text-lg font-bold">cn</p>
+      <p>
+        Usa{" "}
+        <a
+          href="https://github.com/lukeed/clsx#usage"
+          rel="noreferrer noopener"
+          target="_blank"
+          className="text-primary-700 font-bold"
+        >
+          clsx
+        </a>{" "}
+        y{" "}
+        <a
+          href="https://github.com/dcastil/tailwind-merge#tailwind-merge"
+          rel="noreferrer noopener"
+          target="_blank"
+          className="text-primary-700 font-bold"
+        >
+          twMerge
+        </a>{" "}
+        para fusionar de manera eficiente las clases CSS de Tailwind en JS sin
+        conflictos de estilo.
+      </p>
       <DocSyntax>{codeString}</DocSyntax>
       <DocTabs previewRender={previewRender} codeRender={codeRender} />
     </>
