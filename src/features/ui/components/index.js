@@ -4,3 +4,5 @@ export * from "./CustomTextarea";
 export * from "./CustomButton";
 export * from "./CustomModal";
 export * from "./CustomLogo";
+
+export { default as CustomOverlay } from "./CustomOverlay";

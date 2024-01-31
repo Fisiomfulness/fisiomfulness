@@ -1,103 +1,91 @@
 "use client";
 
-import React from "react";
-import { Group } from "../Group";
+import { useState } from "react";
 import Link from "next/link";
-import "./Login.css";
+import {
+  CustomButton,
+  CustomInput,
+  CustomLogo,
+  CustomOverlay,
+  cn,
+} from "@/features/ui";
 
+// NOTE: componente temporal hasta mejorar los estilos en
+// las validaciones de CustomInput
+function CustomInputValidator(props) {
+  return (
+    <CustomInput
+      variant="flat"
+      classNames={{
+        base: "!h-[4.5rem]",
+        inputWrapper: cn("!mb-6", props.isInvalid && "!border-1 border-danger"),
+        helperWrapper: "-top-6",
+        errorMessage: "text-sm",
+      }}
+      {...props}
+    />
+  );
+}
 
 export const Login = () => {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
-    <div className="login bg-[#68bce3] flex flex-row justify-center w-screen">
-      <div className="container relative bg-[#68bce3] flex justify-center items-center">
-        <div className="form-container relative flex justify-center items-center ">
-          <div className="formulario relative bg-[#ffffff] flex items-center justify-between">
-            <Group className="logo-container" />
+    <CustomOverlay
+      className={[
+        "px-4 w-full bg-primary-400",
+        "flex justify-center items-center",
+      ].join(" ")}
+    >
+      <img
+        className="absolute bottom-0 left-0 h-1/2 max-sm:w-2/3 max-sm:h-auto"
+        alt="logo_overlay"
+        src="/logo_overlay.png"
+      />
+      <div
+        className={[
+          "max-w-3xl w-full rounded-md bg-white max-sm:px-4 py-20",
+          "flex flex-row max-sm:flex-col max-sm:gap-8 items-center justify-evenly",
+        ].join(" ")}
+      >
+        <CustomLogo width="220" color="dark" />
 
-            <div className="input-container relative w-[329px] h-[232px] ">
-              <div className="relative w-[327px] ">
-                <div className="input-content relative w-[327px] ">
-                  <div className="relative w-[325px] h-[32px] ">
-                    <input
-                      type="email"
-                      alt="Rectangle"
-                      className="relative w-[325px] h-[32px]  bg-[url(https://c.animaapp.com/lrtxPsMD/img/rectangle-9.svg)] bg-[100%_100%] z-[50] focus:border-gray-900"
-                      placeholder="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      style={{ paddingLeft: "10px" }}
-                    />
-                  </div>
+        <div className="flex flex-col gap-2 max-w-xs w-full z-10">
+          <CustomInputValidator
+            isInvalid={email.length === 0} // TODO: mejorar la condicion
+            type="email"
+            placeholder="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <CustomInputValidator
+            isInvalid={password.length === 0} // TODO: mejorar la condicion
+            type="password"
+            placeholder="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-                  <div className="relative w-[325px] h-[32px]  bg-[url(/rectangle-8.svg)] bg-[100%_100%]">
-                    <input
-                      type="password"
-                      alt="Rectangle"
-                      className="relative w-[325px] h-[32px] bg-[url(https://c.animaapp.com/lrtxPsMD/img/rectangle-9.svg)] bg-[100%_100%] z-[50] focus:border-gray-900"
-                      placeholder="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      style={{ paddingLeft: "10px", width: "100%" }}
-                    />
-                  </div>
+          <CustomButton className="bg-primary-400 mt-2" as={Link} href="/">
+            LOGIN
+          </CustomButton>
+          <Link href="/recupero" className="w-full italic mt-1">
+            Contraseña <strong>olvidada ?</strong>
+          </Link>
 
-                  <Link
-                    href="/"
-                    className="relative w-[323px] h-[37px]  bg-[#68bce3] flex items-center top-4"
-                  >
-                    <button className="relative [font-family:'Raleway-Bold',Helvetica] font-bold text-[#ffffff] text-[12px] tracking-[0] leading-[normal] whitespace-nowrap items-center text-center w-full flex justify-center">
-                      LOGIN
-                    </button>
-                  </Link>
-                  <p className="relative  [font-family:'Raleway-Regular',Helvetica] font-normal text-[#000000] text-[9px] tracking-[0] leading-[normal] flex justify-start text-left w-full">
-                    <span className="[font-family:'Raleway-Italic',Helvetica] italic">
-                      Contraseña{" "}
-                    </span>
-                    <Link href="/recupero" className="[font-family:'Raleway-BoldItalic',Helvetica] font-bold italic relative left-1">
-                      olvidada ?
-                    </Link>
-
-            
-                  </p>
-                  <div className="relative w-[57px] h-[22px]">
-                    <div className="relative [font-family:'Raleway-Regular',Helvetica] font-normal text-[#ff6060] text-[12px] tracking-[0] leading-[normal] whitespace-nowrap hidden">
-                      {/* Required queda pendiente hasta definir funcionalidad */}
-                      Required
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="text relative flex items-center justify-between max-w-[180px] w-full">
-                <div className="relative  [font-family:'Raleway-Regular',Helvetica] font-normal text-[#000000] text-[10px] tracking-[0] leading-[normal] whitespace-nowrap">
-                  No tiene cuenta?
-                </div>
-                <div className="relative w-[93px] h-[25px] bg-[#68bce3] rounded-[3px] flex items-center">
-                  <Link
-                    href="/registro"
-                    className="relative [font-family:'Raleway-Bold',Helvetica] font-bold text-[#ffffff] text-[10px] tracking-[0] leading-[normal] whitespace-nowrap items-center text-center w-full flex justify-center"
-                  >
-                    Registrarse
-                  </Link>
-                </div>
-              </div>
-            </div>
+          <div className="flex flex-row justify-center items-center gap-4 mt-8">
+            <p>No tiene cuenta?</p>
+            <CustomButton
+              className="bg-primary-400 min-w-fit !w-fit py-2"
+              as={Link}
+              href="/registro"
+            >
+              Registrarse
+            </CustomButton>
           </div>
         </div>
-        <img
-          className="logo-fisiom absolute object-cover bottom-0 left-0"
-          alt="Logo FISIOMFULNESS f"
-          src="https://c.animaapp.com/lrtxPsMD/img/logo-fisiomfulness-f-2.png"
-        />
       </div>
-    </div>
+    </CustomOverlay>
   );
 };
-
-
-
-
-
