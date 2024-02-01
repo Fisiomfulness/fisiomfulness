@@ -20,7 +20,6 @@ function CustomInputValidator(props) {
         base: "!h-[4.5rem]",
         inputWrapper: cn("!mb-6", props.isInvalid && "!border-1 border-danger"),
         helperWrapper: "-top-6",
-        errorMessage: "text-sm",
       }}
       {...props}
     />

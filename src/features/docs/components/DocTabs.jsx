@@ -1,16 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import DocPreview from "./DocPreview";
-import DocSyntax from "./DocSyntax";
+import { DocPreview, DocSyntax } from ".";
 
 const Step = Object.freeze({
-  first: 0,
-  second: 1,
+  Preview: 0,
+  Code: 1,
 });
 
 export default function DocTabs({ previewRender, codeRender }) {
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(Step.Preview);
 
   return (
     <div>
@@ -29,8 +28,8 @@ export default function DocTabs({ previewRender, codeRender }) {
           </li>
         ))}
       </ul>
-      {step === Step.first && <DocPreview>{previewRender}</DocPreview>}
-      {step === Step.second && <DocSyntax>{codeRender}</DocSyntax>}
+      {step === Step.Preview && <DocPreview>{previewRender}</DocPreview>}
+      {step === Step.Code && <DocSyntax>{codeRender}</DocSyntax>}
     </div>
   );
 }

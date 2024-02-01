@@ -4,19 +4,19 @@
 
 @layer base {
   h1 {
-    @apply text-4xl leading-none font-extrabold mb-3;
+    @apply mb-3 font-extrabold text-4xl leading-none;
   }
 
   h2 {
-    @apply text-2xl leading-none font-bold mb-4;
+    @apply mb-4 font-bold text-2xl leading-none;
   }
 
   h3 {
-    @apply text-xl leading-6 font-semibold mb-2;
+    @apply mb-2 font-semibold text-xl leading-6;
   }
 
   h4 {
-    @apply text-base leading-6 font-semibold mb-2;
+    @apply mb-2 font-semibold text-base leading-6;
   }
 
   ::-webkit-scrollbar {
@@ -34,7 +34,7 @@
 
   ::-webkit-scrollbar-thumb:hover {
     /* background-color: rgba(167, 167, 177, 1); */
-    background-color: #225f7c;
+    @apply bg-secondary-400;
   }
 
   ::-webkit-scrollbar-track {

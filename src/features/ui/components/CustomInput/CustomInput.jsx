@@ -19,6 +19,7 @@ const CustomInput = (props) => {
       "!bg-zinc-200 border-gray-400 rounded-md whitespace-nowrap",
     ),
     innerWrapper: cn("justify-between"),
+    errorMessage: "text-sm",
   };
 
   return (
