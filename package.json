@@ -29,6 +29,7 @@
     "tailwind-merge": "^2.2.1"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.5.3",
     "@swc-jotai/react-refresh": "^0.1.0",
     "@types/react-big-calendar": "^1.8.8",
     "autoprefixer": "^10.4.17",
