@@ -1,5 +1,3 @@
-"use client";
-
 import TabHome from "@/components/Home/TabHome";
 import { especialidadesMedicas, ciudadesPeru } from "@/components/Home/utils";
 

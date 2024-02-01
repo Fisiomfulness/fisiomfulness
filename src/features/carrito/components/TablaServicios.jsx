@@ -22,11 +22,11 @@ export default function Tabla() {
             <td>
               <p className="font-bold text-lg">Dr. Mario Gómez</p>
               <Chip
-                color="primary"
                 size="sm"
                 radius="full"
+                className="bg-primary-300"
                 classNames={{
-                  content: cn("text-secondary !text-xs px-2"),
+                  content: cn("text-primary-800 !text-xs px-2"),
                 }}
               >
                 especialidad

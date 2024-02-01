@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { MdOutlineCached, MdOutlineCheckCircle } from "react-icons/md";
 import { MdErrorOutline } from "react-icons/md";
 import { IoIosArrowBack } from "react-icons/io";
+import { useStep } from "@custom-react-hooks/all";
 
 function TablaPagar() {
   return (
@@ -272,13 +273,16 @@ function ThirdModal({ onBack, onClose, status }) {
 }
 
 const Step = Object.freeze({
-  first: 0,
-  second: 1,
-  third: 2,
+  // NOTE: https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1008#additional-zero-value-field-names
+  None: 0,
+  ChoosePayment: 1,
+  InputCard: 2,
+  ConfirmPayment: 3,
 });
 
 function ModalBase() {
   const [status, setStatus] = useState("");
+  const { currentStep, goToStep, nextStep, prevStep, reset } = useStep({});
 
   useEffect(() => {
     if (status !== "loading") return;
@@ -291,41 +295,32 @@ function ModalBase() {
     return () => clearTimeout(timeout);
   }, [status]);
 
-  const [step, setStep] = useState(-1);
-
   return (
     <>
-      <CustomButton onPress={() => setStep(Step.first)}>
+      <CustomButton onPress={() => goToStep(Step.ChoosePayment)}>
         Asigna tu metodo de pago
       </CustomButton>
       <CustomModal
-        isOpen={step === Step.first}
-        onOpenChange={() => setStep(-1)}
+        isOpen={currentStep === Step.ChoosePayment}
+        onOpenChange={reset}
       >
-        <FirstModal onClose={() => setStep(Step.second)} />
+        <FirstModal onClose={nextStep} />
       </CustomModal>
-      <CustomModal
-        isOpen={step === Step.second}
-        onOpenChange={() => setStep(-1)}
-      >
+      <CustomModal isOpen={currentStep === Step.InputCard} onOpenChange={reset}>
         <SecondModal
-          onOpenChange={() => setStep(Step.third)}
-          onBack={() => setStep(Step.first)}
+          onOpenChange={nextStep}
+          onBack={prevStep}
           onCheck={() => setStatus("loading")}
         />
       </CustomModal>
       <CustomModal
-        isOpen={step === Step.third}
+        isOpen={currentStep === Step.ConfirmPayment}
         className={"min-w-0"}
-        onOpenChange={() => setStep(-1)}
+        onOpenChange={reset}
         hideCloseButton
         isDismissable={false}
       >
-        <ThirdModal
-          status={status}
-          onBack={() => setStep(Step.second)}
-          onClose={() => setStep(-1)}
-        />
+        <ThirdModal status={status} onBack={prevStep} onClose={reset} />
       </CustomModal>
     </>
   );

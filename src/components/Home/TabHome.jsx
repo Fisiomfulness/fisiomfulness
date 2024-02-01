@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { AiFillHome } from "react-icons/ai";
 import { BiSolidWebcam } from "react-icons/bi";
