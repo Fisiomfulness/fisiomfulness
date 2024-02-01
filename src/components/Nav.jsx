@@ -28,7 +28,7 @@ export default function Nav() {
   };
 
   const showOnRegister = () => {
-    if (path === "/registro" || path === "/login") return "hidden";
+    if (path === "/registro") return "hidden";
   };
 
   const menuItems = [

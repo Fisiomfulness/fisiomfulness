@@ -1,30 +1,46 @@
-import { cn } from "@/features/ui";
+import Link from "next/link";
+import { CustomOverlay } from "@/features/ui";
+
+const links = [
+  {
+    name: "Salud Mental",
+    className: "bg-[url('/servicios_img/salud_mental.jpg')]",
+  },
+  {
+    name: "Salud Física",
+    className: "bg-[url('/servicios_img/salud_fisica.jpg')]",
+  },
+  {
+    name: "Salud Nutricional",
+    className: "bg-[url('/servicios_img/salud_nutricional.jpg')]",
+  },
+];
 
 export default function ServiciosHomePage() {
   return (
-    <div className="grid grid-cols-3 w-full h-[90vh]">
-      {["Mental", "Fisica", "Nutricional"].map((item, index) => (
-        <div
-          key={index}
-          className={cn(
-            "bg-no-repeat bg-cover",
-            item === "Mental" && "bg-[url('/servicios_img/salud_mental.jpg')]",
-            item === "Fisica" && "bg-[url('/servicios_img/salud_fisica.jpg')]",
-            item === "Nutricional" &&
-              "bg-[url('/servicios_img/salud_nutricional.jpg')]"
-          )}
+    <CustomOverlay
+      className={[
+        "grid grid-rows-3 md:grid-cols-3",
+        "md:grid-rows-1 w-full",
+      ].join(" ")}
+    >
+      {links.map((item) => (
+        <Link
+          key={item.name}
+          className={`${item.className} bg-center bg-no-repeat bg-cover`}
+          href={"#"}
         >
           <div
-            className={cn(
+            className={[
               "h-full text-white grid place-content-center",
-              "bg-primary/40 font-bold italic text-center"
-            )}
+              "bg-primary/40 font-bold italic text-center",
+            ].join(" ")}
           >
-            <p className="text-3xl">Salud</p>
-            <p className="text-5xl">{item === "Fisica" ? "Física" : item}</p>
+            <p className="text-3xl">{item.name.split(" ")[0]}</p>
+            <p className="text-5xl">{item.name.split(" ")[1]}</p>
           </div>
-        </div>
+        </Link>
       ))}
-    </div>
+    </CustomOverlay>
   );
 }

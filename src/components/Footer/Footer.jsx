@@ -1,15 +1,18 @@
 "use client";
 
+import { CustomLogo } from "@/features/ui";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AiOutlineInstagram } from "react-icons/ai";
-import { AiOutlineLinkedin } from "react-icons/ai";
-import { AiOutlineFacebook } from "react-icons/ai";
+import {
+  AiOutlineInstagram,
+  AiOutlineLinkedin,
+  AiOutlineFacebook,
+} from "react-icons/ai";
 
 const socialItems = [
-  { logoComponent: AiOutlineFacebook, href: "/" },
-  { logoComponent: AiOutlineInstagram, href: "/" },
-  { logoComponent: AiOutlineLinkedin, href: "/" },
+  { icon: AiOutlineFacebook, href: "/" },
+  { icon: AiOutlineInstagram, href: "/" },
+  { icon: AiOutlineLinkedin, href: "/" },
 ];
 
 const navItems = [
@@ -22,51 +25,39 @@ function Footer() {
   const path = usePathname();
 
   const showOnRegister = () => {
-    if (path === "/registro" || path === "/login") return "hidden";
+    if (path === "/registro") return "hidden";
   };
+
   return (
-    <footer className={`bg-secondary py-6 ${showOnRegister()}`}>
+    <footer className={`text-white bg-secondary py-6 ${showOnRegister()}`}>
       <div className="flex flex-col gap-6">
         <div className="flex justify-evenly items-center max-sm:flex-col gap-4">
-          <div>
-            {/* eslint-disable-next-line */}
-            <img
-              width={200}
-              src="/Logo.png"
-              alt="Logo Fisiom fulness"
-              loading="lazy"
-            />
-            <div className="flex justify-center gap-4 text-white pt-4 max-sm:text-center">
+          <div className="py-2 flex flex-col gap-4">
+            <CustomLogo width={200} />
+            <div className="flex justify-center gap-4">
               {socialItems.map((item, index) => (
                 <Link
                   key={index}
                   href={item.href}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="hover:text-inherit"
                 >
-                  <item.logoComponent className="text-2xl" />
+                  <item.icon className="text-2xl" />
                 </Link>
               ))}
             </div>
           </div>
-          <div className="text-white flex flex-col justify-evenly max-sm:items-center">
+          <div className="flex flex-col gap-1 max-sm:items-center">
             {navItems.map((item) => (
-              <Link
-                key={item.name}
-                className="block hover:text-inherit hover:no-underline"
-                href={item.href}
-              >
+              <Link key={item.name} href={item.href}>
                 {item.name}
               </Link>
             ))}
           </div>
         </div>
-        <div className="text-center">
-          <p className="text-white text-sm">
-            Copyright © {new Date().getFullYear()} FisiomFulness
-          </p>
-        </div>
+        <p className="text-center text-sm">
+          Copyright © {new Date().getFullYear()} FisiomFulness
+        </p>
       </div>
     </footer>
   );

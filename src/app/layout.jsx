@@ -1,5 +1,3 @@
-'use client'
-
 import { Raleway } from "next/font/google";
 import { Providers } from "./providers";
 import Nav from "@/components/Nav";
@@ -15,17 +13,14 @@ const raleway = Raleway({
 });
 
 export default function RootLayout({ children }) {
-  const pathname = usePathname();
-  const isLoginPage = pathname === "/login";
-
   return (
     <html lang="es">
       <body className={raleway.className}>
         <Providers>
           <div className="min-h-screen flex flex-col">
-            {!isLoginPage && <Nav />}
+            <Nav />
             <main className="flex flex-1">{children}</main>
-            {!isLoginPage && <Footer />}
+            <Footer />
           </div>
         </Providers>
       </body>
