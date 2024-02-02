@@ -12,9 +12,14 @@ export const ProductCard = ({ prod }) => {
 
   return (
     <Card isFooterBlurred className="flex w-[243px] h-[299px] rounded-sm ">
-      <CardHeader className="absolute z-10 top-1 flex-col items-start">
+     <CardHeader className="absolute z-10 top-1 flex-col items-start">
         <p className="text-tiny text-white/60 uppercase font-bold">Nuevo</p>
-        <h4 className="text-white font-medium text-2xl">{prod.nombre}</h4>
+        <h4
+          onClick={() => handleOnClick(prod.id)}
+          className="text-white font-medium text-2xl cursor-pointer"
+        >
+          {prod.nombre}
+        </h4>
       </CardHeader>
       <Image
         removeWrapper

@@ -1,6 +1,8 @@
 "use client";
 import { MdOutlineSearch } from "react-icons/md";
 import { useEffect, useState } from "react";
+import { Input } from "@nextui-org/react";
+import { SearchIcon } from "../SearchIcon";
 
 export const SearchProd = ({ prods, setProdFiltrados }) => {
   const [filter, setFilter] = useState({
@@ -23,24 +25,22 @@ export const SearchProd = ({ prods, setProdFiltrados }) => {
   };
 
   return (
-    <div className="flex flex-col sm:flex-row w-full items-center justify-center gap-5">
-      <div className="relative flex items-center text-sm">
-        <input
-          id="nombre"
-          value={filter.nombre}
-          onChange={(e) => handleOnChange(e)}
-          placeholder="Buscar artículo..."
-          className="border-none border-black p-2 bg-gray-200 rounded-sm outline-none w-[200px]"
-        />
-        <button className="absolute right-1">
-          <MdOutlineSearch color="#62CFE4" size="20px" />
-        </button>
-      </div>
+    <div className="flex flex-col sm:flex-row w-full items-center justify-center gap-5 mt-4 mb-4">
+     <Input
+        id="nombre"
+        value={filter.nombre}
+        className="border-none outline-none w-[250px]"
+        onChange={(e) => handleOnChange(e)}
+        placeholder="Buscar artículo..."
+        size="sm"
+        startContent={<SearchIcon size={18} />}
+        type="search"
+      />
       <div className="flex text-sm">
         <select
           value={filter.categoria}
           id="categoria"
-          className="w-[200px] p-2 rounded-sm cursor-pointer outline-none"
+          className="w-[200px] p-3 rounded-sm cursor-pointer outline-none"
           style={{ boxShadow: "0px 2px 2px 0px #00000040" }}
           onChange={(e) => handleOnChange(e)}
           placeholder={filter.categoria}

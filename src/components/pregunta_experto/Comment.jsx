@@ -19,9 +19,9 @@ function Comment({ comment, response, setResponse, comments }) {
   };
 
   return (
-    <div className="w-full flex justify-between bg-[#D8EEF8] h-[230px] mt-5">
-      <div className="flex flex-col justify-center w-full pl-10">
-        <div className="flex items-center mb-2">
+    <div className="w-full flex-row md:flex justify-between bg-[#D8EEF8] h-[300px] md:h-[230px] mt-5">
+      <div className="flex flex-col justify-center mx-6 md:mx-0 md:pl-10">
+        <div className="flex items-center mb-2 mt-6 md:mt-0">
           <RiQuestionLine size={21} className="text-primary" />
           <span className="font-semibold mx-2">Pregunta:</span>
           {comment.question}
@@ -31,7 +31,7 @@ function Comment({ comment, response, setResponse, comments }) {
           <span className="font-semibold mx-2">Respuesta:</span>
           {comment.response}
         </div>
-        <div className="w-[773px] h-[46px] flex items-center bg-[#ffffff] border-1 border-[#C6C6C6] mt-8 py-2 pl-3">
+        <div className="w-full md:w-[773px] h-[46px] flex items-center bg-[#ffffff] border-1 border-[#C6C6C6] mt-8 py-2 pl-3">
           <textarea
             maxLength={88}
             placeholder={"Responder..."}
@@ -46,13 +46,13 @@ function Comment({ comment, response, setResponse, comments }) {
         </div>
       </div>
 
-      <div className="flex flex-col items-center justify-center w-full">
+      <div className="w-full flex flex-col items-center justify-center mt-3 md:mt-0">
         <div
           className="rounded-full w-12 h-12 bg-cover "
           style={{ backgroundImage: `url(${img.src})` }}
         ></div>
         <p className="mt-2 mb-3 text-sm font-semibold">Dr. Mario Gomez</p>
-        <div className="w-full flex flex-col justify-center items-center gap-y-1">
+        <div className="w-full flex gap-x-3 md:flex-col justify-center items-center gap-y-1">
           <button className="w-[91px] bg-primary text-sm text-white rounded-sm">
             Ver perfil
           </button>
