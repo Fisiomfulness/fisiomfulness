@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-restricted-syntax
 "use client";
 import React from "react";
 import Question from "@/components/pregunta_experto/Question";
@@ -35,7 +36,7 @@ function PreguntaExperto() {
         setComments={setComments}
       ></Question>
       {comments.length <= 0 ? (
-        <p className="mt-7">Ninguna pregunta</p>
+        <p className="my-7">Ninguna pregunta</p>
       ) : (
         <div className="w-full mt-12 mb-16 flex flex-col">
           {comments?.map((com) => (

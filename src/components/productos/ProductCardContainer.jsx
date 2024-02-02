@@ -1,14 +1,20 @@
 import { ProductCard } from "./ProductCard";
 
 const ProductCardContainer = ({ prods }) => {
-  return (
-    <div className="flex flex-wrap min-w-full min-h-full gap-4 justify-center pl-5 pr-5">
+return (
+    <>
       {prods.length ? (
-        prods?.map((prod) => <ProductCard key={prod.id} prod={prod} />)
+        <div className="w-full justify-items-center gap-6 px-4 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+          {prods?.map((prod) => (
+            <ProductCard key={prod.id} prod={prod} />
+          ))}
+        </div>
       ) : (
-        <h2>No hemos encontrado resultados.</h2>
+        <div className="flex justify-center items-center mt-4">
+          <h2 className="text-center">No hemos encontrado resultados.</h2>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 
