@@ -1,41 +1,35 @@
-"use client";
-import React from "react";
-import { Button } from "@nextui-org/react";
+import { CustomButton, CustomTextarea } from "@/features/ui";
 
-function Question({
-  question,
-  setQuestion,
-  comments,
-  setComments,
-  num,
-  setNum,
-}) {
-  const handleChange = (e) => {
-    setQuestion(e.target.value);
-  };
+function Question({ comments, setComments }) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const question = e.target.question.value;
+    if (!question) return;
 
-  const handleClick = () => {
-    if (question) {
-      setNum((num += 1));
-      setComments([...comments, { id: num, question: question, response: "" }]);
-      setQuestion("");
-    }
+    const draft = [
+      {
+        id: crypto.randomUUID(),
+        question: question,
+        response: "",
+      },
+    ].concat(comments);
+    setComments(draft);
+
+    e.target.reset();
   };
 
   return (
-    <div className="w-full flex flex-col">
-      <textarea
-        value={question}
-        placeholder={!question ? "Escribe tu pregunta..." : question}
-        onChange={(e) => handleChange(e)}
-        className="h-[162px] bg-[#EEEEEE] border-1 border-[#C6C6C6] resize-none outline-none mt-8 p-4"
-      ></textarea>
-      <div className="w-56 mt-3 ml-auto">
-        <Button className="w-full" color="primary" onClick={handleClick}>
-          Enviar
-        </Button>
-      </div>
-    </div>
+    <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
+      <CustomTextarea
+        id="question"
+        name="question"
+        minRows={5}
+        placeholder="Escribe tu pregunta..."
+      />
+      <CustomButton type="submit" className="max-w-52">
+        Enviar
+      </CustomButton>
+    </form>
   );
 }
 
