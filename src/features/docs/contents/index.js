@@ -4,3 +4,4 @@ export { default as DocCustomTextarea } from "./DocCustomTextarea";
 export { default as DocCustomButton } from "./DocCustomButton";
 export { default as DocCustomModal } from "./DocCustomModal";
 export { default as DocCustomLogo } from "./DocCustomLogo";
+export { default as DocCustomAlert } from "./DocCustomAlert";

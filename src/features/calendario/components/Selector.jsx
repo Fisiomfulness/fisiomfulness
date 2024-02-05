@@ -1,18 +1,17 @@
 "use client";
 
-import { CustomButton, CustomInput, CustomModal, cn } from "@/features/ui";
-
+import {
+  CustomButton,
+  CustomInput,
+  CustomModal,
+  CustomModalBody,
+  CustomModalFooter,
+  CustomModalHeader,
+  CustomAlert,
+  cn,
+} from "@/features/ui";
 import { Select, SelectItem, Link } from "@nextui-org/react";
 import { useState } from "react";
-import { AiOutlineQuestionCircle } from "react-icons/ai";
-import { MdOutlineCheckCircle } from "react-icons/md";
-
-const defaultIconMapping = {
-  success: <MdOutlineCheckCircle className="w-10 h-10 mb-4 text-secondary" />,
-  question: (
-    <AiOutlineQuestionCircle className="w-10 h-10 mb-4 text-secondary" />
-  ),
-};
 
 const Step = Object.freeze({
   first: 0,
@@ -86,34 +85,25 @@ export default function Selector() {
           </CustomButton>
         </div>
       )}
-      <CustomModal
+      <CustomAlert
         isOpen={step === Step.first}
         onOpenChange={() => setStep(-1)}
+        status="question"
+        onAccept={() => setStep(Step.second)}
+        onCancel={() => setStep(-1)}
+        isDismissable
       >
-        <CustomModal.SmallContent>
-          <CustomModal.Body>
-            {defaultIconMapping["question"]}
-            <p className="text-center">{message || "No se ha seleccionado"}</p>
-          </CustomModal.Body>
-          <CustomModal.Footer className="gap-2">
-            <CustomButton onPress={() => setStep(Step.second)}>
-              Aceptar
-            </CustomButton>
-            <CustomButton color="secondary" onPress={() => setStep(-1)}>
-              Cancelar
-            </CustomButton>
-          </CustomModal.Footer>
-        </CustomModal.SmallContent>
-      </CustomModal>
+        <p className="text-center">{message || "No se ha seleccionado"}</p>
+      </CustomAlert>
       <CustomModal
         isOpen={step === Step.second}
         onOpenChange={() => setStep(-1)}
         className="gap-2"
       >
-        <CustomModal.Header className="underline font-bold">
+        <CustomModalHeader className="underline font-bold">
           Iniciar sesión
-        </CustomModal.Header>
-        <CustomModal.Body className="items-start">
+        </CustomModalHeader>
+        <CustomModalBody className="items-start">
           <CustomInput
             autoFocus
             label="Correo electrónico"
@@ -123,15 +113,15 @@ export default function Selector() {
           <Link color="primary" href="#" size="sm" className="px-1 py-2">
             ¿Has olvidado la contraseña?
           </Link>
-        </CustomModal.Body>
-        <CustomModal.Footer className="flex-row gap-2">
+        </CustomModalBody>
+        <CustomModalFooter className="flex-row gap-2">
           <CustomButton color="secondary" onPress={() => setStep(-1)}>
             Cerrar
           </CustomButton>
           <CustomButton color="primary" onPress={() => setStep(-1)}>
             Ingresar
           </CustomButton>
-        </CustomModal.Footer>
+        </CustomModalFooter>
       </CustomModal>
     </div>
   );

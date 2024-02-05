@@ -1,13 +1,17 @@
 "use client";
 
-import { CustomButton, CustomInput, CustomModal, cn } from "@/features/ui";
+import {
+  CustomAlert,
+  CustomButton,
+  CustomInput,
+  CustomModal,
+  cn,
+} from "@/features/ui";
 
 import { RadioGroup, Radio } from "@nextui-org/react";
 import TablaServicios from "./TablaServicios";
 import { useEffect, useState } from "react";
 
-import { MdOutlineCached, MdOutlineCheckCircle } from "react-icons/md";
-import { MdErrorOutline } from "react-icons/md";
 import { IoIosArrowBack } from "react-icons/io";
 import { useStep } from "@custom-react-hooks/all";
 
@@ -223,55 +227,6 @@ function SecondModal({ onOpenChange, onCheck, onBack }) {
   );
 }
 
-const defaultIconMapping = {
-  success: <MdOutlineCheckCircle className="w-10 h-10 text-primary mb-4" />,
-  error: <MdErrorOutline className="w-10 h-10 text-red-500 mb-4" />,
-  loading: (
-    <MdOutlineCached className="w-10 h-10 text-primary mb-4 animate-reverse-spin" />
-  ),
-};
-
-function ThirdModal({ onBack, onClose, status }) {
-  status ||= "success";
-
-  const content = {
-    loading: (
-      <p>
-        Confirmando pago, <span className="font-bold italic">aguarde</span>
-      </p>
-    ),
-    error: (
-      <>
-        <p>Datos inválidos</p>
-        <p>intente nuevamente</p>
-      </>
-    ),
-    success: <p>Pago realizado con exito</p>,
-  };
-
-  const onPress = () => {
-    if (status === "success") {
-      onClose();
-      return;
-    }
-    onBack();
-  };
-
-  return (
-    <CustomModal.SmallContent>
-      <CustomModal.Body>
-        {defaultIconMapping[status]}
-        {content[status]}
-      </CustomModal.Body>
-      <CustomModal.Footer>
-        {status !== "loading" && (
-          <CustomButton onPress={onPress}>Volver</CustomButton>
-        )}
-      </CustomModal.Footer>
-    </CustomModal.SmallContent>
-  );
-}
-
 const Step = Object.freeze({
   // NOTE: https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1008#additional-zero-value-field-names
   None: 0,
@@ -279,6 +234,21 @@ const Step = Object.freeze({
   InputCard: 2,
   ConfirmPayment: 3,
 });
+
+const content = {
+  loading: (
+    <p>
+      Confirmando pago, <span className="font-bold italic">aguarde</span>
+    </p>
+  ),
+  error: (
+    <div className="text-center">
+      <p>Datos inválidos</p>
+      <p>intente nuevamente</p>
+    </div>
+  ),
+  success: <p>Pago realizado con exito</p>,
+};
 
 function ModalBase() {
   const [status, setStatus] = useState("");
@@ -313,15 +283,14 @@ function ModalBase() {
           onCheck={() => setStatus("loading")}
         />
       </CustomModal>
-      <CustomModal
+      <CustomAlert
         isOpen={currentStep === Step.ConfirmPayment}
-        className={"min-w-0"}
         onOpenChange={reset}
-        hideCloseButton
-        isDismissable={false}
+        status={status}
+        onClose={status === "success" ? reset : prevStep}
       >
-        <ThirdModal status={status} onBack={prevStep} onClose={reset} />
-      </CustomModal>
+        {content[status]}
+      </CustomAlert>
     </>
   );
 }
