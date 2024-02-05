@@ -8,7 +8,7 @@ import {
 import { cn } from "../../utils";
 import { CustomModalClient } from "./CustomModalClient";
 
-const _CustomModal = (props) => {
+const CustomModal = (props) => {
   const { children, className, ...otherProps } = props;
 
   const content =
@@ -92,16 +92,10 @@ const CustomModalFooter = (props) => {
   );
 };
 
-const CustomModal = Object.assign(_CustomModal, {
-  SmallContent: CustomModalSmallContent,
-  Header: CustomModalHeader,
-  Body: CustomModalBody,
-  Footer: CustomModalFooter,
-});
-
 export {
   CustomModal,
-  // CustomModalHeader,
-  // CustomModalBody,
-  // CustomModalFooter,
+  CustomModalSmallContent,
+  CustomModalHeader,
+  CustomModalBody,
+  CustomModalFooter,
 };

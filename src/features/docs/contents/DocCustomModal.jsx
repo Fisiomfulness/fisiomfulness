@@ -1,36 +1,43 @@
 "use client";
 
-import { CustomButton, CustomModal } from "@/features/ui";
+import {
+  CustomButton,
+  CustomModal,
+  CustomModalBody,
+  CustomModalFooter,
+  CustomModalHeader,
+  CustomModalSmallContent,
+} from "@/features/ui";
 import { useDisclosure } from "@nextui-org/react";
 import { DocCode, DocTabs } from "../components";
 
 const codeRender = `// Custom Modal
 <CustomButton onPress={onOpen}>Custom Modal</CustomButton>
 <CustomModal isOpen={isOpen} onOpenChange={onOpenChange}>
-  <CustomModal.Header className="bg-red-400">
+  <CustomModalHeader className="bg-red-400">
     Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
     cillum sint consectetur cupidatat.
-  </CustomModal.Header>
-  <CustomModal.Body className="bg-blue-400">
+  </CustomModalHeader>
+  <CustomModalBody className="bg-blue-400">
     Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
     cillum sint consectetur cupidatat.
-  </CustomModal.Body>
-  <CustomModal.Footer className="bg-green-400">
+  </CustomModalBody>
+  <CustomModalFooter className="bg-green-400">
     Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
     cillum sint consectetur cupidatat.
-  </CustomModal.Footer>
+  </CustomModalFooter>
 </CustomModal>
 
 // Small Content
 <CustomButton onPress={onOpen2}>Small Content</CustomButton>
 <CustomModal isOpen={isOpen2} onOpenChange={onOpenChange2}>
-  <CustomModal.SmallContent>
-    <CustomModal.Header className="bg-red-400">Header</CustomModal.Header>
-    <CustomModal.Body className="bg-blue-400">Body</CustomModal.Body>
-    <CustomModal.Footer className="bg-green-400">
+  <CustomModalSmallContent>
+    <CustomModalHeader className="bg-red-400">Header</CustomModalHeader>
+    <CustomModalBody className="bg-blue-400">Body</CustomModalBody>
+    <CustomModalFooter className="bg-green-400">
       Footer
-    </CustomModal.Footer>
-  </CustomModal.SmallContent>
+    </CustomModalFooter>
+  </CustomModalSmallContent>
 </CustomModal>
 `;
 
@@ -46,28 +53,26 @@ const PreviewRender = () => {
     <div className="flex gap-2">
       <CustomButton onPress={onOpen}>Custom Modal</CustomButton>
       <CustomModal isOpen={isOpen} onOpenChange={onOpenChange}>
-        <CustomModal.Header className="bg-red-400">
+        <CustomModalHeader className="bg-red-400">
           Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
           cillum sint consectetur cupidatat.
-        </CustomModal.Header>
-        <CustomModal.Body className="bg-blue-400">
+        </CustomModalHeader>
+        <CustomModalBody className="bg-blue-400">
           Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
           cillum sint consectetur cupidatat.
-        </CustomModal.Body>
-        <CustomModal.Footer className="bg-green-400">
+        </CustomModalBody>
+        <CustomModalFooter className="bg-green-400">
           Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
           cillum sint consectetur cupidatat.
-        </CustomModal.Footer>
+        </CustomModalFooter>
       </CustomModal>
       <CustomButton onPress={onOpen2}>Small Content</CustomButton>
       <CustomModal isOpen={isOpen2} onOpenChange={onOpenChange2}>
-        <CustomModal.SmallContent>
-          <CustomModal.Header className="bg-red-400">Header</CustomModal.Header>
-          <CustomModal.Body className="bg-blue-400">Body</CustomModal.Body>
-          <CustomModal.Footer className="bg-green-400">
-            Footer
-          </CustomModal.Footer>
-        </CustomModal.SmallContent>
+        <CustomModalSmallContent>
+          <CustomModalHeader className="bg-red-400">Header</CustomModalHeader>
+          <CustomModalBody className="bg-blue-400">Body</CustomModalBody>
+          <CustomModalFooter className="bg-green-400">Footer</CustomModalFooter>
+        </CustomModalSmallContent>
       </CustomModal>
     </div>
   );
@@ -76,28 +81,30 @@ const PreviewRender = () => {
 export default function DocCustomModal() {
   return (
     <>
-      <p className="text-lg font-bold">WIP: Custom Modal</p>
+      <p className="text-lg font-bold">Custom Modal</p>
       <div>
         <p>
           Acepta las mismas props del componente Modal de NextUI. La composicion
-          tambien cambia:
+          es la siguiente:
         </p>
-        <p>
-          <DocCode>ModalHeader</DocCode> {"-->"}{" "}
-          <DocCode>CustomModal.Header</DocCode>
-        </p>
-        <p>
-          <DocCode>ModalBody</DocCode> {"-->"}{" "}
-          <DocCode>CustomModal.Body</DocCode>
-        </p>
-        <p>
-          <DocCode>ModalFooter</DocCode> {"-->"}{" "}
-          <DocCode>CustomModal.Footer</DocCode>
-        </p>
+        <div className="py-2">
+          <p>
+            <DocCode>ModalHeader</DocCode> {"-->"}{" "}
+            <DocCode>CustomModalHeader</DocCode>
+          </p>
+          <p>
+            <DocCode>ModalBody</DocCode> {"-->"}{" "}
+            <DocCode>CustomModalBody</DocCode>
+          </p>
+          <p>
+            <DocCode>ModalFooter</DocCode> {"-->"}{" "}
+            <DocCode>CustomModalFooter</DocCode>
+          </p>
+        </div>
         <p>
           Ya no es necesario el uso de <DocCode>ModalContent</DocCode>, en su
           lugar use un <DocCode>div</DocCode>. Si necesita crear una
-          notificacion puede usar <DocCode>CustomModal.SmallContent</DocCode>.
+          notificacion puede usar <DocCode>CustomModalSmallContent</DocCode>.
         </p>
         Consultar{" "}
         <a

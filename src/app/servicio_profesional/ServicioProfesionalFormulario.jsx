@@ -4,11 +4,9 @@ import { useState } from "react";
 import {
   CustomButton,
   CustomInput,
-  CustomModal,
   CustomTextarea,
+  CustomAlert,
 } from "@/features/ui";
-
-import { MdOutlineCheckCircle } from "react-icons/md";
 
 export default function SecondModal() {
   const [isSubmit, setIsSubmit] = useState(false);
@@ -67,19 +65,14 @@ export default function SecondModal() {
           </CustomButton>
         </div>
       </form>
-      <CustomModal isOpen={isSubmit} onOpenChange={() => setIsSubmit(false)}>
-        <CustomModal.SmallContent>
-          <CustomModal.Body>
-            <MdOutlineCheckCircle className="w-10 h-10 text-primary mb-4" />
-            <p>Servicio creado</p>
-          </CustomModal.Body>
-          <CustomModal.Footer>
-            <CustomButton onPress={() => setIsSubmit(false)}>
-              Volver
-            </CustomButton>
-          </CustomModal.Footer>
-        </CustomModal.SmallContent>
-      </CustomModal>
+      <CustomAlert
+        isOpen={isSubmit}
+        onOpenChange={() => setIsSubmit(false)}
+        status="success"
+        onClose={() => setIsSubmit(false)}
+      >
+        <p>Servicio creado</p>
+      </CustomAlert>
     </div>
   );
 }

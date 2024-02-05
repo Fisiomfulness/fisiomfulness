@@ -6,11 +6,16 @@ import {
 } from "@nextui-org/react";
 import { FC, HTMLAttributes } from "react";
 
-const CustomModal: FC<ModalProps> & {
-  SmallContent: FC<HTMLAttributes<HTMLDivElement>>;
-  Header: FC<ModalHeaderProps>;
-  Body: FC<ModalBodyProps>;
-  Footer: FC<ModalFooterProps>;
-};
+const CustomModal: FC<ModalProps>;
+const CustomModalSmallContent: FC<HTMLAttributes<HTMLDivElement>>;
+const CustomModalHeader: FC<ModalHeaderProps>;
+const CustomModalBody: FC<ModalBodyProps>;
+const CustomModalFooter: FC<ModalFooterProps>;
 
-export { CustomModal };
+export {
+  CustomModal,
+  CustomModalSmallContent,
+  CustomModalHeader,
+  CustomModalBody,
+  CustomModalFooter,
+};
