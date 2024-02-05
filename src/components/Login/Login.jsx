@@ -7,24 +7,7 @@ import {
   CustomInput,
   CustomLogo,
   CustomOverlay,
-  cn,
 } from "@/features/ui";
-
-// NOTE: componente temporal hasta mejorar los estilos en
-// las validaciones de CustomInput
-function CustomInputValidator(props) {
-  return (
-    <CustomInput
-      variant="flat"
-      classNames={{
-        base: "!h-[4.5rem]",
-        inputWrapper: cn("!mb-6", props.isInvalid && "!border-1 border-danger"),
-        helperWrapper: "-top-6",
-      }}
-      {...props}
-    />
-  );
-}
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -51,14 +34,18 @@ export const Login = () => {
         <CustomLogo width="220" color="dark" />
 
         <div className="flex flex-col gap-2 max-w-xs w-full z-10">
-          <CustomInputValidator
+          <CustomInput
+            variant="flat"
+            className={email.length > 0 && "pb-7"}
             isInvalid={email.length === 0} // TODO: mejorar la condicion
             type="email"
             placeholder="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <CustomInputValidator
+          <CustomInput
+            variant="flat"
+            className={password.length > 0 && "pb-7"}
             isInvalid={password.length === 0} // TODO: mejorar la condicion
             type="password"
             placeholder="password"
