@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+
 @layer base {
   h1 {
     @apply mb-3 font-extrabold text-4xl leading-none;
