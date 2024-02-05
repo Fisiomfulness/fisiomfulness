@@ -14,7 +14,7 @@ const CustomInput = (props) => {
       "text-base flex-1 !w-auto overflow-hidden",
     inputWrapper: cn(
       _variant === "flat" && "border-0 group-data-[focus=true]:border-1",
-      otherProps.isInvalid && "!border-1 border-danger",
+      otherProps.isInvalid && "!border-1 !border-danger",
       "!bg-zinc-200 border-zinc-400 rounded-md whitespace-nowrap",
     ),
     innerWrapper: "justify-between",
