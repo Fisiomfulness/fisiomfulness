@@ -23,7 +23,7 @@ export const Login = () => {
       <img
         className="absolute bottom-0 left-0 h-1/2 max-sm:w-2/3 max-sm:h-auto"
         alt="logo_overlay"
-        src="/logo_overlay.png"
+        src="/logo_overlay.webp"
       />
       <div
         className={[

@@ -1,13 +1,12 @@
 "use client";
-import React, { useState } from "react";
-import FisiumLogo from "../../assets/Logo.svg";
+import { useState } from "react";
+import { CustomLogo } from "@/features/ui";
 import Link from "next/link";
-import Image from "next/image";
 import { RadioGroup, Radio, Card, CardBody } from "@nextui-org/react";
 import RegistroUsuario from "@/components/Registro/RegistroUsuario";
 import RegistroProfesional from "@/components/Registro/RegistroProfesional";
 
-const page = () => {
+const RegistroPage = () => {
   const [selected, setSelected] = useState("usuario");
 
   return (
@@ -16,12 +15,7 @@ const page = () => {
         <CardBody className="flex justify-between items-center w-full md:flex-row md:w-4/5">
           <div className="flex flex-col justify-center items-center">
             <Link href="/" className="pb-16">
-              <Image
-                width={220}
-                src={FisiumLogo}
-                alt="Logo Fisiom fulness"
-                priority
-              />
+              <CustomLogo width={220} color="dark" />
             </Link>
             <div className="flex justify-center">
               <RadioGroup
@@ -65,4 +59,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default RegistroPage;

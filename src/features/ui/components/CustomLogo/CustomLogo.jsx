@@ -3,7 +3,7 @@ export default function CustomLogo(props) {
 
   return (
     <img
-      src={`/logo_${color === "dark" ? color : "light"}.png`}
+      src={`/logo_${color === "dark" ? color : "light"}.webp`}
       loading="lazy"
       alt="logo_fisiomfulness"
       {...otherProps}
