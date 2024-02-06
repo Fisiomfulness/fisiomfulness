@@ -4,15 +4,15 @@ import { CustomOverlay } from "@/features/ui";
 const links = [
   {
     name: "Salud Mental",
-    className: "bg-[url('/servicios_img/salud_mental.jpg')]",
+    className: "bg-[url('/servicios_img/salud_mental.webp')]",
   },
   {
     name: "Salud Física",
-    className: "bg-[url('/servicios_img/salud_fisica.jpg')]",
+    className: "bg-[url('/servicios_img/salud_fisica.webp')]",
   },
   {
     name: "Salud Nutricional",
-    className: "bg-[url('/servicios_img/salud_nutricional.jpg')]",
+    className: "bg-[url('/servicios_img/salud_nutricional.webp')]",
   },
 ];
 

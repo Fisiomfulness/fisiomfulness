@@ -11,11 +11,10 @@ import {
   NavbarMenuItem,
 } from "@nextui-org/react";
 import LoginDropDown from "./LoginDropDown";
-import Image from "next/image";
 import NextLink from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import FisiumLogo from "../assets/Logo.svg";
+import { CustomLogo } from "@/features/ui";
 
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -57,12 +56,7 @@ export default function Nav() {
         />
         <NavbarBrand>
           <Link as={NextLink} href={menuItems[0].href}>
-            <Image
-              width={120}
-              src={FisiumLogo}
-              alt="Logo Fisiom fulness"
-              priority
-            />
+            <CustomLogo width={120} color="dark" />
           </Link>
         </NavbarBrand>
       </NavbarContent>
