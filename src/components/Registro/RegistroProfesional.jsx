@@ -2,8 +2,6 @@
 import React, { useState } from "react";
 import CustomInput from "@/features/ui/components/CustomInput/CustomInput";
 import CustomButton from "@/features/ui/components/CustomButton/CustomButton";
-import { Input } from "@nextui-org/react";
-
 function RegistroProfesional() {
   const [isSubmit, setIsSubmit] = useState(false);
   const [errMsg, setErrMsg] = useState("");
