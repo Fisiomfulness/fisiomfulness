@@ -11,7 +11,7 @@ const CustomTextarea = (props) => {
     input: "placeholder:!not-italic placeholder:text-gray-500 text-base flex-1",
     inputWrapper: cn(
       _variant === "flat" && "border-0 group-data-[focus=true]:border-1",
-      otherProps.isInvalid && "!border-1 border-danger",
+      otherProps.isInvalid && "!border-1 !border-danger",
       "!bg-zinc-200 border-gray-400 rounded-md whitespace-nowrap",
     ),
     innerWrapper: "justify-between",

@@ -1,24 +1,15 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import Link from "next/link";
-import {
-  CustomButton,
-  CustomInput,
-  CustomLogo,
-  CustomOverlay,
-} from "@/features/ui"; 
+import { CustomButton, CustomInput, CustomLogo } from "@/features/ui";
+import { center } from "@/styled-system/patterns";
 
 const Recupero = () => {
   const [email, setEmail] = useState("");
 
   return (
-    <CustomOverlay
-      className={[
-        "px-4 w-full bg-primary-400",
-        "flex justify-center items-center",
-      ].join(" ")}
-    >
+    <div className={center({ bg: "primary.400" })}>
       <img
         className="absolute bottom-0 left-0 h-1/2 max-sm:w-2/3 max-sm:h-auto"
         alt="logo_overlay"
@@ -47,13 +38,13 @@ const Recupero = () => {
             ENVIAR
           </CustomButton>
           <Link href="/recupero" className="w-full italic mt-1">
-            Ingrese su <strong>email</strong> para recuperar la <strong>contraseña</strong>
+            Ingrese su <strong>email</strong> para recuperar la{" "}
+            <strong>contraseña</strong>
           </Link>
         </div>
       </div>
-    </CustomOverlay>
+    </div>
   );
 };
 
 export default Recupero;
-

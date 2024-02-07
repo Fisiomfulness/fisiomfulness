@@ -1,5 +1,5 @@
+import { grid } from "@/styled-system/patterns";
 import Link from "next/link";
-import { CustomOverlay } from "@/features/ui";
 
 const links = [
   {
@@ -18,11 +18,13 @@ const links = [
 
 export default function ServiciosHomePage() {
   return (
-    <CustomOverlay
-      className={[
-        "grid grid-rows-3 md:grid-cols-3",
-        "md:grid-rows-1 w-full",
-      ].join(" ")}
+    <div
+      className={grid({
+        minH: "screen",
+        gridTemplateRows: { base: "3", md: "1" },
+        gridTemplateColumns: { md: "3" },
+        gap: "0",
+      })}
     >
       {links.map((item) => (
         <Link
@@ -41,6 +43,6 @@ export default function ServiciosHomePage() {
           </div>
         </Link>
       ))}
-    </CustomOverlay>
+    </div>
   );
 }
