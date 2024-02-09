@@ -1,6 +1,5 @@
 import imgTop from "@/assets/about/top.svg";
 import imgBot from "@/assets/about/bot.svg";
-import Logo from "@/assets/about/Logo.png";
 import ImgAbout from "./imgAbout";
 import Image from "next/image";
 import text from "./text";
@@ -25,7 +24,12 @@ export default function About() {
           y su satisfacción es nuestro éxito!
         </p>
         <div className="w-full flex justify-center item-center pt-16">
-          <Image src={Logo} width={30} height={30} alt="No"></Image>
+          <Image
+            src="/logo_simple.webp"
+            width={30}
+            height={30}
+            alt="logo_simple"
+          />
         </div>
       </div>
       <ImgAbout image={imgBot} />
