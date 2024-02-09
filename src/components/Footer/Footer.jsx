@@ -1,8 +1,5 @@
-"use client";
-
 import { CustomLogo } from "@/features/ui";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import {
   AiOutlineInstagram,
   AiOutlineLinkedin,
@@ -22,14 +19,8 @@ const navItems = [
 ];
 
 function Footer() {
-  const path = usePathname();
-
-  const showOnRegister = () => {
-    if (path === "/registro") return "hidden";
-  };
-
   return (
-    <footer className={`text-white bg-secondary py-6 ${showOnRegister()}`}>
+    <footer className="text-white bg-secondary py-6">
       <div className="flex flex-col gap-6">
         <div className="flex justify-evenly items-center max-sm:flex-col gap-4">
           <div className="py-2 flex flex-col gap-4">
