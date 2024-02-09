@@ -5,7 +5,13 @@ import Footer from "@/components/Footer/Footer";
 import { usePathname } from "next/navigation";
 import { center, container } from "@/styled-system/patterns";
 
-const exclude = ["/login", "/servicios_home", "/recupero", "/registro"];
+const exclude = [
+  "/login",
+  "/servicios_home",
+  "/recupero",
+  "/registro",
+  "/about",
+];
 export function Overlay({ children }) {
   const pathname = usePathname();
   const isRootPath = pathname === "/";
