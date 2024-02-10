@@ -1,206 +1,120 @@
 "use client";
 import { Button, Input, Card, CardBody, Image } from "@nextui-org/react";
+import CustomInput from "@/features/ui/components/CustomInput/CustomInput";
 import { useState } from "react";
 import { validation } from "./Validation";
-import { EyeFilledIcon } from "./EyeFilledIcon";
-import { EyeSlashFilledIcon } from "./EyeSlashFilledIcon";
+import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
 
-function Form(prop) {
+const initialValues = {
+  name: "",
+  city: "",
+  email: "",
+  password: "",
+  passwordRep: "",
+  img: "",
+};
+function Form() {
   const [isVisible, setIsVisible] = useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
-
-  const [errors, setErrors] = useState({
-    name: "",
-    city: "",
-    email: "",
-    password: "",
-    passwordRep: "",
-    img: "",
-  });
-
-  const [edit, setEdit] = useState({
-    name: "",
-    city: "",
-    email: "",
-    password: "",
-    passwordRep: "",
-    img: "",
-  });
-
-  const [input, setInput] = useState({
-    name: prop.name,
-    city: prop.city,
-    email: prop.email,
-    password: prop.password,
-    passwordRep: prop.paswordRep,
-    img: prop.img,
-  });
+  // const [edit, setEdit] = useState(initialValues);
+  const [input, setInput] = useState(initialValues);
+  const [errors, setErrors] = useState(initialValues);
 
   const handleChange = (event) => {
     const property = event.target.name;
     const value = event.target.value;
 
-    setInput({ ...input, [property]: value });
-    setEdit({ ...edit, [property]: value });
-    setErrors(validation({ ...input, [property]: value }));
+    const draft = { ...input, [property]: value };
+    setInput(draft);
+    // setEdit({ ...edit, [property]: value });
+    setErrors(validation(property, value, draft));
   };
 
   return (
     <div className="flex items-center">
       <Card className="max-w-full  w-[388px] h-[518px]">
         <CardBody className="flex flex-col justify-between h-full">
-          <div className="flex flex-col">
-            <div>
-              <Input
-                autoFocus
-                placeholder="Inserte su nombre"
-                value={input.name}
-                radius="none"
-                classNames={{
-                  inputWrapper: "h-39",
-                  input: [
-                    "bg-transparent",
-                    "text-black/90 dark:text-white/90",
-                    "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-                  ],
-                }}
-                name="name"
-                onChange={handleChange}
-                isRequired
-              />
-              {errors.name && (
-                <span className="error text-red-500">{errors.name}</span>)}
-                {!errors.name && (<span className="error text-green-500">Nombre valido</span>)}
-            </div>
-            <Input
-              autoFocus
+          <div>
+            <CustomInput
+              variant="flat"
+              placeholder="Inserte su nombre"
+              className={!errors.name && "pb-7"}
+              isInvalid={errors.name}
+              value={input.name}
+              name="name"
+              onChange={handleChange}
+              errorMessage={errors.name}
+            />
+            <CustomInput
+              variant="flat"
               placeholder="Inserte su ciudad"
+              className={!errors.city && "pb-7"}
+              errorMessage={errors.city}
+              isInvalid={errors.city}
               value={input.city}
-              radius="none"
-              classNames={{
-                inputWrapper: "h-39",
-                input: [
-                  "bg-transparent",
-                  "text-black/90 dark:text-white/90",
-                  "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-                ],
-              }}
               name="city"
               onChange={handleChange}
-              isRequired
             />
-            {errors.city && <span className="error text-red-500">{errors.city}</span>}
-            {!errors.city && <span className="error text-green-500">Ciudad valida</span>}
-            <Input
-              autoFocus
+            <CustomInput
+              variant="flat"
               placeholder="Inserte su email"
+              className={!errors.email && "pb-7"}
+              errorMessage={errors.email}
+              isInvalid={errors.email}
               value={input.email}
-              radius="none"
-              classNames={{
-                inputWrapper: "h-39",
-                input: [
-                  "bg-transparent",
-                  "text-black/90 dark:text-white/90",
-                  "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-                ],
-              }}
               name="email"
               onChange={handleChange}
-              isRequired
             />
-            {errors.email && (
-              <span className="error text-red-500">{errors.email}</span>
-            )}
-            {!errors.email && <span className="error text-green-500">Email valido</span>}
-            <Input
-              autoFocus
+            <CustomInput
+              variant="flat"
               placeholder="Inserte su nueva contraseña"
+              className={!errors.password && "pb-7"}
+              errorMessage={errors.password}
+              isInvalid={errors.password}
               value={input.password}
-              radius="none"
-              classNames={{
-                inputWrapper: "h-39",
-                input: [
-                  "bg-transparent",
-                  "text-black/90 dark:text-white/90",
-                  "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-                ],
-              }}
-              endContent={
-                <button
-                  className="focus:outline-none"
-                  type="button"
-                  onClick={toggleVisibility}
-                >
-                  {isVisible ? (
-                    <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                  ) : (
-                    <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                  )}
-                </button>
-              }
-              type={isVisible ? "text" : "password"}
               name="password"
               onChange={handleChange}
-              isRequired
-            />
-            {errors.password && (
-              <span className="error text-red-500">{errors.password}</span>
-            )}
-            {!errors.password && <span className="error text-green-500">Contraseña valida</span>}
-            <Input
-              autoFocus
-              placeholder="Repita su nueva contraseña"
-              value={input.passwordRep}
-              radius="none"
-              classNames={{
-                inputWrapper: "h-39",
-                input: [
-                  "bg-transparent",
-                  "text-black/90 dark:text-white/90",
-                  "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-                ],
-              }}
+              type={isVisible ? "text" : "password"}
               endContent={
-                <button
-                  className="focus:outline-none"
-                  type="button"
-                  onClick={toggleVisibility}
-                >
+                <button type="button" onClick={toggleVisibility}>
                   {isVisible ? (
-                    <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                    <RiEyeOffFill className="text-2xl text-default-400" />
                   ) : (
-                    <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                    <RiEyeFill className="text-2xl text-default-400" />
                   )}
                 </button>
               }
-              type={isVisible ? "text" : "password"}
+            />
+            <CustomInput
+              variant="flat"
+              placeholder="Repita su nueva contraseña"
+              className={!errors.passwordRep && "pb-7"}
+              errorMessage={errors.passwordRep}
+              isInvalid={errors.passwordRep}
+              value={input.passwordRep}
               name="passwordRep"
               onChange={handleChange}
-              isRequired
+              type={isVisible ? "text" : "password"}
+              endContent={
+                <button type="button" onClick={toggleVisibility}>
+                  {isVisible ? (
+                    <RiEyeOffFill className="text-2xl text-default-400" />
+                  ) : (
+                    <RiEyeFill className="text-2xl text-default-400" />
+                  )}
+                </button>
+              }
             />
-            {errors.passwordRep && (
-              <p className="error text-red-500">{errors.passwordRep}</p>
-            )}
-            {!errors.passwordRep && <span className="error text-green-500">Contraseña valida</span>}
-            <Input
-              autoFocus
+            <CustomInput
+              variant="flat"
               placeholder="Foto"
+              className={!errors.img && "pb-7"}
+              errorMessage={errors.img}
+              isInvalid={errors.img}
               value={input.img}
-              radius="none"
-              classNames={{
-                inputWrapper: "h-39",
-                input: [
-                  "bg-transparent",
-                  "text-black/90 dark:text-white/90",
-                  "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-                ],
-              }}
               name="img"
               onChange={handleChange}
-              isRequired
             />
-            {errors.img && <span className="error text-red-500">{errors.img}</span>}
-            {!errors.img && <span className="error text-green-500">Imagen valida</span>}
           </div>
           <div>
             <Button color="primary" className="w-full" radius="none">
