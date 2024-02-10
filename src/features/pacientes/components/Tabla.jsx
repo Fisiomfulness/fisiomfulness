@@ -25,7 +25,7 @@ export default function Tabla() {
             ))}
           </tr>
         </thead>
-        <tbody className="bg-light-blue">
+        <tbody className="bg-[#CFE9F3]">
           {rows.map((item) => (
             <tr key={item.key}>
               <td className={row__item_class}>

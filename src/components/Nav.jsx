@@ -1,21 +1,42 @@
 "use client";
+
 import {
   Navbar,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  Link,
-  Button,
   NavbarMenu,
   NavbarMenuToggle,
   NavbarMenuItem,
 } from "@nextui-org/react";
 import LoginDropDown from "./LoginDropDown";
-import Image from "next/image";
-import NextLink from "next/link";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import FisiumLogo from "../assets/Logo.svg";
+import { CustomButton } from "@/features/ui";
+import { css } from "@/styled-system/css";
+
+const menuItems = [
+  { name: "Servicios", href: "/servicios" },
+  { name: "Pregunta a un experto", href: "/pregunta_experto" },
+  { name: "Comunidad", href: "/comunidad" },
+  // { name: "Tratamientos", href: "/tratamientos" },
+  { name: "TrabajaConNosotros", href: "/TrabajaConNosotros" },
+  { name: "Blog", href: "/blog" },
+  { name: "Productos", href: "/productos" },
+];
+
+function NavbarLink({ item, onClick }) {
+  return (
+    <Link
+      className="block w-full hover:text-primary hover:font-bold"
+      href={item.href}
+      onClick={onClick}
+    >
+      {item.name}
+    </Link>
+  );
+}
 
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,91 +44,77 @@ export default function Nav() {
 
   const path = usePathname();
 
-  const handleMenuToogle = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const menuItems = [
-    { name: "Home", href: "/" },
-    { name: "Servicios y especialistas", href: "/servicios" },
-    { name: "Productos", href: "/productos" },
-    { name: "Tratamientos", href: "/tratamientos" },
-    { name: "Comunidad", href: "/comunidad" },
-    { name: "Blog", href: "/blog" },
-  ];
-
   return (
     <Navbar
-      maxWidth={"xl"}
-      height={`100px`}
+      height="75px"
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
+      classNames={{
+        wrapper: css({
+          maxW: "8xl!",
+          position: "relative!",
+          paddingX: { base: "4!", md: "6!", lg: "8!" },
+          gap: "6!",
+        }),
+        item: [
+          "data-[active=true]:text-primary",
+          "data-[active=true]:font-bold",
+        ],
+        menuItem: [
+          "data-[active=true]:text-primary",
+          "data-[active=true]:font-bold",
+        ],
+        toggle: "mr-2",
+      }}
     >
       <NavbarContent justify="start">
         <NavbarMenuToggle
-          isselected="true"
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="lg:hidden"
         />
         <NavbarBrand>
-          <Link as={NextLink} href={menuItems[0].href}>
-            <Image
-              width={120}
-              src={FisiumLogo}
-              alt="Logo Fisiom fulness"
-              priority
+          <Link href="/">
+            <img
+              src="/logo_minimal.webp"
+              width={200}
+              alt="logo_minimal"
+              className="lg:hidden"
+              onClick={() => isMenuOpen && setIsMenuOpen(false)}
+            />
+            <img
+              src="/logo_simple.webp"
+              width={48}
+              alt="logo_simple"
+              className="hidden lg:block"
             />
           </Link>
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="hidden lg:flex gap-5" justify="center">
-        {menuItems.map((item, index) => (
-          <NavbarItem
-            key={`${item.name}-${index}`}
-            isActive={path === item.href}
-          >
-            <Link
-              as={NextLink}
-              color={path === item.href ? "primary" : "foreground"}
-              href={item.href}
-            >
-              {item.name}
-            </Link>
+      <NavbarContent className="hidden lg:flex gap-8" justify="center">
+        {menuItems.map((item) => (
+          <NavbarItem key={item.name} isActive={path === item.href}>
+            <NavbarLink item={item} />
           </NavbarItem>
         ))}
       </NavbarContent>
 
-      <NavbarContent justify="end">
+      <NavbarContent justify="end" className="max-lg:!flex-grow-0">
         <NavbarItem>
-          {!isLogged ? (
-            <Button onClick={setIsLogged} as={Link} color="secondary" href="#">
-              Sign Up
-            </Button>
-          ) : (
+          {isLogged ? (
             <LoginDropDown />
+          ) : (
+            <CustomButton onClick={setIsLogged} as={Link} href="/login">
+              Login
+            </CustomButton>
           )}
         </NavbarItem>
       </NavbarContent>
 
       <NavbarMenu>
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem
-            key={`${item.name}-${index}`}
-            isActive={path === item.href}
-          >
-            <Link
-              as={NextLink}
-              color={path === item.href ? "secondary" : "foreground"}
-              className="w-full"
-              href={item.href}
-              size="lg"
-              onPress={() => {
-                handleMenuToogle();
-              }}
-            >
-              {item.name}
-            </Link>
+        {menuItems.map((item) => (
+          <NavbarMenuItem key={item.name} isActive={path === item.href}>
+            <NavbarLink item={item} onClick={() => setIsMenuOpen(false)} />
           </NavbarMenuItem>
         ))}
       </NavbarMenu>

@@ -1,30 +1,22 @@
-import React from "react";
-import { Card, CardFooter, Image, Button } from "@nextui-org/react";
+import { Link, Card, CardFooter, Image } from "@nextui-org/react";
 
 const TreatmentCard = ({ treat }) => {
   return (
-    <Card
-      key={treat.id}
-      isFooterBlurred
-      radius="sm"
-      className="border-none min-w-[260px] h-[280px]"
-    >
+    <Card isFooterBlurred radius="sm" className="h-64">
       <Image
         removeWrapper
         alt="Treatments available"
         src={treat.imagen}
-        className="w-full h-full object-cover"
+        className="h-full object-cover"
       />
-      <CardFooter className="bg-[#ACD9EC] bg-opacity-75 overflow-hidden py-6 absolute  bottom-0 w-full z-10">
-        <Button
-          className="text-2xl font-bold text-[#225f7C] border-none bg-transparent"
-          variant="flat"
-          color="default"
-          radius="sm"
-          size="large"
-        >
+      <CardFooter
+        className="bg-[#ACD9EC] bg-opacity-75 py-6 absolute bottom-0 z-10"
+        as={Link}
+        href="#"
+      >
+        <p className="text-2xl font-bold text-primary-700">
           {treat.serviceName}
-        </Button>
+        </p>
       </CardFooter>
     </Card>
   );
