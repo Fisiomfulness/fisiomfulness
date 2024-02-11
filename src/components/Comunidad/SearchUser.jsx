@@ -16,19 +16,19 @@ const SearchUsers = ({ users, setUsersFiltered }) => {
     if (filter.interes === "all") {
       setUsersFiltered(
         users.filter((e) =>
-          e.name.toLowerCase().includes(filter.name.toLowerCase())
-        )
+          e.name.toLowerCase().includes(filter.name.toLowerCase()),
+        ),
       );
     } else {
       setUsersFiltered(
         users.filter(
           (e) =>
             e.name.toLowerCase().includes(filter.name.toLowerCase()) &&
-            e.interests.includes(filter.interes)
-        )
+            e.interests.includes(filter.interes),
+        ),
       );
     }
-  }, [filter]);
+  }, [filter, setUsersFiltered, users]);
 
   return (
     <div className="flex flex-col sm:flex-row w-full items-center justify-center gap-5">

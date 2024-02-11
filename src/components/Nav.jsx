@@ -21,7 +21,7 @@ const menuItems = [
   { name: "Pregunta a un experto", href: "/pregunta_experto" },
   { name: "Comunidad", href: "/comunidad" },
   // { name: "Tratamientos", href: "/tratamientos" },
-  { name: "TrabajaConNosotros", href: "/TrabajaConNosotros" },
+  { name: "Trabaja Con Nosotros", href: "/trabajaConNosotros" },
   { name: "Blog", href: "/blog" },
   { name: "Productos", href: "/productos" },
 ];
