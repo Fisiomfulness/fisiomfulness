@@ -1,35 +1,49 @@
-import Image from "next/image";
-import Error404 from "../assets/Error404.png";
+import { center } from "@/styled-system/patterns";
 import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <div className="flex flex-col items-center justify-center">
-      <div className="flex items-center relative">
-        <h2 className="text-8xl text-primary">4</h2>
-        <h2 className="text-8xl text-[#3DAADD]">0</h2>
-        <h2 className="text-8xl text-primary">4</h2>
+    <div
+      className={center({
+        flexDir: "column",
+        gap: "1",
+        minH: "92vh",
+        textAlign: "center",
+        margin: "0",
+        width: "100vw",
+        maxW: "unset!",
+      })}
+    >
+      <img
+        className="absolute bottom-0 left-0 h-[42%] max-sm:w-1/2 max-sm:h-auto"
+        alt="logo_overlay"
+        src="/logo_overlay.webp"
+      />
+      <div className="mb-6 flex flex-row justify-center">
+        <p className="text-8xl text-primary font-bold">
+          4<span className="text-primary-500">0</span>4
+        </p>
 
-        <div className="flex items-baseline w-16 h-16 absolute -right-14">
-          <Image width={50} height={50} src={Error404} alt="Error 404" />
-        </div>
+        <img
+          className="self-start"
+          width={50}
+          src="/parche.webp"
+          alt="Error 404"
+        />
       </div>
 
-      <div className="flex flex-col m-4 text-sm items-center justify-center">
-        <p className="m-1">
-          Es posible que la entrada haya sido eliminada o que la dirección no
-          exista.
-        </p>
-        <p className="m-1">
-          Haz{" "}
-          <Link href="/">
-            <span className="text-primary cursor-pointer underline">
-              click aqui
-            </span>
-          </Link>{" "}
-          para volver al home.
-        </p>
-      </div>
+      <p>
+        Es posible que la entrada haya sido eliminada o que la dirección no
+        exista.
+      </p>
+      <p className="mb-16">
+        En 5 segundos serás redirigido/a a nuestra página principal o puedes
+        hacer{" "}
+        <Link href="/" className="text-primary cursor-pointer underline">
+          click aquí
+        </Link>
+        .
+      </p>
     </div>
   );
 }

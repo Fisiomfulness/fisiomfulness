@@ -91,10 +91,10 @@ export default defineConfig({
   outdir: "styled-system",
 
   layers: {
-    // reset: "panda_reset",
+    reset: "panda_reset",
     base: "panda_base",
-    // tokens: "panda_tokens",
-    // recipes: "panda_recipes",
+    tokens: "panda_tokens",
+    recipes: "panda_recipes",
     utilities: "panda_utilities",
   },
 });

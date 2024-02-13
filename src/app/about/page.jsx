@@ -2,7 +2,7 @@ import { container } from "@/styled-system/patterns";
 
 export default function About() {
   return (
-    <div className="flex flex-col justify-between">
+    <div className="flex flex-col justify-between !p-0">
       <img src="/border.svg" alt="border_top" className="max-h-40 mr-auto" />
       <div
         className={container({

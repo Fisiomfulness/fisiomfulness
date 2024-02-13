@@ -20,10 +20,10 @@ export default function ServiciosHomePage() {
   return (
     <div
       className={grid({
-        minH: "screen",
         gridTemplateRows: { base: "3", md: "1" },
         gridTemplateColumns: { md: "3" },
         gap: "0",
+        padding: "0!",
       })}
     >
       {links.map((item) => (
@@ -36,6 +36,7 @@ export default function ServiciosHomePage() {
             className={[
               "h-full text-white grid place-content-center",
               "bg-primary/40 font-bold italic text-center",
+              "hover:bg-primary/20",
             ].join(" ")}
           >
             <p className="text-3xl">{item.name.split(" ")[0]}</p>

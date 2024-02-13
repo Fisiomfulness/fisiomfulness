@@ -1,12 +1,10 @@
-import { center } from "@/styled-system/patterns";
-
 export default function Loading() {
   return (
-    <div className={center()}>
+    <div className="flex justify-center items-center">
       <div role="status">
         <svg
           aria-hidden="true"
-          className="w-12 h-12 text-gray-200 animate-spin fill-blue-600"
+          className="w-12 h-12 text-gray-200 animate-spin fill-primary"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -20,7 +18,7 @@ export default function Loading() {
             fill="currentFill"
           />
         </svg>
-        <span className="sr-only">Loading...</span>
+        <span className="sr-only">Cargando...</span>
       </div>
     </div>
   );

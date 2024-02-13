@@ -3,7 +3,6 @@
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer/Footer";
 import { usePathname } from "next/navigation";
-import { center, container } from "@/styled-system/patterns";
 
 const exclude = [
   "/login",
@@ -14,18 +13,23 @@ const exclude = [
 ];
 export function Overlay({ children }) {
   const pathname = usePathname();
-  const isRootPath = pathname === "/";
 
   if (exclude.includes(pathname)) {
     return (
       <main
-        className={center({
-          minH: "screen",
-          "& > div": container.raw({
-            flex: "1",
-            minH: "screen",
-          }),
-        })}
+        // NOTE: selectores de pandacss causan conflicto con tailwind.
+        className={[
+          // center
+          "flex justify-center items-center",
+          // container
+          "[&>div]:relative [&>div]:mx-auto",
+          "[&>div]:px-4 [&>div]:md:px-6 [&>div]:lg:px-8",
+          // NOTE: disable max width
+          // "[&>div]:max-w-[90rem]",
+          // extras
+          "min-h-screen",
+          "[&>div]:min-h-screen [&>div]:flex-1",
+        ].join(" ")}
       >
         {children}
       </main>
@@ -36,12 +40,14 @@ export function Overlay({ children }) {
     <div className="min-h-screen flex flex-col">
       <Nav />
       <main
-        className={container({
-          flex: "1",
-          w: "full",
-          p: isRootPath ? "0!" : undefined,
-          maxW: isRootPath ? "unset" : undefined,
-        })}
+        className={[
+          // container
+          "[&>div]:relative [&>div]:mx-auto",
+          "[&>div]:px-4 [&>div]:md:px-6 [&>div]:lg:px-8",
+          "[&>div]:max-w-[90rem]",
+          // extras
+          "flex min-h-[92vh]",
+        ].join(" ")}
       >
         {children}
       </main>
