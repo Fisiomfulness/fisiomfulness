@@ -56,4 +56,4 @@ i {
   }
 }
 
-@layer reset, panda_base, tokens, recipes, panda_utilities;
+@layer panda_reset, panda_base, panda_tokens, panda_recipes, panda_utilities;
