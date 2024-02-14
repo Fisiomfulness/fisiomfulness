@@ -1,5 +1,5 @@
 import { Button } from "@nextui-org/react";
-import { cn } from "../../utils";
+import { twMerge } from "tailwind-merge";
 
 const CustomButton = (props) => {
   const { children, className, ...otherProps } = props;
@@ -7,7 +7,7 @@ const CustomButton = (props) => {
   return (
     <Button
       color="primary"
-      className={cn(
+      className={twMerge(
         "h-auto py-2.5",
         "rounded-md font-bold text-sm uppercase",
         className,

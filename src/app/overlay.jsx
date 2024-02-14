@@ -28,7 +28,7 @@ export function Overlay({ children }) {
           // "[&>div]:max-w-[90rem]",
           // extras
           "min-h-screen",
-          "[&>div]:min-h-screen [&>div]:flex-1",
+          "[&>div]:min-h-screen [&>div]:flex-1 [&>div]:overflow-hidden",
         ].join(" ")}
       >
         {children}
@@ -46,7 +46,7 @@ export function Overlay({ children }) {
           "[&>div]:px-4 [&>div]:md:px-6 [&>div]:lg:px-8",
           "[&>div]:max-w-[90rem]",
           // extras
-          "flex min-h-[92vh]",
+          "flex min-h-[92vh] [&>div]:overflow-hidden",
         ].join(" ")}
       >
         {children}

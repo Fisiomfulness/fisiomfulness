@@ -8,7 +8,6 @@ import {
   CustomModalFooter,
   CustomModalHeader,
   CustomAlert,
-  cn,
 } from "@/features/ui";
 import { Select, SelectItem, Link } from "@nextui-org/react";
 import { useState } from "react";
@@ -42,8 +41,9 @@ export default function Selector() {
           setState(e.target.value);
         }}
         classNames={{
-          trigger: cn("bg-[#D8EEF8]"),
-          value: cn("text-black"),
+          trigger: "bg-primary-300",
+          value: "text-black",
+          selectorIcon: "text-black",
         }}
         popoverProps={{
           radius: "sm",
@@ -51,12 +51,12 @@ export default function Selector() {
           size: "sm",
           offset: 2,
           classNames: {
-            content: cn("p-0 bg-[#D8EEF8] shadow-none"),
+            content: "p-0 bg-[#D8EEF8] shadow-none",
           },
         }}
         listboxProps={{
           itemClasses: {
-            base: cn("first:hidden rounded-md"),
+            base: "first:hidden rounded-md",
           },
           color: "primary",
         }}

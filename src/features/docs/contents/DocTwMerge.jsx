@@ -1,10 +1,10 @@
-import { cn } from "@/features/ui";
 import { cx } from "class-variance-authority";
 import { DocCode, DocSyntax, DocTabs } from "../components";
+import { twMerge } from "tailwind-merge";
 
-const codeString = `import { cn } from "@/features/ui";
+const codeString = `import { twMerge } from "tailwind-merge";
 
-const result = cn(
+const result = twMerge(
   "px-2 py-1 bg-red hover:bg-dark-red",
   "p-3 bg-[#B91C1C]",
   false && "text-green-100",
@@ -14,8 +14,8 @@ const result = cn(
 console.log(result)
 // hover:bg-dark-red bg-[#B91C1C] p-2 leading-7`;
 
-const codeRender = `// Usando \`cn\`
-<div className={cn(
+const codeRender = `// Usando \`twMerge\`
+<div className={twMerge(
   "w-24 h-24",
   "bg-red-500",
   "bg-green-500",
@@ -33,13 +33,18 @@ const codeRender = `// Usando \`cn\`
 ></div>`;
 
 const previewRender = (
-  <div className="flex gap-4">
+  <div className="flex gap-8 [&>div>div]:mx-auto [&>div]:text-center">
     <div>
       <p>
-        Usando <DocCode>cn</DocCode>
+        Usando <DocCode>twMerge</DocCode>
       </p>
       <div
-        className={cn("w-24 h-24", "bg-red-500", "bg-green-500", "bg-blue-500")}
+        className={twMerge(
+          "w-24 h-24",
+          "bg-red-500",
+          "bg-green-500",
+          "bg-blue-500",
+        )}
       ></div>
     </div>
     <div>
@@ -56,18 +61,10 @@ const previewRender = (
 export default function DocCn() {
   return (
     <>
-      <p className="text-lg font-bold">cn</p>
+      <p className="text-lg font-bold">twMerge</p>
       <p>
-        Usa{" "}
-        <a
-          href="https://github.com/lukeed/clsx#usage"
-          rel="noreferrer noopener"
-          target="_blank"
-          className="text-primary-700 font-bold"
-        >
-          clsx
-        </a>{" "}
-        y{" "}
+        Fusiona de manera eficiente las clases CSS de Tailwind en JS sin
+        conflictos de estilo. Consultar{" "}
         <a
           href="https://github.com/dcastil/tailwind-merge#tailwind-merge"
           rel="noreferrer noopener"
@@ -75,9 +72,8 @@ export default function DocCn() {
           className="text-primary-700 font-bold"
         >
           twMerge
-        </a>{" "}
-        para fusionar de manera eficiente las clases CSS de Tailwind en JS sin
-        conflictos de estilo.
+        </a>
+        .
       </p>
       <DocSyntax>{codeString}</DocSyntax>
       <DocTabs previewRender={previewRender} codeRender={codeRender} />

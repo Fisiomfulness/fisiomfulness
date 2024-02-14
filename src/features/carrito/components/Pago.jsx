@@ -5,7 +5,6 @@ import {
   CustomButton,
   CustomInput,
   CustomModal,
-  cn,
 } from "@/features/ui";
 
 import { RadioGroup, Radio } from "@nextui-org/react";
@@ -18,19 +17,14 @@ import { useStep } from "@custom-react-hooks/all";
 function TablaPagar() {
   return (
     <div className="overflow-x-auto w-full p-3 bg-zinc-200 rounded-md">
-      <table
-        className={cn(
-          "min-w-max mx-auto", //scroll y centrar
-          "bg-transparent",
-        )}
-      >
+      <table className="min-w-max mx-auto bg-transparent">
         <thead>
           <tr className="[&_th]:py-3">
             <th scope="col">Información de tu compra</th>
             <th scope="col"></th>
           </tr>
         </thead>
-        <tbody className={cn("[&_tr_td]:py-2", "text-left")}>
+        <tbody className="[&_tr_td]:py-2 text-left">
           <tr>
             <td>servicio</td>
             <td>$100</td>
@@ -58,15 +52,15 @@ function CustomRadio({ children, ...otherProps }) {
     <Radio
       {...otherProps}
       classNames={{
-        base: cn(
+        base: [
           "inline-flex flex-row items-center justify-start gap-2",
           "min-w-[280px] m-0 cursor-pointer px-5 py-3 font-normal",
           "border-1 border-primary rounded-sm",
           "data-[selected=true]:bg-zinc-200 hover:bg-zinc-200",
-        ),
-        control: cn("w-4 h-4 bg-primary"),
-        label: cn("text-base"),
-        wrapper: cn("!border-secondary !bg-zinc-200"),
+        ],
+        control: "w-4 h-4 bg-primary",
+        label: "text-base",
+        wrapper: "!border-secondary !bg-zinc-200",
       }}
       size="sm"
     >
@@ -102,7 +96,7 @@ const formaDePago = [
 
 function Group({ label, values }) {
   return (
-    <RadioGroup label={label} classNames={{ label: cn("text-inherit") }}>
+    <RadioGroup label={label} classNames={{ label: "text-inherit" }}>
       {values.map((value) => (
         <CustomRadio key={value.value} value={value.value}>
           {value.label}
@@ -202,9 +196,9 @@ function SecondModal({ onOpenChange, onCheck, onBack }) {
             isInvalid={isInvalid.vencimiento}
             label="Vencimiento"
             classNames={{
-              base: cn("w-32"),
-              label: cn("m-0 font-normal text-base !text-inherit"),
-              input: cn("!w-[100px]"),
+              base: "w-32",
+              label: "m-0 font-normal text-base !text-inherit",
+              input: "!w-[100px]",
             }}
           />
           <CustomInput
@@ -213,9 +207,9 @@ function SecondModal({ onOpenChange, onCheck, onBack }) {
             isInvalid={isInvalid.ccv}
             label="ccv"
             classNames={{
-              base: cn("w-32"),
-              label: cn("m-0 font-normal text-base !text-inherit"),
-              input: cn("!w-[100px]"),
+              base: "w-32",
+              label: "m-0 font-normal text-base !text-inherit",
+              input: "!w-[100px]",
             }}
           />
         </div>

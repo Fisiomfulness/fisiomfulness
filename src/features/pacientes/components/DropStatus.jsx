@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
-import { cn } from "@/features/ui";
+import { twMerge } from "tailwind-merge";
 
 export default function DropStatus({ defaultItems, placeholder }) {
   const [status, setStatus] = useState(placeholder);
@@ -20,15 +20,15 @@ export default function DropStatus({ defaultItems, placeholder }) {
       }}
       inputProps={{
         classNames: {
-          base: cn(
+          base: twMerge(
             "px-2 py-1",
             status === "En Proceso" && "bg-cyan-600",
             status === "Finalizada" && "bg-sky-800",
             status === "Reprogramada" && "bg-lime-500",
           ),
-          innerWrapper: cn("!border-none !shadow-none px-2"),
-          inputWrapper: cn("!border-none !shadow-none after:!hidden"),
-          input: cn(
+          innerWrapper: "!border-none !shadow-none px-2",
+          inputWrapper: "!border-none !shadow-none after:!hidden",
+          input: twMerge(
             "placeholder:!not-italic placeholder:text-inherit placeholder:font-bold",
             "!border-none max-w-[120px] !p-0 !font-bold",
             "uppercase !text-white",
@@ -42,12 +42,12 @@ export default function DropStatus({ defaultItems, placeholder }) {
         size: "sm",
         offset: 2,
         classNames: {
-          content: cn("p-0 uppercase"),
+          content: "p-0 uppercase",
         },
       }}
       listboxProps={{
         itemClasses: {
-          base: cn("!rounded-md"),
+          base: "!rounded-md",
         },
         color: "primary",
       }}

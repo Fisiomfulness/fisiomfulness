@@ -1,20 +1,20 @@
 import { Chat } from "@/features/chat";
-import { cn } from "@/features/ui";
 import { Avatar } from "@nextui-org/react";
+import { twMerge } from "tailwind-merge";
 
 export default function MisMensajesPage() {
   return (
-    <div className="flex flex-row p-4 max-h-[520px] max-w-fit mx-auto mt-10 mb-28">
-      <div className="flex flex-col overflow-y-auto min-w-md gap-2">
+    <div className="flex flex-row max-h-[520px] max-w-fit my-auto">
+      <div className="flex flex-col overflow-y-auto gap-2">
         {Array(10)
           .fill(0)
           .map((_, i) => (
             <div
               key={i}
-              className={cn(
+              className={twMerge(
                 "bg-primary-300 px-6 py-2 rounded-lg text-black w-64 mr-4",
                 "flex items-center",
-                2 === i && "bg-primary-950 text-white",
+                2 === i && "bg-primary-800 text-white",
               )}
             >
               <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />

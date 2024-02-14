@@ -1,18 +1,12 @@
-import { cn } from "@/features/ui";
 import { createQuoteTime, getMonday } from "../utils";
 import { citaciones } from "../data";
 import Selector from "./Selector";
+import { twMerge } from "tailwind-merge";
 
 let count = 30 * 7 * 2; // iniciar desde las 7
 let dayCount = 0;
 // console.log("counts", count, dayCount);
 let actualDay = 21;
-
-const calendario__box_class = cn(
-  "w-24 h-24 text-center bg-red-500",
-  "border-gray-300 border-1 box-content",
-  "flex justify-center items-center flex-col",
-);
 
 function Cita({ index }) {
   if (index === 0) return <div className="bg-transparent"></div>;
@@ -75,9 +69,11 @@ function Cita({ index }) {
 
   return (
     <div
-      className={cn(
-        calendario__box_class,
-        cita?.name ? "bg-primary" : "bg-slate-50",
+      className={twMerge(
+        "w-24 h-24 text-center bg-red-500",
+        "border-gray-300 border-1 box-content",
+        "flex justify-center items-center flex-col",
+        cita?.name ? "bg-primary-300" : "bg-slate-50",
         (index % 8) - 7 === 0 && "bg-slate-200",
       )}
     >
@@ -108,10 +104,10 @@ export default function Calendario() {
   return (
     <div className="w-full max-w-fit">
       <div
-        className={cn(
+        className={[
           "grid grid-cols-[repeat(8,96px)] grid-rows-[auto_repeat(4,96px)]",
           "overflow-x-auto w-full p-1",
-        )}
+        ].join(" ")}
       >
         {Array(8 * 5)
           .fill(0)
