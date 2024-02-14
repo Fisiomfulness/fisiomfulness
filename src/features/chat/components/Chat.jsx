@@ -1,9 +1,10 @@
 "use client";
 
-import { CustomInput, cn } from "@/features/ui";
+import { CustomInput } from "@/features/ui";
 import { Avatar } from "@nextui-org/react";
 import { useLayoutEffect, useRef, useState } from "react";
 import { RiArrowUpCircleLine } from "react-icons/ri";
+import { twMerge } from "tailwind-merge";
 
 function Collapse({ children }) {
   const [isCollapsed, setIsCollapse] = useState(!true);
@@ -81,7 +82,7 @@ const defaultValue = [
     text: (
       <>
         <span
-          className={cn("cursor-pointer font-extrabold", "animate-pulse")}
+          className="cursor-pointer font-extrabold animate-pulse"
           onClick={() => alert("This is a ReactNode (╯°□°）╯︵ ┻━┻")}
         >
           This is a ReactNode
@@ -95,11 +96,11 @@ const defaultValue = [
 function Message({ type, children }) {
   return (
     <div
-      className={cn(
-        "rounded-2xl max-w-[80%] text-white px-5 py-2 text-justify",
+      className={twMerge(
+        "rounded-xl max-w-[80%] text-white px-4 py-2 text-justify",
         type === "bot"
           ? "bg-primary-300 text-black text-left self-start rounded-bl-none"
-          : "bg-primary-950 text-right self-end rounded-br-none",
+          : "bg-primary-800 text-right self-end rounded-br-none",
       )}
     >
       {children}
@@ -138,10 +139,10 @@ function Chat({ isCollapsable = false }) {
   const content = (
     <div className="flex flex-col max-w-lg w-full rounded-md">
       <div
-        className={cn(
-          "bg-primary-950 px-8 py-3 rounded-lg mx-6 text-white",
+        className={[
+          "bg-primary-800 px-8 py-3 rounded-lg mx-6 text-white",
           "flex justify-between items-center",
-        )}
+        ].join(" ")}
       >
         <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
         <p className="text-lg">Ronald Marino</p>
@@ -162,7 +163,7 @@ function Chat({ isCollapsable = false }) {
           name="message"
           placeholder="mensaje..."
           classNames={{
-            input: cn("px-1"),
+            input: "px-1",
           }}
           endContent={
             <>

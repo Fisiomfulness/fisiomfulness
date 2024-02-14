@@ -5,8 +5,8 @@ import {
   ModalFooter,
   ModalHeader,
 } from "@nextui-org/react";
-import { cn } from "../../utils";
 import { CustomModalClient } from "./CustomModalClient";
+import { twMerge } from "tailwind-merge";
 
 const CustomModal = (props) => {
   const { children, className, ...otherProps } = props;
@@ -22,9 +22,9 @@ const CustomModal = (props) => {
     <CustomModalClient isOpen={otherProps.isOpen}>
       <Modal
         placement="center"
-        className={cn("!rounded-md max-w-fit !mx-4", className)}
+        className={twMerge("!rounded-md max-w-fit !mx-4", className)}
         classNames={{
-          closeButton: cn("p-1.5"),
+          closeButton: "p-1.5",
         }}
         {...otherProps}
       >
@@ -41,7 +41,7 @@ const CustomModalSmallContent = (props) => {
 
   return (
     <div
-      className={cn("h-72 w-56", "flex flex-col", className)}
+      className={twMerge("h-72 w-56", "flex flex-col", className)}
       {...otherProps}
     >
       {children}
@@ -54,7 +54,7 @@ const CustomModalHeader = (props) => {
 
   return (
     <ModalHeader
-      className={cn("flex text-base font-normal p-0 gap-0", className)}
+      className={twMerge("flex text-base font-normal p-0 gap-0", className)}
       {...otherProps}
     >
       {children}
@@ -67,7 +67,7 @@ const CustomModalBody = (props) => {
 
   return (
     <ModalBody
-      className={cn(
+      className={twMerge(
         "flex flex-1 flex-col justify-center items-center",
         "p-0 gap-0",
         className,
@@ -84,7 +84,7 @@ const CustomModalFooter = (props) => {
 
   return (
     <ModalFooter
-      className={cn("flex flex-col", "p-0 gap-0", className)}
+      className={twMerge("flex flex-col", "p-0 gap-0", className)}
       {...otherProps}
     >
       {children}

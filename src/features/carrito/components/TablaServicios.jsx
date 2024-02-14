@@ -1,15 +1,9 @@
-import { cn } from "@/features/ui";
 import { Chip } from "@nextui-org/react";
 
 export default function Tabla() {
   return (
     <div className="overflow-x-auto w-full">
-      <table
-        className={cn(
-          "rounded-md overflow-hidden", // borde
-          "min-w-max mx-auto", //scroll y centrar
-        )}
-      >
+      <table className="rounded-md overflow-hidden min-w-max mx-auto">
         <thead className="text-white bg-primary">
           <tr className="[&_th]:px-6 [&_th]:py-3">
             <th scope="col">Servicios a contratar</th>
@@ -17,7 +11,7 @@ export default function Tabla() {
             <th scope="col">Valor</th>
           </tr>
         </thead>
-        <tbody className={cn("[&_tr_td]:px-6 [&_tr_td]:py-4", "text-left")}>
+        <tbody className="[&_tr_td]:px-6 [&_tr_td]:py-4 text-left">
           <tr className="border-b border-gray-300 bg-transparent">
             <td>
               <p className="font-bold text-lg">Dr. Mario Gómez</p>
@@ -26,7 +20,7 @@ export default function Tabla() {
                 radius="full"
                 className="bg-primary-300"
                 classNames={{
-                  content: cn("text-primary-800 !text-xs px-2"),
+                  content: "text-primary-800 !text-xs px-2",
                 }}
               >
                 especialidad

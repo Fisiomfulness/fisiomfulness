@@ -9,7 +9,7 @@ import {
   Button,
   Avatar,
 } from "@nextui-org/react";
-import { cn } from "../utils";
+import { twMerge } from "tailwind-merge";
 
 const items = [
   { key: "mis_compras", label: "Mis compras" },
@@ -27,11 +27,11 @@ export default function DropdownUser() {
       offset={0}
       disableAnimation
       classNames={{
-        content: cn(
+        content: twMerge(
           "bg-white w-[260px] text-center p-0",
           "shadow-none rounded-t-none",
           "border-1 border-zinc-300",
-          state && "border-t-0 rounded-t-none"
+          state && "border-t-0 rounded-t-none",
         ),
       }}
       onOpenChange={(isOpen) => setState(isOpen)}
@@ -39,11 +39,11 @@ export default function DropdownUser() {
       <DropdownTrigger className="text-base">
         <Button
           variant="bordered"
-          className={cn(
+          className={twMerge(
             "h-auto px-4 py-2 w-[260px]",
             "flex flex-row gap-4",
             "!opacity-100 !transform-none",
-            state && "border-1 border-b-0 rounded-b-none"
+            state && "border-1 border-b-0 rounded-b-none",
           )}
         >
           <p className="truncate w-3/4">Maria Perez Gutierrez</p>

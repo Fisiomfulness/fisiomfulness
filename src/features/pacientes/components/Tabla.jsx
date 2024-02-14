@@ -1,16 +1,12 @@
-import { cn } from "@/features/ui";
 import { columns, rows } from "../data";
 import Drop from "./Drop";
 import DropStatus from "./DropStatus";
+import { twMerge } from "tailwind-merge";
 
-const row__item_class = cn(
-  "px-4 py-1 text-black",
-  "whitespace-nowrap border-1 border-white"
-)
+const row__item_class =
+  "px-4 py-1 text-black whitespace-nowrap border-1 border-white";
 
-const header__item_class = cn(
-  "py-2 border-1 border-white text-center",
-)
+const header__item_class = "py-2 border-1 border-white text-center";
 
 export default function Tabla() {
   return (
@@ -28,25 +24,23 @@ export default function Tabla() {
         <tbody className="bg-[#CFE9F3]">
           {rows.map((item) => (
             <tr key={item.key}>
-              <td className={row__item_class}>
-                {item.name}
-              </td>
-              <td className={cn(row__item_class, "p-0")}>
+              <td className={row__item_class}>{item.name}</td>
+              <td className={twMerge(row__item_class, "p-0")}>
                 <Drop
                   defaultItems={[
-                    {label: "date1", value: "10.04.2023"},
-                    {label: "date2", value: "11.02.2021"},
-                    {label: "date3", value: "10.10.2020"},
+                    { label: "date1", value: "10.04.2023" },
+                    { label: "date2", value: "11.02.2021" },
+                    { label: "date3", value: "10.10.2020" },
                   ]}
                   placeholder={"Seleccione una cita"}
                 />
               </td>
-              <td className={cn(row__item_class, "p-0")}>
+              <td className={twMerge(row__item_class, "p-0")}>
                 <DropStatus
                   defaultItems={[
-                    {value: "En Proceso"},
-                    {value: "Finalizada"},
-                    {value: "Reprogramada"},
+                    { value: "En Proceso" },
+                    { value: "Finalizada" },
+                    { value: "Reprogramada" },
                   ]}
                   placeholder={item.status}
                 />
@@ -56,5 +50,5 @@ export default function Tabla() {
         </tbody>
       </table>
     </div>
-  )
+  );
 }
