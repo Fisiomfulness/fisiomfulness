@@ -1,66 +1,46 @@
 "use client";
-import { useEffect, useState } from "react";
+import useFilteredUsers from "./useFilteredUsers";
+import { Select, SelectItem } from "@nextui-org/react";
+import { CustomInput } from "@/features/ui";
 import { MdOutlineSearch } from "react-icons/md";
 
 const SearchUsers = ({ users, setUsersFiltered }) => {
-  const [filter, setFilter] = useState({
-    name: "",
-    interes: "all",
-  });
+  const interestSet = new Set(users.flatMap((user) => user.interests));
+  const interestArr = Array.from(interestSet).concat("Todos");
 
-  const handleOnChange = (e) => {
-    setFilter({ ...filter, [e.target.id]: e.target.value });
-  };
-
-  useEffect(() => {
-    if (filter.interes === "all") {
-      setUsersFiltered(
-        users.filter((e) =>
-          e.name.toLowerCase().includes(filter.name.toLowerCase()),
-        ),
-      );
-    } else {
-      setUsersFiltered(
-        users.filter(
-          (e) =>
-            e.name.toLowerCase().includes(filter.name.toLowerCase()) &&
-            e.interests.includes(filter.interes),
-        ),
-      );
-    }
-  }, [filter, setUsersFiltered, users]);
+  const { selectedInterest, setSelectedInterest, filter, handleOnChange } =
+    useFilteredUsers(users, setUsersFiltered);
 
   return (
     <div className="flex flex-col sm:flex-row w-full items-center justify-center gap-5">
       <div className="relative flex items-center text-sm">
-        <input
+        <CustomInput
           id="name"
           value={filter.name}
           onChange={(e) => handleOnChange(e)}
+          size="lg"
           placeholder="Buscar persona..."
-          className="border-none border-black p-2 bg-gray-200 rounded-sm outline-none w-[200px]"
+          endContent={<MdOutlineSearch color="#62CFE4" size="20px" />}
         />
-        <button className="absolute right-1">
-          <MdOutlineSearch color="#62CFE4" size="20px" />
-        </button>
       </div>
-      <div className="flex text-sm">
-        <select
-          value={filter.interes}
-          id="interes"
-          className="w-[200px] p-2 rounded-sm cursor-pointer outline-none"
-          style={{ boxShadow: "0px 2px 2px 0px #00000040" }}
-          onChange={(e) => handleOnChange(e)}
-          placeholder={filter.interes}
+      <div className="flex w-full ">
+        <Select
+          label="Intereses:"
+          variant="bordered"
+          placeholder="Selecciona un interes"
+          selectedKeys={new Set([selectedInterest])}
+          className="max-w-xs"
+          onSelectionChange={(keys) => {
+            const selectedKey = keys.values().next().value;
+            setSelectedInterest(selectedKey);
+          }}
         >
-          <option value="all" className="">
-            Todas
-          </option>
-          <option value="trekking">Trekking</option>
-          <option value="yoga">Yoga</option>
-          <option value="fútbol">Fútbol</option>
-          <option value="running">Running</option>
-        </select>
+          {interestArr.map((interest) => (
+            <SelectItem key={interest} value={interest}>
+              {interest.charAt(0).toUpperCase() + interest.slice(1)}
+            </SelectItem>
+          ))}
+        </Select>
       </div>
     </div>
   );
