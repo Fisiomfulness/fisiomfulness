@@ -5,37 +5,57 @@ import {
   DropdownItem,
   User,
 } from "@nextui-org/react";
+import {Popover, PopoverTrigger, PopoverContent, Button} from "@nextui-org/react";
+
+import { useState } from "react";
 
 export default function LoginDropDown() {
+  const [showPopover, setShowPopover] = useState(false)
+
+
   return (
     <div className="flex items-center gap-4">
-      <Dropdown backdrop="blur" placement="bottom-start">
+      <Dropdown placement="bottom-start">
         <DropdownTrigger>
           <User
             as="button"
+            name="Dr. Mario Gómez"
             avatarProps={{
               isBordered: true,
               src: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
             }}
             className="transition-transform"
-            description="@tonyreichert"
-            name="Tony Reichert"
           />
         </DropdownTrigger>
-        <DropdownMenu aria-label="User Actions" variant="flat">
-          <DropdownItem key="profile" className="h-14 gap-2">
-            <p className="font-bold">Signed in as</p>
-            <p className="font-bold">@tonyreichert</p>
+        <DropdownMenu aria-label="User Actions" variant="flat" closeOnSelect={false}>
+          <DropdownItem key="settings">
+            <Popover 
+              showArrow
+              placement="right"
+            >
+              <PopoverTrigger>
+                Mis servicios
+              </PopoverTrigger>
+              <PopoverContent>
+                  <Button>Historial clinico pacientes</Button>
+                  <Button>Calendario</Button>
+              </PopoverContent>
+            </Popover>
           </DropdownItem>
-          <DropdownItem key="settings">My Settings</DropdownItem>
-          <DropdownItem key="team_settings">Team Settings</DropdownItem>
-          <DropdownItem key="analytics">Analytics</DropdownItem>
-          <DropdownItem key="system">System</DropdownItem>
-          <DropdownItem key="configurations">Configurations</DropdownItem>
-          <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
-          <DropdownItem key="logout" color="danger">
-            Log Out
-          </DropdownItem>
+          <DropdownItem key="team_settings">Editar perfil</DropdownItem>
+          <DropdownItem key="analytics"><Popover 
+              showArrow
+              placement="right"
+            >
+              <PopoverTrigger>
+                Blog
+              </PopoverTrigger>
+              <PopoverContent>
+                  <Button>Crear blog</Button>
+                  <Button>Mis blogs</Button>
+              </PopoverContent>
+            </Popover></DropdownItem>
+          <DropdownItem key="system">Cerrar sesión</DropdownItem>
         </DropdownMenu>
       </Dropdown>
     </div>
