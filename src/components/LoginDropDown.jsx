@@ -5,13 +5,11 @@ import {
   DropdownItem,
   User,
 } from "@nextui-org/react";
+import Link from "next/link";
 import {Popover, PopoverTrigger, PopoverContent, Button} from "@nextui-org/react";
 
-import { useState } from "react";
 
 export default function LoginDropDown() {
-  const [showPopover, setShowPopover] = useState(false)
-
 
   return (
     <div className="flex items-center gap-4">
@@ -28,7 +26,7 @@ export default function LoginDropDown() {
           />
         </DropdownTrigger>
         <DropdownMenu aria-label="User Actions" variant="flat" closeOnSelect={false}>
-          <DropdownItem key="settings">
+          <DropdownItem key="settings" color="primary">
             <Popover 
               showArrow
               placement="right"
@@ -37,13 +35,25 @@ export default function LoginDropDown() {
                 Mis servicios
               </PopoverTrigger>
               <PopoverContent>
-                  <Button>Historial clinico pacientes</Button>
-                  <Button>Calendario</Button>
+                  <Button className="bg-white hover:bg-[#cce3fd] hover:text-primary">
+                    <Link href="#">
+                      Historial clinico pacientes
+                    </Link>
+                  </Button>
+                  <Button className="bg-white hover:bg-[#cce3fd] hover:text-primary" fullWidth={true}>
+                    <Link href="#">
+                      Calendario
+                    </Link>
+                  </Button>
               </PopoverContent>
             </Popover>
           </DropdownItem>
-          <DropdownItem key="team_settings">Editar perfil</DropdownItem>
-          <DropdownItem key="analytics"><Popover 
+          <DropdownItem key="team_settings" color="primary">
+            <Link href="/edit_profile">
+              Editar perfil
+            </Link>
+            </DropdownItem>
+          <DropdownItem key="analytics" color="primary"><Popover 
               showArrow
               placement="right"
             >
@@ -51,11 +61,19 @@ export default function LoginDropDown() {
                 Blog
               </PopoverTrigger>
               <PopoverContent>
-                  <Button>Crear blog</Button>
-                  <Button>Mis blogs</Button>
+                  <Button className="w-56 bg-white hover:bg-[#cce3fd] hover:text-primary" >
+                    <Link href="/createBlog">
+                      Crear blog
+                    </Link>
+                  </Button>
+                  <Button className="bg-white hover:bg-[#cce3fd] hover:text-primary" fullWidth={true}>
+                    <Link href="#">
+                      Mis blogs
+                    </Link>
+                  </Button>
               </PopoverContent>
             </Popover></DropdownItem>
-          <DropdownItem key="system">Cerrar sesión</DropdownItem>
+          <DropdownItem key="system" color="primary">Cerrar sesión</DropdownItem>
         </DropdownMenu>
       </Dropdown>
     </div>
