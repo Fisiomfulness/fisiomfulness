@@ -40,7 +40,7 @@ function NavbarLink({ item, onClick }) {
 
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLogged, setIsLogged] = useState(false);
+  const [isLogged, setIsLogged] = useState(true);
 
   const path = usePathname();
 
