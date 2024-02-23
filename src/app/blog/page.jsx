@@ -1,14 +1,16 @@
-import React from 'react';
-import CardBlog from '@/components/CardBlog';
-import BlogList from '@/components/BlogList';
+import React from "react";
+import CardBlog from "@/components/Blog/CardBlog";
+import BlogList from "@/components/Blog/BlogList";
+import dataBlog from "@/components/Blog/data/blogs.json";
+import dataPublication from "@/components/Blog/data/publication.json";
 
-const Page = () => {
+const BlogPage = () => {
   return (
-    <div className="flex flex-col lg:flex-row justify-start items-start mb-5 md:ml-20 ">
-      <CardBlog className="lg:w-1/2" />
-      <BlogList className="lg:w-full " /> 
+    <div className="flex flex-col gap-y-7 gap-x-10 lg:flex-row w-full h-full mt-10 mb-14">
+      <CardBlog cardData={dataBlog.data} />
+      <BlogList blogData={dataPublication.data} />
     </div>
   );
 };
 
-export default Page;
+export default BlogPage;
