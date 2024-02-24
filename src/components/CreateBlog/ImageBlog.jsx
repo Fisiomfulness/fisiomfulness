@@ -5,7 +5,7 @@ export default function ImageBlog({ dataImage }) {
     <Image
       src={dataImage}
       alt="NextUI Album Cover"
-      className="w-full h-full md:p-0 md:h-full rounded-none"
+      className="w-full h-full rounded-none md:p-0 md:h-full"
     />
   );
 }
