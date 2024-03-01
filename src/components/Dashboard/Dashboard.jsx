@@ -115,7 +115,7 @@ export default function ListaProd() {
 
   return (
     <>
-      <CustomOverlay
+      <div
         className={[
           "px-4 w-full bg-primary-400",
           "flex flex-col justify-center items-center",
@@ -173,7 +173,7 @@ export default function ListaProd() {
             )}
           </TableBody>
         </Table>
-      </CustomOverlay>
+      </div>
     </>
   );
 }
